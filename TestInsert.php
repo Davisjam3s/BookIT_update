@@ -38,8 +38,6 @@ if (mysqli_query($conn, $sql)) {
   }
 mysqli_close($conn);
 ?> <!--this is some php for adding the user when they first log in-->
- <!--its currently broken though, lol because i The master james Did ;)-->
- <!--when i say its broken, what i really mean is that it adds a user every time they log in rather than adding them once-->
  <!--We better get on this lads and ladies thats right, im not sexist, take that feminists-->
 <!--don't break anything
               _
