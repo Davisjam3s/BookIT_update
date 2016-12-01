@@ -1,0 +1,76 @@
+/*this is for each catalog item that will appear on the page*/
+/*sets height width and colour*/
+.catalog_item
+{
+	float: left;
+	margin: 0.5em;
+	height: 10em;
+	width: 10em;
+	background-color: red;
+	overflow: hidden;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+}
+/*each ididual item that is on the page has a set height and stuff*/
+/*oveflow is hidden, no in div will appear outside the div*/
+.item_overlay
+{
+	width:10em; 
+	height:10em; 
+	background-color: white;
+	opacity: 0.8;
+	position: absolute;
+	transition: height:10em;
+	-webkit-transition: height:10em;
+	line-height: 10em;
+	font-family: 'Amaranth', sans-serif;
+	text-transform: uppercase;
+	font-size: 1em;
+
+}
+/*overlay is there for looking nice, this will be changed, possibliy*/
+/*overlay might be image ontop and then the text will slide up, maybe*/
+/*might also need to add a another div in with the same without a background in order to display text*/
+/*for some reason opacity will not let me override it */
+
+/*this is for the animation on the divs, this was not working with jquery, so i did it the lazy way*/
+/*look for the hover event, give it a name, this being slide-down, set the duration*/
+/*set it to work with other browsers*/
+/*set the new hieght or what ever*/
+/*set the key frames for different browsers*/
+/*keyframes should set new height and things so it animates to that*/
+.item_overlay:hover
+{
+	animation-name: slide-down; animation-duration: 2s;
+   -moz-animation-name: slide-down; -moz-animation-duration: 2s;
+   -webkit-animation-name: slide-down; -webkit-animation-duration: 2s;
+   	height: 3em;
+   	margin-top: 7em; 
+   	opacity: 1;
+   	line-height: 3em;
+
+}
+@keyframes slide-down
+{
+    from { height: 10em; } to { height: 3em;}
+    from {margin-top: 0em;} to {margin-top: 7em;}
+    from {opacity: 0.8;} to {opacity: 1;}
+    from {line-height: 10em;} to {line-height: 3em;}
+}
+
+@-moz-keyframes slide-down
+{
+    from { height: 10em; } to { height: 3em;}
+    from {margin-top: 0em;} to {margin-top: 7em;}
+    from {opacity: 0.8;} to {opacity: 1;}
+    from {line-height: 10em;} to {line-height: 3em;}
+}
+
+@-webkit-keyframes slide-down
+{
+    from { height: 10em; } to { height: 3em;}
+    from {margin-top: 0em;} to {margin-top: 7em;}
+    from {opacity: 0.8;} to {opacity: 1;}
+    from {line-height: 10em;} to {line-height: 3em;}
+}
