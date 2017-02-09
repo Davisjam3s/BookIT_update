@@ -252,7 +252,7 @@ $(document).ready(function() // wait till the page is ready
         $.ajax({ // now the ajax
         type: 'POST', // we are posting it 
         url: 'ajax/Pages/Inventory/edit_inventory.php', // this is where we're posting 
-        data: { AssetUID: val1,ItemName:val2,Agreement:val3,Condition:val4,Restriction:val5}, // set the php values
+        data: { AssetUID: val1,Description:val2,Agreement:val3,Condition:val4,Restriction:val5}, // set the php values
         success: function(response) { // this wont work lol, it does not need to, 
             $('#result').html(response);
             $(".holder").load("ajax/Pages/Inventory/current_inventory.php");

@@ -38,7 +38,7 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
-        // we need to set the values of the info that we got from the user
+        // Clear out Assets from owner that is being deleted
         $sql2 = "DELETE FROM Asset Where OwnerUID='$UserName'";
 
 		//display success or failure
@@ -58,7 +58,7 @@ $result1 = mysqli_query($conn, $sql3);
 if (mysqli_num_rows($result1) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result1)) {
-        // we need to set the values of the info that we got from the user
+        //delete the Owner
         $sql4 = "DELETE FROM Owner Where OwnerUID='$UserName'";
 
 		//display success or failure
