@@ -1,0 +1,289 @@
+body
+{
+	background-image: url("back1.jpg");
+}
+.menu_container
+{
+	position: absolute;
+    width: 50vmin;
+    height: 25vmin;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Wire One', sans-serif;
+}
+.menu_container_background
+{
+    background-color: black;
+    position: absolute;
+    width: 50vmin;
+    height: 25vmin;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.3;
+}
+.box_top_left
+{
+	background-color: white;
+    color: black;
+    width: 23vmin;
+    float: left;
+    height: 10vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
+    text-align: center;
+    line-height: 10vmin;
+    font-size: 5vmin;
+    transition: all 0.5s ease-out;
+}
+.box_top_left:hover
+{
+    background-color: black;
+    color: white;
+}
+
+.box_top_right
+{
+    background-color: white;
+    color: black;
+    width: 24vmin;
+    float: left;
+    height: 10vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
+    text-align: center;
+    line-height: 10vmin;
+    font-size: 5vmin;
+    transition: all 0.5s ease-out;
+}
+.box_top_right:hover
+{
+    background-color: black;
+    color: white;
+}
+.box_bottom_left
+{
+    background-color: white;
+    color: black;
+    width: 23vmin;
+    float: left;
+    height: 12vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
+    text-align: center;
+    line-height: 12vmin;
+    font-size: 5vmin;
+    transition: all 0.5s ease-out;
+}
+.box_bottom_left:hover
+{
+    background-color: black;
+    color: white;
+}
+.box_bottom_right
+{
+    background-color: white;
+    color: black;
+    width: 24vmin;
+    float: left;
+    height: 12vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
+    text-align: center;
+    line-height: 12vmin;
+    font-size: 5vmin;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+.box_bottom_right:hover
+{
+    background-color: black;
+    color: white;
+}
+.box_ContactEmail
+{
+    background-color: white;
+    color: black;
+    width: 23vmin;
+    float: left;
+    height: 10vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
+    text-align: center;
+    line-height: 10vmin;
+    font-size: 5vmin;
+    transition: all 0.5s ease-out;
+    display: none;
+}
+.box_ContactEmail:hover
+{
+    background-color: black;
+    color: white;
+}
+.box_Contact_form
+{
+    background-color: white;
+    color: black;
+    width: 24vmin;
+    float: left;
+    height: 10vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
+    text-align: center;
+    line-height: 10vmin;
+    font-size: 5vmin;
+    transition: all 0.5s ease-out;
+    display: none;
+}
+.box_Contact_form:hover
+{
+    background-color: black;
+    color: white;
+}
+.box_Contact_back
+{
+    background-color: white;
+    color: black;
+    width: 48vmin;
+    float: left;
+    height: 12vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
+    text-align: center;
+    line-height: 12vmin;
+    font-size: 5vmin;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    display: none;
+}
+.box_Contact_back:hover
+{
+    background-color: black;
+    color: white;
+}
+.login_form
+{
+    display: none;
+}
+.login_username
+{
+    background-color: white;
+    color: black;
+    width: 52vmin;
+    float: left;
+    height: 7vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
+    text-align: center;
+    line-height: 7vmin;
+    font-size: 5vmin;
+    transition: all 0.5s ease-out;
+    font-family: 'Wire One', sans-serif;
+}
+.login_password
+{
+    background-color: white;
+    color: black;
+    width: 52vmin;
+    float: left;
+    height: 7vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
+    text-align: center;
+    line-height: 7vmin;
+    font-size: 5vmin;
+    transition: all 0.5s ease-out;
+    font-family: 'Wire One', sans-serif;
+}
+.login_button
+{
+    background-color: white;
+    color: black;
+    width: 26vmin;
+    float: left;
+    height: 12vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
+    text-align: center;
+    line-height: 12vmin;
+    font-size: 5vmin;
+    transition: all 0.5s ease-out;
+    font-family: 'Wire One', sans-serif;
+    direction: none;
+    border: none;
+}
+.login_button:hover
+{
+    background-color: black;
+    color: white;
+}
+.box_login_back
+{
+    background-color: white;
+    color: black;
+    width: 26vmin;
+    float: left;
+    height: 12vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
+    text-align: center;
+    line-height: 12vmin;
+    font-size: 5vmin;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    display: none;
+}
+.box_login_back:hover
+{
+    background-color: black;
+    color: white;
+}
+.register_form
+{
+    display: none;
+}
+.register_form_items
+{
+    background-color: white;
+    color: black;
+    width: 52vmin;
+    float: left;
+    height: 7vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
+    text-align: center;
+    line-height: 7vmin;
+    font-size: 5vmin;
+    transition: all 0.5s ease-out;
+    font-family: 'Wire One', sans-serif;
+}
+.box_register_back
+{
+    background-color: white;
+    color: black;
+    width: 26vmin;
+    float: left;
+    height: 12vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
+    text-align: center;
+    line-height: 12vmin;
+    font-size: 5vmin;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    display: none;
+}
+.box_register_back:hover
+{
+    background-color: black;
+    color: white;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login/Register</title>
+	
+	<link rel="stylesheet" type="text/css" href="login.css">
+	<link href="https://fonts.googleapis.com/css?family=Wire+One" rel="stylesheet">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script type="text/javascript" src="login.js"></script>
+</head>
+<body>
+<div class="menu_container_background"></div>
+	<div class="menu_container">
+		<!--Main box Items-->
+		<div class="box_top_left" onclick="Login_display()">Login</div>
+		<div class="box_top_right" onclick="Register_display()">Register</div>
+		<div class="box_bottom_left">Catalog</div>
+		<div class="box_bottom_right" onclick="ContactScript()">Contact</div>
+		<!--End of main box-->
+		<!--Start of hidden items-->
+		<!--start of hidden contact area-->
+		<div class="box_ContactEmail" onclick="###">Email</div>
+		<div class="box_Contact_form" onclick="###">Form</div>
+		<div class="box_Contact_back" onclick="Contact_back()">Back</div>
+		<!--End of hidden contact area-->
+		<!--start of hidden login area-->
+		<form class="login_form">
+			<input type="text" class="login_username" placeholder="Username">
+			<input type="password" class="login_password" placeholder="Password">
+			<input type="submit" class="login_button" value="Login">
+			<div class="box_login_back" onclick="login_back()">Back</div>
+		</form>
+		<!--End of hidden login area-->
+		<!--start of hidden register area-->
+		<form class="register_form">
+			<input type="text" placeholder="Firstname" class="register_form_items">
+			<input type="text" placeholder="Surname" class="register_form_items">
+			<input type="email" placeholder="Email" class="register_form_items">
+			<input type="Password" placeholder="Password" class="register_form_items">
+			<select class="register_form_items">
+				<option selected disabled value="0">Select Campus</option>
+				<option>Medway</option>
+				<option>canterbury</option>
+			</select>
+			<Select class="register_form_items">
+				<option selected disabled value="0">Select Position</option>
+				<option>Student</option>
+				<option>Tutor</option>
+			</Select>
+			<Select class="register_form_items">
+				<option selected disabled value="0">Select Course</option>
+				<option>Computing</option>
+				<option>humanities</option>
+			</Select>
+			<input type="checkbox" value="yes" id="cbox1"><label for="cbox1">I agree to the terms and conditions that I will give you my unborn child if  break somthing</label>
+			<input type="submit" value="Register" class="login_button">
+		</form>
+		<div class="box_register_back" onclick="Register_back()">Back</div>
+		<!--End of hidden register area-->
+		<!--start of hidden catalog area-->
+		<!--end of hidden catalog area-->
+		<!--End of hidden items-->
+	</div>
+	
+	
+
+</body>
+</html>
