@@ -23,32 +23,16 @@
         
 -->
 <?php
-$ItemName = $_POST['ItemName'];
-$AssetUID= $_POST['AssetUID'];
-
-
+$AssetUID = $_POST['ItemName'];
+$Description= $_POST['Description'];
 $Agreement = $_POST['Agreement'];
-
 $Restriction = $_POST['Restriction'];
-
 $Condition = $_POST['Condition'];
+require '../../../php/Conection.php'; //connect to server
 
-?>
-<?php require 'user_info.php' ?>
-<?php
-$servername = "dragon.kent.ac.uk";
-$username = "m04_bookit";
-$password = "b*asiis";
-$dbname = "m04_bookit";
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-$ItemName = mysqli_real_escape_string($conn, $ItemName);
-$ItemName = strip_tags($ItemName);
+$AssetUID = mysqli_real_escape_string($conn, $AssetUID);
+$AssetUID = strip_tags($AssetUID);
 $Description = mysqli_real_escape_string($conn, $Description);
 $Description = strip_tags($Description);
 $Agreement = mysqli_real_escape_string($conn, $Agreement);
@@ -60,10 +44,13 @@ $Condition = strip_tags($Condition);
 
 
 
+echo "$AssetUID";
+echo "$Description";
+echo "$Agreement";
+echo "$Restriction";
+echo "$Condition";
 
-
-echo $ItemName;
-$sql = "UPDATE Asset SET AgreementUID=$Agreement,AssetDescription='$Description',AssetCondition=$Condition,AssetRestriction=$Restriction Where AssetUID='$ItemName'";
+$sql = "UPDATE Asset SET AgreementUID=$Agreement,AssetDescription='$Description',AssetCondition=$Condition,AssetRestriction=$Restriction Where AssetUID=$AssetUID";
 
 
 

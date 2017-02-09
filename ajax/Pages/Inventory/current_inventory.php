@@ -107,7 +107,7 @@ if (mysqli_num_rows($result) > 0) {
 		}
 
 
-    	 echo "<tr class='$Asset' >
+    	 echo "<tr class='$Asset'>
 		    	 <td>$Asset</td>
 		    	 <td>
                     <select class='$Asset' id='Agreement' disabled='true'>
@@ -120,7 +120,7 @@ if (mysqli_num_rows($result) > 0) {
                  </td>
 		    	 <td>$Owner</td>
 		    	 <td>$ItemType</td>
-		    	 <td> <input class='$Asset' disabled='true' id ='Description' value='$AssetDescription'></td></td>
+		    	 <td><input class='$Asset' disabled='true' id ='Description' value='$AssetDescription'></td>
 		    	 <td>
                     <select class='$Asset' disabled='true' id='Condition' name='Condition'>
                         <option value='' selected disabled>$AssetCondition</option>
@@ -138,11 +138,6 @@ if (mysqli_num_rows($result) > 0) {
                         <option value='3'>PostGrad only</option>
                         <option value='4'>Tutors Only</option>
                     </select>
-
-
-
-
-
                  </td>
                  <td><button class='deleteItem' value='$Asset' id='Infobutton1'>Delete</button></td>
                  <td><button class='editItem' value='$Asset' id='Infobutton2'>Edit</button></td>
@@ -163,7 +158,7 @@ $(document).ready(function() // wait till the page is ready
            
           $( "input[class*="+jam+"]" ).prop('disabled',false).height(40);
           $( "select[class*="+jam+"]" ).prop('disabled',false).height(40);
-          $("tr").not("tr[class*="+jam+"]").hide("slow");
+          //$("tr").not("tr[class*="+jam+"]").hide("slow");
 
 
 
@@ -252,7 +247,7 @@ $(document).ready(function() // wait till the page is ready
         $.ajax({ // now the ajax
         type: 'POST', // we are posting it 
         url: 'ajax/Pages/Inventory/edit_inventory.php', // this is where we're posting 
-        data: { AssetUID: val1,Description:val2,Agreement:val3,Condition:val4,Restriction:val5}, // set the php values
+        data: { ItemName: val1,Description: val2,Agreement: val3,Condition: val4,Restriction: val5}, // set the php values
         success: function(response) { // this wont work lol, it does not need to, 
             $('#result').html(response);
             $(".holder").load("ajax/Pages/Inventory/current_inventory.php");
