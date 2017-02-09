@@ -1,13 +1,13 @@
 
 .agreeForm/*form should be hidden on page*/
   {
-    display: none;
+    /*display: none;*/
   }
   .menu_container/*this is the container, set ot the middle, this is the blue box behind the white box*/
   {
     z-index: 13;
     background-color: #05345C;
-    display: none;
+    /*display: none;*/
     position: fixed;
     width: 30em;
     height: 40em;
@@ -18,7 +18,7 @@
 .menu_container_background   /*this stop users clickin anything in the background */
   {
     z-index: 12;
-    display: none;
+    /*display: none;*/
     background-color: black;
     position: fixed;
     width: 100%;

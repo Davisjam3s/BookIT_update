@@ -2,8 +2,6 @@
 	if(isset ($_SERVER['MELLON_urn:oid:0_9_2342_19200300_100_1_3']))
 		{
 			$email=$_SERVER['MELLON_urn:oid:0_9_2342_19200300_100_1_3'];
-			echo " ";
-			echo $email;
 		}
 		else
 		{

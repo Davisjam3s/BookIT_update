@@ -1,3 +1,13 @@
+<!--
+ **This page checks to see the type of the user, if they are a staff memember, then it will give them more options on the navagation bar
+
+ ** will need to change to staff at a later time
+
+ **Page was Created by James davis
+ ** Commented by James Davis
+ ** Tasks for this page 
+ 	* Change student to staff
+-->
 <?php
 if(isset ($_SERVER['MELLON_unikentaccountType']))
   {

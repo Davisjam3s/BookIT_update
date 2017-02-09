@@ -1,25 +1,27 @@
 
 <script>
-	$('.res').on('change', function() {
-		if (this.value == 1) 
+	$('.agreeselect').on('change', function() {
+		if (this.value == 3) 
 		{
-			$(".restext").show();
-			$(".restext").load("ajax/Pages/Inventory/alltext.txt");
+			$(".boxbox").load("Agreements/EEG_Agreement.txt");
 		}
-		else if (this.value == 2) 
+		else if (this.value == 4) 
 		{
-			$(".restext").show();
-			$(".restext").load("ajax/Pages/Inventory/tutorsonly.txt");
+			$(".boxbox").load("Agreements/Ians_Agreement.txt");
 		}
-		else if (this.value == 3) 
+		else if (this.value == 5) 
 		{
-			$(".restext").show();
-			$(".restext").load("ajax/Pages/Inventory/withsupervision.txt");
+			$(".boxbox").load("Agreements/Matteo_Agreement.txt");
 		}
 	})
-</script> <!--some amazing jquery, oh yes,that user can load stuff, only load things i let them-->
+</script>
 <style>
+	.addItemForm
+	{
+	background-color: transparent;
 
+	text-align: center;
+	}
 	.restext
 	{
 		display: none;
@@ -37,33 +39,87 @@
 		width: 25em;
 		height: 5em;
 	}
+	.boxbox
+	{
+		width: 100%;
+		height: 25em;
+		
+	}
 
 </style><!-- dont worry fam, i will move these later-->
-	<p>Add item</p> <!--did you know, I The amazing james, Forgot to add this and broke the page for 3 hours?-->
-	<form name="usrform"> <!--thats right, a form, for doing formy things-->
-		<input type="text" class="formItems" name="Item_Name" placeholder="Item Name"><br>
-		<select class="formItems">
-			<option value="1" selected disabled>Type</option> <!--haha trying using that-->
-			<option value="1">Book</option>
-			<option value="2">Pi</option>
+	<p>Add Item(orginal)</p> <!--did you know, I The amazing james, Forgot to add this and broke the page for 3 hours?-->
+	<form name="usrform" class="addItemForm"> <!--thats right, a form, for doing formy things-->
+		<input type="text" class="formItems" id="ItemName" required="true" placeholder="Item Name"><br>
+		<select class="formItems" id="ItemType">
+			<option value="" selected disabled>Type</option> <!--haha trying using that-->
+			<option value="1">Pi</option>
+			<option value="2">Book</option>
 			<option value="3">Lego</option>
 			<option value="4">Other</option>
 		</select>
 		<br>
-		<select class="formItems res">
-			<option value="0" selected disabled class="res">Restrictions</option>
-			<option value="1">All</option>
-			<option value="2">Tutors Only</option>
-			<option value="3">With Supervision</option>
+		<select class="formItems agreeselect" id="Agreement">
+			<option value="" selected disabled class="">Agreement Type</option>
+			<option value="0">None</option>
+			<option value="3">EEG Agreement</option>
+			<option value="4">Ians Agreement</option>
+			<option value="5">Matteo Agreement</option>
+
 		</select>
-		<div class="restext">hello</div>
 		<br>
-		<textarea name="comment" class="formItems addextra" form="usrform" placeholder="addition Info, and description"></textarea>
+ 
+		<select class="formItems" id="Restriction">
+			<option value="" selected disabled class="">Restrictions</option>
+			<option value="1">All</option>
+			<option value="2">Third Year or Above</option>
+			<option value="3">PostGrad only</option>
+			<option value="4">Tutors Only</option>
+		</select>
+
+		
+		<select class="formItems con" id="Condition">
+			<option value="" selected disabled class="">Condition</option>
+			<option value="1">Perfect</option>			
+			<option value="2">Minor scuffs</option>
+			<option value="3">Some Damage</option>
+			<option value="4">Broken</option>
+			
+		</select>
+		
 		<br>
-		<input  class="formItems" type="submit" value="Confirm" name="add_item">
+		<form  method="post" enctype="multipart/form-data">
+		Select image to upload:
+		<input type="file" name="fileToUpload" id="fileToUpload">
+		<!--<input type="submit" value="Upload Image" name="submit">-->
+		<br>
+
+		<input  class="formItems" id="SubmitItem" type="submit" value="Confirm" name="add_item">
 		<br>
 	</form> <!--this is no longer a form-->
+	
+		
+	<br>
+	<textarea class="boxbox"></textarea>
+
+<script>
+    $('#SubmitItem').click(function() { //wait for the button to be pressed, this will need a name change 
+    var val1 = $('#ItemName').val(); // set val1 to the value in fullname
+    var val2 = $('#ItemType').val();
+    var val3 = $('#Agreement').val();
+    var val4 = $('#Restriction').val();
+    var val5 = $('#Condition').val();
+    
+        $.ajax({ // now the ajax
+        type: 'POST', // we are posting it 
+        url: 'ajax/Pages/Inventory/addItem2.php', // this is where we're posting 
+        data: { ItemName: val1, ItemType: val2, Agreement: val3, Restriction: val4, Condition:val5 }, // set the php values
+        success: function(response) { // this wont work lol, it does not need to, 
+            $('#result').html(response);
+            $(".holder").load("ajax/Pages/Inventory/current_inventory.php");
+        }
+        });
+});
+</script>
 
 
-
-
+        

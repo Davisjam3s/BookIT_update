@@ -25,6 +25,7 @@ body
 .ulmain
 {
 	float: right;
+
 }
 
 .ul2,.ul3, .ul4, .ul5
@@ -40,13 +41,10 @@ body
 img.logo 
 {
 	float: left;
+	position: 	fixed;	
 }
 
-nav 
-{
-	width: 100%;
-	margin: 0 auto;
-}
+
 
 /* Section put content in here in order for the js to work */
 
@@ -69,6 +67,7 @@ section.stretch p
 	text-align: center;
 	position: relative;
 	margin-top: 8em;
+	text-transform: uppercase;
 
 }
 
@@ -106,7 +105,7 @@ header a.active, header a:hover
 
 header li 
 {
-	margin-right: 1.5em;
+	margin-right: 0.7em;
 }
 
 /* header large */
@@ -120,7 +119,7 @@ header.large img
 }
 header.large .lihead  
 {
-	margin-top: 52px;
+	line-height:8em;
 }
 
 /* header small */
@@ -132,10 +131,12 @@ header.small
 header.small img 
 {
 	margin-top: 0.4em;
+	height: 2em;
+	width: 10em;
 }
 header.small .lihead  
 {
-	margin-top: 1em;
+	line-height: 3em;
 }
 
 /* Transitions */
@@ -154,25 +155,3 @@ header, nav, a,img,li
     color: #fff;
 }
 
-.phpechoback
-{
-	background-color: black;
-	position: fixed;
-	z-index: 20;
-	width: 100%;
-	height: 100%;
-	opacity: 0.5;
-	color: white;
-}
-.phpechofront
-{
-	background-color: white;
-	position: fixed;
-	z-index: 21;
-	width: 30em;
-	height: 40em;
-	color: black;
-	top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /*some top notch centering*/
-}

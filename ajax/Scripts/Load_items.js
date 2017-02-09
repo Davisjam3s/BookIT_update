@@ -48,13 +48,13 @@ $(document).ready(function()
 	});
 $(document).ready(function()
 {
-   	$(".t5").click(function()
+   	$(".Books").click(function()
    		{
         	$(".mainnav").show();
           $(".catnav").hide();
           $("p").hide();
           $("Title").text("BookIT|Catalog|Type 5");
           $(".holder").show();
-          $(".holder").load("ajax/Pages/items/items_4.php"); //load this page
+          $(".holder").load("ajax/Pages/items/items_books.php"); //load this page
     	});
 	});
