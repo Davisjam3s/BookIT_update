@@ -27,12 +27,11 @@
 	** This page Has been commented by James D
 
 	** To Do list for this page 
-		* create a function to check the image for security purposes! ****yes this is done but I now want to jump off a bridge! xmariex
-		* Include the connection scrip rather than using it again *** done xmariex
+		* Include the connection scrip rather than using it again
 		* prevent SQL injections  **Done 
 		* Prevent XSS attacks **Done
 		* Fix Bug where it would not add to the database if the Restriction was set to 'all' or 'third year only' **Done
-		* Call Agreements from the database inseatd of hard coding them 
+		* Call Agreements from the database inseatd of hard coding them
 		* Call Condtions from the database inseatd of hard coding them
 		* Call restrictions from the database instead of hard coding them 
 		* Clean Up code
@@ -46,12 +45,22 @@
 
 $msg ="";
 if (isset($_POST['upload'])) {
-	//require the use of the checkUploads file
-	require 'checkUploads.php';	
-	//connect to server	
-	require '../../../php/Conection.php'; 
+	$target = "images/".basename($_FILES['image']['name']);
 
-	//set all variables from the form 	
+	
+	$servername = "dragon.kent.ac.uk"; //server name
+	$username = "m04_bookit"; // username for server
+	$password = "b*asiis"; // password for server
+	$dbname = "m04_bookit"; // name of the database on the server
+
+	// Create connection
+	$conn = mysqli_connect($servername, $username, $password, $dbname); // we're using sqli plz
+	// Check connection
+	if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error()); // check for connection error
+	}
+
+	
 	$image = $_FILES['image']['name'];
 	$ItemName = $_POST['ItemName'];
 	$ItemType = $_POST['ItemType'];
@@ -71,22 +80,15 @@ if (isset($_POST['upload'])) {
 	$Condition = mysqli_real_escape_string($conn, $Condition);
 	$Condition = strip_tags($Condition);
 
-	//check the image, if its all ok then do the sql to put item in DB
-	if (checkImage())
-		{
+	$sql = "INSERT INTO Asset (AgreementUID, OwnerUID, AssetTypeUID, AssetDescription, AssetCondition, AssetImage, AssetRestriction, AssetInBasket) VALUES ('$Agreement','$user','$ItemType','$ItemName',$Condition,'$image',$Restriction,0)";
+	mysqli_query($conn, $sql);
+	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+		$msg = "uploaded";
 
-			$sql = "INSERT INTO Asset (AgreementUID, OwnerUID, AssetTypeUID, AssetDescription, AssetCondition, AssetImage, AssetRestriction, AssetInBasket) VALUES ('$Agreement','$user','$ItemType','$ItemName',$Condition,'$image',$Restriction,0)";
-			mysqli_query($conn, $sql);
-			//send to loading page	
-			header('Location: loading.php');
-		}
-		//if it fails show user a message
-		else	
-			{
-				echo"there was a problem, please try again";
-			}
-	
-	
+	}else{
+		$msg = "error uploading";
+	}
+	header('Location: loading.php');
 }
 
 ?>
@@ -176,7 +178,7 @@ if (isset($_POST['upload'])) {
 			
 		</select>
 
-		<input type="hidden" name="size" value="500000">
+		<input type="hidden" name="size" value="1000000">
 		<input type="file" name="image">
 		<input  class="formItems" id="upload" name="upload" type="submit" value="Confirm" name="add_item">
 	</form>			
