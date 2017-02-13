@@ -1,3 +1,9 @@
+<!--
+    ** This page checks to see if the user has been been banned from the website, it does this by checking the database to see the value of the banned column, if it is 1 then they are banned and cannot the website, they will be redicrected to a page telling them that they have been banned from the website 
+
+    ** This pages was created by James D
+    ** This page was commented by James D
+-->
 <?php require 'user_info.php';?>
 <?php require 'Conection.php';
 

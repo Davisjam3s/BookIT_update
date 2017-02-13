@@ -23,7 +23,7 @@
         
 -->
 <?php
-$AssetUID = $_POST['ItemName'];
+$AssetUID = $_POST['AssetUID'];
 $Description= $_POST['Description'];
 $Agreement = $_POST['Agreement'];
 $Restriction = $_POST['Restriction'];
@@ -50,7 +50,7 @@ echo "$Agreement";
 echo "$Restriction";
 echo "$Condition";
 
-$sql = "UPDATE Asset SET AgreementUID=$Agreement,AssetDescription='$Description',AssetCondition=$Condition,AssetRestriction=$Restriction Where AssetUID=$AssetUID";
+$sql = "UPDATE Asset SET AgreementUID=$Agreement,AssetDescription='$Description',AssetCondition=$Condition,AssetRestriction=$Restriction Where AssetUID='$AssetUID'";
 
 
 

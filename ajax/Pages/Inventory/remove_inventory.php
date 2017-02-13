@@ -24,15 +24,15 @@
 -->
 <?php
 //read in variables
-$ItemName = $_POST['ItemName']; // for that ItemName 
+$AssetUID = $_POST['AssetUID']; // for that ItemName 
 
 require '../../../php/Conection.php'; //connect to server
 
-$ItemName = mysqli_real_escape_string($conn, $ItemName);
-$ItemName = strip_tags($ItemName);
+$AssetUID = mysqli_real_escape_string($conn, $AssetUID);
+$AssetUID = strip_tags($AssetUID);
 
 // gather information from their user account
-$sql = "DELETE FROM Asset WHERE AssetUID=$ItemName";
+$sql = "DELETE FROM Asset WHERE AssetUID=$AssetUID";
 
 if ($conn->query($sql) === TRUE) {
     echo "Record deleted successfully";
