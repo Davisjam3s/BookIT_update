@@ -40,8 +40,8 @@ function checkImage()
 			$uploadOk = 0;
 		}
 		
-	// Check file size, if image is more than 500000 
-	if ($_FILES["image"]["size"] > 500000) 
+	// Check file size, if image is more than 900000 
+	if ($_FILES["image"]["size"] > 900000) 
 		{
 			//tell user the file's too big
 			echo "Sorry, your file is too large.";
@@ -63,6 +63,7 @@ function checkImage()
 	if ($uploadOk == 0) 
 		{//if the uploadOk is set to 0 then tell the user their file wasnt uploaded
 		echo "Sorry, your file was not uploaded.";
+		//header('Location: notUploaded.php');
 		}
 		//if all checks pass
 		else
@@ -84,7 +85,8 @@ function checkImage()
 					{
 						//probably dont need this but I'll leave it here for now
 						$msg = "error uploading";
-						echo "oh no! something went wrong and your file wasnt uploaded";
+						echo "oh no! something went wrong and your file wasnt uploaded.";
+						
 					}
 		}
 				

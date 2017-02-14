@@ -98,7 +98,7 @@ if(mysqli_num_rows($result)>=1) // if it already exists
   }
   else // oh no a new users
   {
-    $sql = "INSERT INTO User (UserUID, UserTypeUID, UserEmail, UserAgreed, UserBanned) VALUES ('$user','$databaseUT','$email',0,0)"; // better put them into the db
+    $sql = "INSERT INTO User (UserUID, UserTypeUID, UserEmail, UserAgreed, UserBanned, IsOwner) VALUES ('$user','$databaseUT','$email',0,0,0)"; // better put them into the db
 
 if (mysqli_query($conn, $sql)) { // thats right, we will let them give us more info
 

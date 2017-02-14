@@ -39,7 +39,7 @@ $UserName = mysqli_real_escape_string($conn, $UserName);
 $UserName = strip_tags($UserName);
 
 // gather information from their user account
-$sql = "SELECT UserUID, UserEmail, UserFname  FROM User WHERE UserUID = '$UserName'";
+$sql = "SELECT UserUID, UserEmail  FROM User WHERE UserUID = '$UserName'";
 $result = mysqli_query($conn, $sql);
 
 // if they have an account (its always nice to check if they have one)
@@ -49,14 +49,19 @@ if (mysqli_num_rows($result) > 0) {
         // we need to set the values of the info that we got from the user
         $UserUID =$row["UserUID"];
         $UserEmail =$row["UserEmail"];
-        $UserFname =$row["UserFname"];
-        $sql2 = "INSERT INTO Owner (OwnerUID, GroupUID, OwnerLocation, OwnerEmail, OwnerFname) VALUES ('$UserUID', '$Group', '$RoomName', '$UserEmail' , '$UserFname' )";
+        $sql2 = "INSERT INTO Owner (OwnerUID, GroupUID, OwnerLocation, OwnerEmail) VALUES ('$UserUID', '$Group', '$RoomName', '$UserEmail')";
+		$sql3 ="UPDATE User SET IsOwner=1 where UserUID='$UserUID'";
 
 		//display success or failure
 		if (mysqli_query($conn, $sql2)) {
 			echo " New record created successfully ";
+			if (mysqli_query($conn, $sql3)) {
+			echo " New record created successfully ";
+			} else {
+				echo "Error: " . $sql3 . "<br>" . mysqli_error($conn);
+			}
 		} else {
-			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+			echo "Error: " . $sq2 . "<br>" . mysqli_error($conn);
 		}
     }
 } else {

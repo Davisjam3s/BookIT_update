@@ -24,7 +24,7 @@
 <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
 <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <style>
-
+/* For desktop: */
 body {
     font-family: "Lucida Sans", sans-serif;
     margin: 0;
@@ -43,7 +43,7 @@ a{
 	position: fixed;
 	z-index: 10;
 }
-/* For desktop: */
+
 .test
 {
 	background-color: transparent;
@@ -92,11 +92,10 @@ li:hover
     position: fixed;
 }
 
-
+/*For Phones*/
 @media only screen and (max-width: 768px) {
 
 li , ul{
-  margin-top: 0;
   margin-left: 0;
   margin-right: 0;
   width: 100%;
@@ -105,12 +104,21 @@ li , ul{
 }
 .test{
   width: 100%;
-  margin-top: 3.5em;
   height: auto;
-  background-color: white;
+  display: none;
+  margin-top: 1em;
+  background-color: rgba(255,255,255,0.7);
+}
+.shownav
+{
+  margin-top: 1em;
+  height: auto;
+  width: auto;
+  float: right;
 }
 }
 </style>
+
 <script>
 $(document).ready(function()
 {
@@ -123,7 +131,7 @@ $(document).ready(function()
 </head>
 <body>
 <div class="header">
-<span style="color: white" class="shownav">lol</span>
+<img class="shownav" src="images/expand.png" >
   	<div class="test">
   	<ul class="ulmain mainnav">
 	  	
@@ -166,10 +174,10 @@ $(document).ready(function()
     });
 </script>
 <div class="MainBody">
-<p class="mainp" style="text-align: center;margin-top: 10px; font-size: 2em;">Welcome to bookITs <?php  echo " $user";?></p>
+<p class="mainp" style="text-align: center;margin-top: 10px; font-size: 2em;">Welcome to bookIT <?php  echo " $user";?></p>
 	<div class="holder">Nothing to display
     </div>
 </div>
-<div class="Footer">hello</div>
+<div class="Footer">Website Created by James Davis, Matt, and Marie</div>
 </body>
 </html>

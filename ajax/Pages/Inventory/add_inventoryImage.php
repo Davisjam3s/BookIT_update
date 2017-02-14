@@ -41,7 +41,10 @@
 
 -->
 
-<?php require 'user_info.php' ?>
+<?php 
+require 'user_info.php';
+require 'fillmenu.php';
+ ?>
 <?php
 
 $msg ="";
@@ -146,18 +149,16 @@ if (isset($_POST['upload'])) {
 <input type="text" class="formItems" id="ItemName" name="ItemName" required="true" placeholder="Item Name"><br>
 <select class="formItems" id="ItemType" name="ItemType">
 			<option value="" selected disabled>Type</option> <!--haha trying using that-->
-			<option value="1">Pi</option>
-			<option value="2">Book</option>
-			<option value="3">Lego</option>
-			<option value="4">Other</option>
+			<?php
+			fill_type();
+			?>
 		</select>
 		<br>
 		<select class="formItems agreeselect" id="Agreement" name="Agreement">
 			<option value="" selected disabled class="">Agreement Type</option>
-			<option value="3">EEG Agreement</option>
-			<option value="4">Ians Agreement</option>
-			<option value="5">Matteo Agreement</option>
-			<option value="6">None</option>
+			<?php
+			fill_agree();
+			?>
 		</select>
 		<br>
 		<select class="formItems" id="Restriction" name="Restriction">

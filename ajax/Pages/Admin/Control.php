@@ -68,14 +68,14 @@ echo "<h2 class='response'></h2>";
 ?>
 <?php require '../../../php/Conection.php';?>
 <?php
-$sql = "SELECT UserUID, UserTypeUID,UserEmail,UserFname,UserCampus FROM User where UserTypeUID>='1' order by UserUID";//this will be changed when we need admin level changed
+$sql = "SELECT UserUID, UserTypeUID,UserEmail,UserCampus FROM User where UserTypeUID>='1' order by UserUID";//this will be changed when we need admin level changed
 $result = mysqli_query($conn, $sql);
 echo "<table>
 		<tr>
 			<th>UserUID</th>
 			<th>UserTypeUID</th>
 			<th>UserEmail</th>
-			<th>UserFname</th>
+
 			<th>UserCampus</th>
 			<th>Create Owner</th>
 			<th>Delete Owner</th>
@@ -90,7 +90,7 @@ if (mysqli_num_rows($result) > 0) {
     	$UserUID =$row["UserUID"];
     	$UserTypeUID =$row["UserTypeUID"];
     	$UserEmail =$row["UserEmail"];
-    	$UserFname =$row["UserFname"];
+
     	$UserCampus =$row["UserCampus"];
 
     	//lazy way of checking user types
@@ -121,7 +121,7 @@ if (mysqli_num_rows($result) > 0) {
 		    	 <td>$UserUID</td>
 		    	 <td>$UserTypeUID</td>
 		    	 <td>$UserEmail</td>
-		    	 <td>$UserFname</td>
+
 		    	 <td>$UserCampus</td>
 				 <td><button value='$UserUID' class='owner' id='Infobutton'>Make Owner</button></td>
 				 <td><button value='$UserUID' class='Downer' id='Infobutton1'>Remove Owner</button></td>
@@ -158,7 +158,7 @@ mysqli_close($conn);
 <div class='phpechofront1'>
 	<h1 class='agreeTitle'>Removing Owner</h1>
 	<h2 class='help'>By deleting this user all the Assets will be lost</h2>
-		<input type='text' id='UserName' required class ='FormItems testname' disabled='true'>
+		<input type='text' id='UserName2' required class ='FormItems testname' disabled='true'>
 	<span id='error'></span>
 		<button id='Infobutton1' class='FormItems'> Submit </button>
         <button id='CancelDelete' class='FormItems'> Cancel </button>
@@ -256,7 +256,7 @@ $(document).ready(function() // wait till the page is ready
 </script>
 <script>
 	$('#Infobutton1').click(function() { //wait for the button to be pressed, this will need a name change 
-	   var val1 = $('#UserName').val();	
+	   var val1 = $('#UserName2').val();	
 		
 		$.ajax({ // now the ajax
 		type: 'POST', // we are posting it 

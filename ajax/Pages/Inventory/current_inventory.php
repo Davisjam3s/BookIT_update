@@ -27,7 +27,7 @@ echo "<p>Your Inventory</p>"; // dont delete this
 <?php require 'user_info.php' ?>
 <?php require '../../../php/Conection.php';?>
 <?php
-$sql = "SELECT * FROM Asset WHERE OwnerUID = '$user' ";
+$sql = "SELECT Asset.AssetUID,Agreement.AgreementUID,Agreement.AgreementName,Owner.OwnerUID,Asset.AssetTypeUID,Asset.AssetDescription,Asset.AssetCondition,Asset.AssetRestriction FROM Asset LEFT JOIN Owner ON Asset.OwnerUID=Owner.OwnerUID LEFT JOIN Agreement ON Asset.AgreementUID=Agreement.AgreementUID WHERE Owner.OwnerUID='$user'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -35,8 +35,8 @@ if (mysqli_num_rows($result) > 0) {
     echo "<table>
 		<tr class='toptitles'>
 			<th>AssetUID</th>
+			<th>AgreementName</th>
 			<th>AgreementUID</th>
-			<th>OwnerUID</th>
 			<th>AssetTypeUID</th>
 			<th>AssetDescription</th>
 			<th>AssetCondition</th>
@@ -49,7 +49,7 @@ if (mysqli_num_rows($result) > 0) {
     {
     	$Asset =$row["AssetUID"];
 		$AgreementType =$row["AgreementUID"];
-    	$Owner =$row["OwnerUID"];
+		$AgreementName = $row["AgreementName"];
 		$AssetType = $row['AssetTypeUID'];
     	$AssetDescription =$row["AssetDescription"];
 		$AssetCondition =$row["AssetCondition"];
@@ -109,8 +109,9 @@ if (mysqli_num_rows($result) > 0) {
 
     	 echo "<tr class='$Asset'>
 		    	 <td>$Asset</td>
+				 <td>$AgreementName</td>
 		    	 <td>
-                    <select class='$Asset' id='Agreement' disabled='true'>
+                    <select class='Agreement$Asset' disabled='true'>
                         <option value='' selected disabled>$AgreementType</option>
                         <option value='3'>EEG Agreement</option>
                         <option value='4'>Ians Agreement</option>
@@ -118,11 +119,11 @@ if (mysqli_num_rows($result) > 0) {
                         <option value='6'>None</option>
                     </select>
                  </td>
-		    	 <td>$Owner</td>
+
 		    	 <td>$ItemType</td>
-		    	 <td><input class='$Asset' disabled='true' id ='Description' value='$AssetDescription'></td>
+		    	 <td><input class='Description$Asset' disabled='true'  value='$AssetDescription'></td>
 		    	 <td>
-                    <select class='$Asset' disabled='true' id='Condition' name='Condition'>
+                    <select class='Condition$Asset' disabled='true'>
                         <option value='' selected disabled>$AssetCondition</option>
                         <option value='1'>Perfect</option>          
                         <option value='2'>Minor scuffs</option>
@@ -131,7 +132,7 @@ if (mysqli_num_rows($result) > 0) {
                      </select>
                  </td>
 		    	 <td>
-                    <select class='$Asset' disabled='true' id='Restriction' name='Restriction'>
+                    <select class='Restriction$Asset' disabled='true'>
                         <option value='' selected disabled>$Restriction</option>
                         <option value='1'>All</option>
                         <option value='2'>Third Year or Above</option>
@@ -154,14 +155,19 @@ $(document).ready(function() // wait till the page is ready
 {
     $(".editItem").click(function() // wait till this button has been pressed
       { 
-            var  jam =  $(this).val();
+            var  jam =  $(this).val(); // value of the button 
            
-          $( "input[class*="+jam+"]" ).prop('disabled',false).height(40);
-          $( "select[class*="+jam+"]" ).prop('disabled',false).height(40);
+          $( "input[class*="+jam+"]" ).prop('disabled',false).height(40); // enable any class with varible
+          $( "select[class*="+jam+"]" ).prop('disabled',false).height(40); // enable any input type select with varible 
+          $( "input[class|='Description"+jam+"']" ).attr("id","Description");
+          $( "select[class|='Agreement"+jam+"']" ).attr("id","Agreement");
+          $( "select[class|='Condition"+jam+"']" ).attr("id","Condition");
+          $( "select[class|='Restriction"+jam+"']" ).attr("id","Restriction");
+
+
+          // this jquery enables the text box when the button is pressed, it also sets an attribute to the ones that are selected, givving them the ID that will be used to send to the database 
+          // var jam is used to store the value that is collected from the button 
           //$("tr").not("tr[class*="+jam+"]").hide("slow");
-
-
-
       });
   });
 $(document).ready(function() // wait till the page is ready
@@ -215,8 +221,7 @@ $(document).ready(function() // wait till the page is ready
 {
     $(".CancelDelete").click(function() // wait till this button has been pressed
       { 
-          $(".phpechofront1").hide(); // show the main nav
-		  $(".phpechofront2").hide();
+       $(".holder").load("ajax/Pages/Inventory/current_inventory.php");
       });
   });
 </script>
@@ -238,7 +243,7 @@ $(document).ready(function() // wait till the page is ready
 </script>
 <script>
     $('#Infobutton2').click(function() { //wait for the button to be pressed, this will need a name change 
-       var val1 = $('#ItemName').val();
+     var val1 = $('#ItemName').val();
 	   var val2 = $('#Description').val();
 	   var val3 = $('#Agreement').val();
 	   var val4 = $('#Condition').val();

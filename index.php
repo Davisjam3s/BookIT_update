@@ -73,20 +73,11 @@ I dont know why you're reading the code, there is nothing intresting here, unles
             <a href="index.php"><img onclick="HomeClick()" src="images/uni_logo.png"></a> <!--this is for the logo-->
             <ul class="ulmain mainnav"> <!--this is the orginal navagation menu-->
              
-              <li class="lihead"><a href="#" onclick="CatalogNav()">Catalogue</a></li> <!--whats this? you want to see the catalog? you better click here then-->
+              <li class="lihead"><a href="#" class="all">Catalogue</a></li> <!--whats this? you want to see the catalog? you better click here then-->
               <li class="lihead"><a href="#" class="currentBookings">My Bookings</a></li><!--oh you now want to see the bookings? guess you will be clcking this-->
               <?php require 'php/UserBar.php';?> <!--oh no, some wild PHP appeard, james Used display these items if the user is one of these, it was super effective-->
              
            </ul><!--end of orginal header-->
-
-           <ul class="ulmain ul2 catnav"> <!--this is for the catalog items, set to hidden, wont be displayed until activated by user-->
-             <li class="lihead"><a href="#" class="all">All</a></li>
-             <li class="lihead"><a href="#" class="lego">Lego</a></li>
-             <li class="lihead"><a href="#" class="pi">Pi's</a></li>
-             <li class="lihead"><a href="#" class="t4">Type 4</a></li>
-             <li class="lihead"><a href="#" class="books">Books</a></li>
-             <li class="lihead"><a href="#" class="back">Back</a></li> <!--helps navagate the menu-->
-           </ul> <!--end of catalog-->
            <ul class="ulmain ul4  invnav"><!--start of contact us-->
              <li class="lihead"><a href="#" class="addi">Add</a></li>
              <li class="lihead"><a href="#" class="UploadAgree">Upload Agreement</a></li>

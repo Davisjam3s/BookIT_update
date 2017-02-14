@@ -37,10 +37,10 @@ $agree_result = mysqli_query($conn,$agree_query);
 			while ($row=mysqli_fetch_array($agree_result)) 
 				{
 					$AgreeID = $row["AgreementUID"];
-					$AgreeName = $row["AgreementDescription"];
+					$AgreeName = $row["AgreementName"];
 					
 					
-				echo "<option value='$AgreementUID'>$AgreementDescription</option>";
+				echo "<option value='$AgreementUID'>$AgreementName</option>";
 			
 				}
 

@@ -16,14 +16,19 @@ function HomeClick() // i made this and i dont acctually need it, if you read th
 {
 	$("Title").text("BookIT"); // lol what
 }
-function CatalogNav()  // this is for seeing the catalog navagation
+
+$(document).ready(function()
 {
-	$(".mainnav").hide(); // hide all the other navagation menus, only done just in case
-	$(".booknav").hide();
-	$(".invnav").hide();
-	$(".catnav").show(); // show the catalog navagation
-	$(".adminnav").hide();
-}
+   	$(".all").click(function()
+   		{
+        	$(".mainnav").show();
+          $(".catnav").hide();
+          $("p").hide();
+          $("Title").text("BookIT|Catalog|All Items");
+          $(".holder").show();
+          $(".holder").load("ajax/Pages/items/all_items.php"); // load this page
+    	});
+	});
 function BookingNav() // for showing the booking navagation
 {
 	$(".mainnav").hide();
