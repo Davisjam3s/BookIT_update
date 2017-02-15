@@ -43,7 +43,9 @@ a{
 	position: fixed;
 	z-index: 10;
 }
-
+.shownav{
+  display: none;
+}
 .test
 {
 	background-color: transparent;
@@ -115,6 +117,7 @@ li , ul{
   height: auto;
   width: auto;
   float: right;
+  display: block;
 }
 }
 </style>

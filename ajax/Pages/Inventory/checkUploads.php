@@ -63,7 +63,7 @@ function checkImage()
 	if ($uploadOk == 0) 
 		{//if the uploadOk is set to 0 then tell the user their file wasnt uploaded
 		echo "Sorry, your file was not uploaded.";
-		//header('Location: notUploaded.php');
+		header('Location: notUploaded.php');
 		}
 		//if all checks pass
 		else
@@ -77,6 +77,102 @@ function checkImage()
 					$msg = "uploaded";
 					//just an echo to check 
 					echo "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
+		
+
+				}
+				//if it doesnt upload echo a message
+				else	
+					{
+						//probably dont need this but I'll leave it here for now
+						$msg = "error uploading";
+						echo "oh no! something went wrong and your file wasnt uploaded.";
+						
+					}
+		}
+				
+
+
+}
+
+<?php
+function checkDoc()
+{
+	
+	//set filepath to the folder to store images in
+	$target = "Agreements/";
+	
+	$target_file = $target . basename($_FILES["file"]["name"]);
+	//a variable to set if the upload is fine
+	$uploadOk = 1;
+	//a variable to hold the files filetype
+	$fileType = pathinfo($target_file,PATHINFO_EXTENSION);
+	
+	// Check if file file is an actual document
+	if(isset($_POST["upload"])) 
+		{
+			$check = getfilesize($_FILES["file"]["tmp_name"]);
+				if($check !== false) 
+				{//as long as the file is an file
+					//tell user its an file
+					echo "File is an file - " . $check["mime"] . ".";
+					//set to 1 if upload is fine
+					$uploadOk = 1;
+				
+				} //if its not an file
+					else 
+						{
+							//tell the user its not an acceptable file	
+							echo "File is not an file.";	
+							//set to 0 if upload is not fine
+							$uploadOk = 0;
+						}
+		}
+	// Check to see if file already exists in the folder
+	if (file_exists($target_file)) 
+		{//if it does
+			//tell user its already there
+			echo "Sorry, file already exists.";
+			//set to 0 if upload is not fine
+			$uploadOk = 0;
+		}
+		
+	// Check file size, if file is more than 900000 
+	if ($_FILES["file"]["size"] > 900000) 
+		{
+			//tell user the file's too big
+			echo "Sorry, your file is too large.";
+			//set to 0 if upload is not fine
+			$uploadOk = 0;
+		}
+		
+	// Allow certain file formats
+	//if its not a jpg, png or jpeg format 
+	if($fileType != "doc" && $fileType != "docx" && $fileType != "txt" && $fileType != "pdf") 
+		{
+			//tell user why its not acceptable
+			echo "Sorry, only .doc, .docx, .txt or .pdf files are allowed.";
+			//set to 0 if upload is not fine
+			$uploadOk = 0;
+		}
+		
+	// Check if $uploadOk has been set to 0 by an error
+	if ($uploadOk == 0) 
+		{//if the uploadOk is set to 0 then tell the user their file wasnt uploaded
+		echo "Sorry, your file was not uploaded.";
+		header('Location: notUploaded.php');
+		}
+		//if all checks pass
+		else
+		{
+			//if everything is ok, move the file to the files folder
+			if (move_uploaded_file($_FILES['file']['tmp_name'], $target .basename($_FILES['file']['name'])))
+				{
+					//return a true if this all worked ok
+					return TRUE;
+					//probably dont need this but I'll leave it here for now
+					$msg = "uploaded";
+					//just an echo to check 
+					echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
 		
 
 				}

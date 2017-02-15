@@ -48,27 +48,33 @@
      $ItemName =$row["AssetDescription"];
      $ImageLink =$row["AssetImage"];
 
-     if ($AssetType == 1) {
-       $AssetType = "Pi";
-       $TypeCss = "ItemPi";
-        $MyHeight = 283;
-       $MyWidth = 400;
-     }
-     if ($AssetType == 2) {
-       $AssetType = "Book";
-       $TypeCss = "ItemBook";
+     if ($AssetType == 1) { // Book
+       $AssetType = "Book"; // Book
+       $TypeCss = "ItemBook"; // ItemBook
        $MyHeight = 283;
        $MyWidth = 220;
+       // set the hight and width for different types of Item that is on the page 
      }
-      if ($AssetType == 3) {
-       $AssetType = "Lego";
-       $TypeCss = "ItemLego";
+     if ($AssetType == 2) { //lego
+       $AssetType = "Lego"; // Lego
+       $TypeCss = "ItemLego"; //  ItemLego
+       $MyHeight = 283;
+       $MyWidth = 400;
+     }
+      if ($AssetType == 3) { // Pi
+       $AssetType = "Pi"; // Pi
+       $TypeCss = "ItemPi"; // ItemPi
+       $MyHeight = 283;
+       $MyWidth = 400;
+     }
+      if ($AssetType == 4) { // EEG HEADSET
+       $AssetType = "EEG Headset"; // Pi
+       $TypeCss = "ItemEEGHeadset"; // ItemPi
        $MyHeight = 283;
        $MyWidth = 400;
      }
 
-
-     echo "<div class='catalog_item $TypeCss'><div class='item_overlay'>$ItemName $AssetType </div> <img src='ajax/Pages/Inventory/images/$ImageLink' height='$MyHeight' width='$MyWidth'> </div>";
+     echo "<div class='catalog_item $TypeCss'><div class='item_Info'>$ItemName $AssetType </div> <img src='ajax/Pages/Inventory/images/$ImageLink' height='$MyHeight' width='$MyWidth'> </div>";
    }
  } else {
   echo "0 results";

@@ -1,9 +1,15 @@
-<?php require 'user_info.php' ?>
+<?php 
+require 'user_info.php';
+require 'checkUploads.php';
+require '../../../php/Conection.php';
+?>
 <?php
 
 $msg ="";
 if (isset($_POST['upload'])) {
-	$target = "Agreements/".basename($_FILES['image']['name']);
+	$target = "Agreements/".basename($_FILES['file']['name']);
+	$file = $_FILES['file']['name'];
+	$agName = $_POST['docName'];
 
 	
 	$servername = "dragon.kent.ac.uk"; //server name
@@ -21,11 +27,11 @@ if (isset($_POST['upload'])) {
 
   
 	
-	$image = $_FILES['image']['name'];
+	$file = $_FILES['file']['name'];
 	
 	$sql = "INSERT INTO Agreement (AgreementDescription) VALUES ('$uploadfile')";
 	mysqli_query($conn, $sql);
-	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+	if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
 		$msg = "uploaded";
 
 	}else{
@@ -83,14 +89,13 @@ if (isset($_POST['upload'])) {
 	}
 
 </style><!-- dont worry fam, i will move these later-->
-	<p>Add Item(Image)</p> <!--did you know, I The amazing james, Forgot to add this and broke the page for 3 hours?-->
+	<p>Add an agreement - you will then be able to use this agreement in the selection menu on the add item page</p> <!--did you know, I The amazing james, Forgot to add this and broke the page for 3 hours?-->
 	<form method="POST" class="addItemForm" action="ajax/Pages/Inventory/AgreeUploadForm.php" enctype="multipart/form-data">
 
-
-
-
+		<p> Please give your document a name </p>
+		<input required="true" type="text" name="docName">
 		<input type="hidden" name="size" value="1000000">
-		<input type="file" name="image">
+		<input type="file" name="file">
 		<input  class="formItems" id="upload" name="upload" type="submit" value="Confirm" name="add_item">
 	</form>			
 	<br>

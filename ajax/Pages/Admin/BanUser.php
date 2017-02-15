@@ -44,7 +44,7 @@ if (mysqli_num_rows($result) > 0) {
 
 		//display success or failure
 		if (mysqli_query($conn, $sql2)) {
-			echo " New record created successfully ";
+			echo "Banning succesful ";
 		} else {
 			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 		}

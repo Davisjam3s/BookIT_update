@@ -1,13 +1,26 @@
 <?php
   $mybtn = 0;
 
-  if ($mybtn == 0) {
+  if ($mybtn == 1) {
     $btnClass = "enable";
     echo " <button class='$btnClass'>$btnClass</button> ";
   }else{
     $btnClass = "false";
     echo "<button class='$btnClass'>$btnClass</button>";
   }
+  // Can be refined 
+?>
+
+<?php
+//refined of the one above
+  $mybtn2 = 1;
+
+  if ($mybtn2 == 1) {
+    $btnClass2 = "enable"; 
+  }else{
+    $btnClass2 = "false";
+  }
+  echo "<button class='$btnClass2'>$btnClass2</button>";
 ?>
 
 <!doctype html>

@@ -35,7 +35,7 @@
 <script>
 $(document).ready(function() // wait till the page is ready
 {
-    $(".owner").click(function() // wait till this button has been pressed
+    $(".Make").click(function() // wait till this button has been pressed
       { 
           $(".phpechofront").show(); // show the main nav
       });
@@ -44,7 +44,7 @@ $(document).ready(function() // wait till the page is ready
 <script>
 $(document).ready(function() // wait till the page is ready
 {
-    $(".Downer").click(function() // wait till this button has been pressed
+    $(".Remove").click(function() // wait till this button has been pressed
       { 
           $(".phpechofront1").show(); // show the main nav
       });
@@ -53,7 +53,7 @@ $(document).ready(function() // wait till the page is ready
 <script>
 $(document).ready(function() // wait till the page is ready
 {
-    $(".Eowner").click(function() // wait till this button has been pressed
+    $(".Edit").click(function() // wait till this button has been pressed
       { 
           $(".phpechofront2").show(); // show the main nav
       });
@@ -68,7 +68,7 @@ echo "<h2 class='response'></h2>";
 ?>
 <?php require '../../../php/Conection.php';?>
 <?php
-$sql = "SELECT UserUID, UserTypeUID,UserEmail,UserCampus FROM User where UserTypeUID>='1' order by UserUID";//this will be changed when we need admin level changed
+$sql = "SELECT UserUID, UserTypeUID,UserEmail,UserCampus,IsOwner FROM User where UserTypeUID>='1' order by UserUID";//this will be changed when we need admin level changed
 $result = mysqli_query($conn, $sql);
 echo "<table>
 		<tr>
@@ -77,11 +77,10 @@ echo "<table>
 			<th>UserEmail</th>
 
 			<th>UserCampus</th>
-			<th>Create Owner</th>
-			<th>Delete Owner</th>
+			<th>Owner Control</th>
+			
 			<th>Edit Owner</th>
-			<th>Update</th>
-			<th>Delete</th>
+
 		</tr>";
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
@@ -90,7 +89,7 @@ if (mysqli_num_rows($result) > 0) {
     	$UserUID =$row["UserUID"];
     	$UserTypeUID =$row["UserTypeUID"];
     	$UserEmail =$row["UserEmail"];
-
+		$IsOwner = $row["IsOwner"];
     	$UserCampus =$row["UserCampus"];
 
     	//lazy way of checking user types
@@ -114,20 +113,38 @@ if (mysqli_num_rows($result) > 0) {
             $UserCampus = 'Medway';
         }
        
+		if ($IsOwner == 0) {
+			$btnClass = "Make owner"; // the class needed two values, each class needs a space between
+			$btnText = "Make Owner";
+			$btnID="Infobutton";
+			$btnClass2="";
+			$btnID2="";
+			$btnText2="";
+
+			
+		}else{
+			$btnClass = "Remove Downer";
+			$btnText = "Remove Owner";
+			$btnID = "Infobutton1";
+			$btnClass2= "Edit Eowner";
+			$btnID2="Infobutton2";
+			$btnText2= "Edit Owner";
+		}
 
 
-
-    	 echo "<tr>
+    	echo "<tr>
 		    	 <td>$UserUID</td>
 		    	 <td>$UserTypeUID</td>
 		    	 <td>$UserEmail</td>
 
 		    	 <td>$UserCampus</td>
-				 <td><button value='$UserUID' class='owner' id='Infobutton'>Make Owner</button></td>
-				 <td><button value='$UserUID' class='Downer' id='Infobutton1'>Remove Owner</button></td>
-				 <td><button value='$UserUID' class='Eowner' id='Infobutton2'>Edit Owner</button></td>
-		    	 <td><input type='submit' value='Update'></td>
-		    	 <td><input type='submit' value='Delete'></td>
+				 
+				 
+			
+				<td><button class='$btnClass'id='$btnID' Value='$UserUID'>$btnText</button></td>
+				 
+				 <td><button value='$UserUID' class='$btnClass2' id='$btnID2'>$btnText2</button></td>
+
     	 		</tr>"; // delete does not do anything yet
     }
 } else
@@ -243,6 +260,7 @@ $(document).ready(function() // wait till the page is ready
             $('#result').html(response);
             $('.response').html("successfully added to the database");
             $('.phpechofront').hide();
+            $(".holder").load("ajax/Pages/Admin/Control.php");
         }
         });
     }
@@ -266,6 +284,7 @@ $(document).ready(function() // wait till the page is ready
             $('#result').html(response);
             $('.response').html("Successfully removed from the database");
             $('.phpechofront1').hide();
+            $(".holder").load("ajax/Pages/Admin/Control.php");
         }
         });
 });

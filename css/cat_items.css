@@ -40,6 +40,10 @@
   height: auto;
   width: auto;
 }
+.ItemEEGHeadset{
+  height: auto;
+  width: auto;
+}
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     .catalog_item {
@@ -53,10 +57,9 @@
       width: inherit;
     }
     .item_overlay{
-    	height: 10em;
-      line-height: 10em;
+    	height: auto;
       bottom: 0;
-      opacity: 1;
+      z-index: 9999;
     }
 
 

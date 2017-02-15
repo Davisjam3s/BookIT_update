@@ -54,7 +54,7 @@ $(document).ready(function() // wait till the page is ready
 <script>
 $(document).ready(function() // wait till the page is ready
 {
-    $(".BUser").click(function() // wait till this button has been pressed
+    $(".Ban").click(function() // wait till this button has been pressed
       { 
           $(".phpechofront3").show(); // show the main nav
       });
@@ -63,7 +63,7 @@ $(document).ready(function() // wait till the page is ready
 <script>
 $(document).ready(function() // wait till the page is ready
 {
-    $(".UBUser").click(function() // wait till this button has been pressed
+    $(".Unban").click(function() // wait till this button has been pressed
       { 
           $(".phpechofront4").show(); // show the main nav
       });
@@ -84,7 +84,7 @@ echo "<table>
 		<tr>
 			<th>UserUID</th>
 			<th>UserTypeUID</th>
-			<th>UserBanned</th>
+
 			<th>UserYear</th>
 			<th>UserEmail</th>
 			<th>UserFname</th>
@@ -92,7 +92,7 @@ echo "<table>
 			<th>Delete User</th>
 			<th>Edit User</th>
 			<th>Ban User</th>
-			<th>UnBan User</th>
+
 		</tr>";
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
@@ -121,12 +121,7 @@ if (mysqli_num_rows($result) > 0) {
 			$UserTypeUID = 'Post Grad';
 		}
 
-        if ($UserBanned == 0) {
-            $UserBanned = 'not banned';
-        }
-        elseif ($UserBanned == 1) {
-            $UserBanned = 'Banned';
-        }
+
 		 if ($UserCampus == 1) {
             $UserCampus = 'Canterbury';
         }
@@ -134,13 +129,24 @@ if (mysqli_num_rows($result) > 0) {
             $UserCampus = 'Medway';
         }
        
+		if ($UserBanned == 0) {
+			$btnClass = "Ban BUser"; // the class needed two values, each class needs a space between
+			$btnText = "Ban User";
+			$btnID="Infobutton3";
 
+
+			
+		}else{
+			$btnClass = "Unban UBUser";
+			$btnText = "Unban User";
+			$btnID = "Infobutton4";
+		}
 
 
     	 echo "<tr>
 		    	 <td>$UserUID</td>
 		    	 <td>$UserTypeUID</td>
-		    	 <td>$UserBanned</td>
+
 		    	 <td>$UserYear</td>
 		    	 <td>$UserEmail</td>
 		    	 <td>$UserFname</td>
@@ -148,8 +154,8 @@ if (mysqli_num_rows($result) > 0) {
 		    	
 				 <td><button value='$UserUID' class='DUser' id='Infobutton1'>Remove User</button></td>
 				 <td><button value='$UserUID' class='EUser' id='Infobutton2'>Edit User</button></td>
-		    	 <td><button value='$UserUID' class='BUser' id='Infobutton3'>Ban User</button></td>
-		    	 <td><button value='$UserUID' class='UBUser' id='Infobutton4'>UnBan User</button></td>
+		    	 <td><button value='$UserUID' class='$btnClass' id='$btnID'>$btnText</button></td>
+
     	 		</tr>"; // delete does not do anything yet
     }
 } else
@@ -280,8 +286,8 @@ $(document).ready(function() // wait till the page is ready
         data: { UserFName: val1,UserType: val2, UserName: val3, UserCampus: val4}, // set the php values
         success: function(response) { // this wont work lol, it does not need to, 
             $('#result').html(response);
-            $('.response').html("successfully added to the database");
             $('.phpechofront2').hide();
+			$(".holder").load("ajax/Pages/Admin/Manage.php");
         }
         });
     }

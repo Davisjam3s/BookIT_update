@@ -73,13 +73,13 @@ if (mysqli_num_rows($result) > 0) {
         }
     	
     	if ($ItemType == 1 ) {
-    		$ItemType = 'Pi';
-    	}
-    	if ($ItemType == 2 ) {
     		$ItemType = 'Book';
     	}
-    	if ($ItemType == 3 ) {
+    	if ($ItemType == 2 ) {
     		$ItemType = 'Lego';
+    	}
+    	if ($ItemType == 3 ) {
+    		$ItemType = 'Pi';
     	}
     	if ($AssetCondition == 1 ) {
     		$AssetCondition = 'Perfect';
@@ -140,8 +140,8 @@ if (mysqli_num_rows($result) > 0) {
                         <option value='4'>Tutors Only</option>
                     </select>
                  </td>
-                 <td><button class='deleteItem' value='$Asset' id='Infobutton1'>Delete</button></td>
-                 <td><button class='editItem' value='$Asset' id='Infobutton2'>Edit</button></td>
+                 <td><button class='deleteItem $Asset' value='$Asset' id='Infobutton1'>Delete</button></td>
+                 <td><button class='editItem $Asset' value='$Asset' id='Infobutton2'>Edit</button></td>
     	 		</tr>"; // delete does not do anything yet
     }
 } else
@@ -163,11 +163,16 @@ $(document).ready(function() // wait till the page is ready
           $( "select[class|='Agreement"+jam+"']" ).attr("id","Agreement");
           $( "select[class|='Condition"+jam+"']" ).attr("id","Condition");
           $( "select[class|='Restriction"+jam+"']" ).attr("id","Restriction");
+          $( "#Infobutton2").addClass(jam);
+          $( ".CancelDelete").addClass(jam);
 
+
+          $(".toptitles").addClass(jam);
+          $("button").not("button[class*="+jam+"]").prop('disabled',true);
 
           // this jquery enables the text box when the button is pressed, it also sets an attribute to the ones that are selected, givving them the ID that will be used to send to the database 
           // var jam is used to store the value that is collected from the button 
-          //$("tr").not("tr[class*="+jam+"]").hide("slow");
+          $("tr").not("tr[class*="+jam+"]").hide("slow");
       });
   });
 $(document).ready(function() // wait till the page is ready

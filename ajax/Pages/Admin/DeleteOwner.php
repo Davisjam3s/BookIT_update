@@ -60,18 +60,23 @@ if (mysqli_num_rows($result1) > 0) {
     while($row = mysqli_fetch_assoc($result1)) {
         //delete the Owner
         $sql4 = "DELETE FROM Owner Where OwnerUID='$UserName'";
+		$sql5 = "UPDATE User set IsOwner=0 Where UserUID='$UserName'";
 
 		//display success or failure
 		if (mysqli_query($conn, $sql4)) {
-			echo " New record created successfully ";
+			echo " Deleted Owner success";
+			if (mysqli_query($conn, $sql5)) {
+				echo " Setting IsOwner to 0 success";
+				} else {
+				echo "Error: " . $sql5 . "<br>" . mysqli_error($conn);
+			}
 		} else {
-			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+			echo "Error: " . $sq4 . "<br>" . mysqli_error($conn);
 		}
     }
 } else {
     echo "0 results";
 }
-
 
 
 
