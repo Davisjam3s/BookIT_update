@@ -105,6 +105,7 @@ if (mysqli_num_rows($result) > 0) {
 		elseif ($UserTypeUID = '4'){
 			$UserTypeUID = 'Post Grad';
 		}
+		
 
 		 if ($UserCampus == 1) {
             $UserCampus = 'Canterbury';
