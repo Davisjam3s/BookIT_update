@@ -6,11 +6,19 @@
     input, select{
       width: 100%;
       border: none;
+    }
+    input:disabled, select:disabled{
+      border: none;
       background-color: transparent;
     }
     input:disabled, select:disabled{
       color: black;
     }
+    .deleteItem, .editItem {
+      width: 100%;
+      height: 100%;
+    }
+
 </style>
 <script>
 $(document).ready(function() // wait till the page is ready
