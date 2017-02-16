@@ -40,7 +40,7 @@ function checkImage()
 			$uploadOk = 0;
 		}
 		
-	// Check file size, if image is more than 900000 
+	// Check file size, if image is too large..
 	if ($_FILES["image"]["size"] > 900000) 
 		{
 			//tell user the file's too big
@@ -93,7 +93,7 @@ function checkImage()
 
 
 }
-
+?>
 <?php
 function checkDoc()
 {
@@ -107,26 +107,7 @@ function checkDoc()
 	//a variable to hold the files filetype
 	$fileType = pathinfo($target_file,PATHINFO_EXTENSION);
 	
-	// Check if file file is an actual document
-	if(isset($_POST["upload"])) 
-		{
-			$check = getfilesize($_FILES["file"]["tmp_name"]);
-				if($check !== false) 
-				{//as long as the file is an file
-					//tell user its an file
-					echo "File is an file - " . $check["mime"] . ".";
-					//set to 1 if upload is fine
-					$uploadOk = 1;
-				
-				} //if its not an file
-					else 
-						{
-							//tell the user its not an acceptable file	
-							echo "File is not an file.";	
-							//set to 0 if upload is not fine
-							$uploadOk = 0;
-						}
-		}
+	
 	// Check to see if file already exists in the folder
 	if (file_exists($target_file)) 
 		{//if it does
@@ -136,8 +117,8 @@ function checkDoc()
 			$uploadOk = 0;
 		}
 		
-	// Check file size, if file is more than 900000 
-	if ($_FILES["file"]["size"] > 900000) 
+	// Check file size, if file is too big ...
+	if ($_FILES["file"]["size"] > 1000000) 
 		{
 			//tell user the file's too big
 			echo "Sorry, your file is too large.";

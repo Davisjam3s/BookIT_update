@@ -19,6 +19,6 @@ $(document).ready(function()
           $("p").hide();
           $("Title").text("BookIT|Admin|Manage");
           $(".holder").show();
-          $(".holder").load("ajax/Pages/Admin/Manage.php"); // load the manage.php page
+          $(".holder").load("ajax/Pages/Admin/Manage1.php"); // load the manage.php page
       });
   });

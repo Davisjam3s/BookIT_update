@@ -1,4 +1,29 @@
+<!--
+  ** This page was created so the inventoiry owner can see their own items, this will allow them to see what items they have in their own inventory
 
+  ** this Page also allows the the user to edit their items which they have, incase they need to update the status of a certain item or if they made a mistake when adding the item 
+
+  ** css on this page directly means that we only want the css to work on this page. although if we diecied to edit like this on other pages it might be needed 
+
+  ** this page uses jquery in order to active boxes, create varibles and move IDs around, this was done so that only one editable box would have one ID at a time as if each textfield had the same id it would not work
+
+  ** Matt should comment about the SQL he did it not me - James
+  
+  ** there are alot of PHP if statements on this page, this was just a cheap way to turn numbers into text, although this could be read from the datbase 
+
+  ** The page echos out a table that shows the inventory of the currentowner who is logged in 
+
+  ** The page has script that gets that finds the class of a particular field and gives it a new ID, this ID is used to collected the information when it is entered into the database, it does this by gettting the varible from the button that is clicked, this being given to the button when it is echoed out onto the page. it then gathers this information and then uses ajax to put this information into the page. giving the approprate text feilds the correct ID's. it also hides the other table elements that are not needed as we dont need to worry about those when we're not using them
+
+  ** This pages was created by James D, Marie H, Matt H
+  ** This page Has been commented by James D
+
+  ** To Do list for this page 
+    *refactor code
+    * styles need their own home, altough they are only read b this page or they will mess up styles on other pages 
+    * scripts could do with being moved
+
+-->
 <style>
     .phpechofront1,.phpechofront2{
         display: none;
@@ -21,6 +46,7 @@
 
 </style>
 <script>
+// this script is from showing the form when the deleteItem Button is clicked
 $(document).ready(function() // wait till the page is ready
 {
     $(".deleteItem").click(function() // wait till this button has been pressed
@@ -30,6 +56,7 @@ $(document).ready(function() // wait till the page is ready
   });
 </script>
 <script>
+// this script is for showing the from whent he edit item button is pressed 
 $(document).ready(function() // wait till the page is ready
 {
     $(".editItem").click(function() // wait till this button has been pressed
@@ -170,7 +197,9 @@ if (mysqli_num_rows($result) > 0) {
 }
 mysqli_close($conn);
 ?>
+
 <script>
+// some complicated script. actuyally written by James, i made it myself lolololol, no joke it worked, it worked so well i named the var after me 
 $(document).ready(function() // wait till the page is ready
 {
     $(".editItem").click(function() // wait till this button has been pressed

@@ -24,7 +24,7 @@
 	** Other than that this page contains some CSS scripts and a from where the user eneters the information for the item
 
 	** This pages was created by James D, Marie H, Matt H
-	** This page Has been commented by James D
+	** This page Has been commented by James D, Marie
 
 	** To Do list for this page 
 		* create a function to check the image for security purposes! ****yes this is done but I now want to jump off a bridge! xmariex
@@ -32,9 +32,8 @@
 		* prevent SQL injections  **Done 
 		* Prevent XSS attacks **Done
 		* Fix Bug where it would not add to the database if the Restriction was set to 'all' or 'third year only' **Done
-		* Call Agreements from the database inseatd of hard coding them 
-		* Call Condtions from the database inseatd of hard coding them
-		* Call restrictions from the database instead of hard coding them 
+		* Call Types from the database instead of hard coding them **done xmariex
+		* Call Agreements from the database instead of hard coding them **done xmariex
 		* Clean Up code
 		* Add Scripts to their own file
 		* Add CSS to their own file 
@@ -141,7 +140,7 @@ if (isset($_POST['upload'])) {
 	}
 
 </style><!-- dont worry fam, i will move these later-->
-	<p>Add Item(Image)</p> <!--did you know, I The amazing james, Forgot to add this and broke the page for 3 hours?-->
+	<p>Add an Item</p> <!--did you know, I The amazing james, Forgot to add this and broke the page for 3 hours?-->
 	<form method="POST" class="addItemForm" action="ajax/Pages/Inventory/add_inventoryImage.php" enctype="multipart/form-data">
 
 

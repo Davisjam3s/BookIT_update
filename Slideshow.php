@@ -82,58 +82,54 @@ function carousel() {
     setTimeout(carousel, 2500); // Change image speed
 }
 </script>
+<?php require 'php/Conection.php';
+
+  // selecting all the assets from the asset table, then ordering them, maybe we dont need order by random, but its looks different each time yo
+  $sql = "SELECT * FROM Asset where AssetTypeUID = 1 ORDER BY RAND() limit 8";
+  $result = mysqli_query($conn, $sql);
+
+  //once we got that stuff from the db
+  if (mysqli_num_rows($result) > 0) {
+      // output data of each row
+    while($row = mysqli_fetch_assoc($result)) {
+     $ItemID =$row["AssetUID"];
+     $AssetType = $row["AssetTypeUID"];
+     $OwnerID =$row["OwnerUID"];
+     $ItemName =$row["AssetDescription"];
+     $ImageLink =$row["AssetImage"];
+
+     if ($AssetType == 1) { // Book
+       $AssetType = "Book"; // Book
+       $TypeCss = "ItemBook"; // ItemBook
+       $MyHeight = 283;
+       $MyWidth = 205;
+       // set the hight and width for different types of Item that is on the page 
+     }
+     
+
+     echo "<div class='catalog_item $TypeCss'><div class='item_overlay'>$ItemName $AssetType </div> <img src='ajax/Pages/Inventory/images/$ImageLink' height='$MyHeight' width='$MyWidth'> </div>";
+   }
+ } else {
+  echo "0 results";
+}
+
+mysqli_close($conn);
+
+
+?>
 <div class="newhold">
 <div class="innerbox">
    <h1>The BookIT Booking system</h1>
   This System was creaated To allow borrowing of eqipment between students and staff, thus making it easier to find the items that you are looking for. 
 </div>
 <div class="innerbox">
-    <h1>should put</h1>
-    ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-   consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-   proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <h1>Brought to you today</h1>
+   Find things to borrow
 </div>
 <div class="innerbox">
-    <h1>somthing here?</h1>
-    ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-   consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-   proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</div>
-<div class="newhold">
-<div class="innerbox">
-   <h1>and maybe</h1>
-   ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-   consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-   proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</div>
-<div class="innerbox">
-    <h1>change the </h1>
-    ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-   consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-   proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</div>
-<div class="innerbox">
-    <h1>colour?</h1>
-    ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-   consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-   proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <h1>by the letter B and the colour RED</h1>
+    Lend things to others
 </div>
 
-</div>
 
 

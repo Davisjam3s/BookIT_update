@@ -25,7 +25,7 @@
 <?php
 
 //Read variables from previous page
-$UserFName = $_POST['UserFName']; // for the full name
+$UserFname = $_POST['UserFname']; // for the full name
 $UserType = $_POST['UserType']; // for the user type
 $UserName = $_POST['UserName']; // for that username 
 $UserCampus = $_POST['UserCampus'];//for the user campus
@@ -41,7 +41,28 @@ $UserName = mysqli_real_escape_string($conn, $UserName);
 $UserName = strip_tags($UserName);
 $UserCampus = mysqli_real_escape_string($conn, $UserCampus);
 $UserCampus = strip_tags($UserCampus);
+$UserFname = mysqli_real_escape_string($conn, $UserFname);
+$UserFname = strip_tags($UserFname);
 
+		 if ($UserCampus == 1) {
+            $UserCampus = 'Canterbury';
+        }
+        elseif ($UserCampus == 2) {
+            $UserCampus = 'Medway';
+        }
+		    	//lazy way of checking user types
+    	if ($UserTypeUID == '1') {
+    		$UserTypeUID = 'Student';
+    	}
+    	elseif ($UserTypeUID = '2') {
+    		$UserTypeUID = 'Admin';
+    	}
+    	elseif ($UserTypeUID = '3') {
+    		$UserTypeUID = 'Staff';
+    	}
+		elseif ($UserTypeUID = '4'){
+			$UserTypeUID = 'Post Grad';
+		}
 $sql = "SELECT * FROM User WHERE UserUID = '$UserName'";
 $result = mysqli_query($conn, $sql);
 
@@ -49,7 +70,7 @@ if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
         // we need to set the values of the info that we got from the user
-        $sql1 = "UPDATE User SET UserTypeUID = $UserType, UserFname='$UserFName', UserCampus='$UserCampus' WHERE UserUID='$UserName'";
+        $sql1 = "UPDATE User SET UserTypeUID = $UserType, UserFname='$UserFname', UserCampus='$UserCampus' WHERE UserUID='$UserName'";
 
 		//display success or failure
 		if (mysqli_query($conn, $sql1)) {
