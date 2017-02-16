@@ -74,7 +74,7 @@
        $MyWidth = 400;
      }
 
-     echo "<div class='catalog_item $TypeCss'><div class='item_Info'>$ItemName $AssetType </div> <img src='ajax/Pages/Inventory/images/$ImageLink' height='$MyHeight' width='$MyWidth'> </div>";
+     echo "<div class='catalog_item $TypeCss'><div class='item_overlay'>$ItemName $AssetType </div> <img src='ajax/Pages/Inventory/images/$ImageLink' height='$MyHeight' width='$MyWidth'> </div>";
    }
  } else {
   echo "0 results";

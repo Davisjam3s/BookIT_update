@@ -1,6 +1,15 @@
+
 <style>
     .phpechofront1,.phpechofront2{
         display: none;
+    }
+    input, select{
+      width: 100%;
+      border: none;
+      background-color: transparent;
+    }
+    input:disabled, select:disabled{
+      color: black;
     }
 </style>
 <script>
@@ -81,6 +90,9 @@ if (mysqli_num_rows($result) > 0) {
     	if ($ItemType == 3 ) {
     		$ItemType = 'Pi';
     	}
+      if ($ItemType == 4 ) {
+        $ItemType = 'EEG Headset';
+      }
     	if ($AssetCondition == 1 ) {
     		$AssetCondition = 'Perfect';
     	}
@@ -172,7 +184,7 @@ $(document).ready(function() // wait till the page is ready
 
           // this jquery enables the text box when the button is pressed, it also sets an attribute to the ones that are selected, givving them the ID that will be used to send to the database 
           // var jam is used to store the value that is collected from the button 
-          $("tr").not("tr[class*="+jam+"]").hide("slow");
+          $("tr").not("tr[class*="+jam+"]").hide("slow"); // this only shows the field that you would want to edit
       });
   });
 $(document).ready(function() // wait till the page is ready
