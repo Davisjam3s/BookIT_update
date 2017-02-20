@@ -34,62 +34,63 @@
 		* Fix Bug where it would not add to the database if the Restriction was set to 'all' or 'third year only' **Done
 		* Call Types from the database instead of hard coding them **done xmariex
 		* Call Agreements from the database instead of hard coding them **done xmariex
-		* Clean Up code
+		* Clean Up code - made the HTML and php a bit prettier, not touching any scripts! xmariex
 		* Add Scripts to their own file
 		* Add CSS to their own file 
 
 -->
 
 <?php 
+//need this to get user info 
 require 'user_info.php';
+//need this for filling drop down menus in form
 require 'fillmenu.php';
- ?>
+?>
 <?php
+if (isset($_POST['upload'])) 
+	{
+		//require the use of the checkUploads file
+		require 'checkUploads.php';	
+		//connect to server	
+		require '../../../php/Conection.php'; 
 
-$msg ="";
-if (isset($_POST['upload'])) {
-	//require the use of the checkUploads file
-	require 'checkUploads.php';	
-	//connect to server	
-	require '../../../php/Conection.php'; 
+		//set all variables from the form 	
+		$image = $_FILES['image']['name'];
+		$ItemName = $_POST['ItemName'];
+		$ItemType = $_POST['ItemType'];
+		$Agreement = $_POST['Agreement'];
+		$Restriction = $_POST['Restriction'];
+		$Condition = $_POST['Condition'];
 
-	//set all variables from the form 	
-	$image = $_FILES['image']['name'];
-	$ItemName = $_POST['ItemName'];
-	$ItemType = $_POST['ItemType'];
-	$Agreement = $_POST['Agreement'];
-	$Restriction = $_POST['Restriction'];
-	$Condition = $_POST['Condition'];
+		// prevent injections and XSS
+		$ItemName = mysqli_real_escape_string($conn, $ItemName);
+		$ItemName = strip_tags($ItemName);
+		$ItemType = mysqli_real_escape_string($conn, $ItemType);
+		$ItemType = strip_tags($ItemType);
+		$Agreement = mysqli_real_escape_string($conn, $Agreement);
+		$Agreement = strip_tags($Agreement);
+		$Restriction = mysqli_real_escape_string($conn, $Restriction);
+		$Restriction = strip_tags($Restriction);
+		$Condition = mysqli_real_escape_string($conn, $Condition);
+		$Condition = strip_tags($Condition);
 
-	// prevent injections and XSS
-	$ItemName = mysqli_real_escape_string($conn, $ItemName);
-	$ItemName = strip_tags($ItemName);
-	$ItemType = mysqli_real_escape_string($conn, $ItemType);
-	$ItemType = strip_tags($ItemType);
-	$Agreement = mysqli_real_escape_string($conn, $Agreement);
-	$Agreement = strip_tags($Agreement);
-	$Restriction = mysqli_real_escape_string($conn, $Restriction);
-	$Restriction = strip_tags($Restriction);
-	$Condition = mysqli_real_escape_string($conn, $Condition);
-	$Condition = strip_tags($Condition);
-
-	//check the image, if its all ok then do the sql to put item in DB
-	if (checkImage())
-		{
-
-			$sql = "INSERT INTO Asset (AgreementUID, OwnerUID, AssetTypeUID, AssetDescription, AssetCondition, AssetImage, AssetRestriction, AssetInBasket) VALUES ('$Agreement','$user','$ItemType','$ItemName',$Condition,'$image',$Restriction,0)";
-			mysqli_query($conn, $sql);
-			//send to loading page	
-			header('Location: loading.php');
-		}
-		//if it fails show user a message
-		else	
+		//check the image, if its all ok then do the sql to put item in DB
+		if (checkImage())
 			{
-				echo"there was a problem, please try again";
+
+				$sql = "INSERT INTO Asset (AgreementUID, OwnerUID, AssetTypeUID, AssetDescription, AssetCondition, AssetImage, AssetRestriction, AssetInBasket) VALUES ('$Agreement','$user','$ItemType','$ItemName',$Condition,'$image',$Restriction,0)";
+				mysqli_query($conn, $sql);
+				//send to loading page	
+				header('Location: loading.php');
 			}
-	
-	
-}
+			//if it fails show user a message
+			else	
+				{
+					echo"there was a problem, please try again";//replaced by the notUploaded.php page called in the checkImage function.
+				}
+		
+		
+	}
 
 ?>
 <script>
@@ -144,11 +145,12 @@ if (isset($_POST['upload'])) {
 	<form method="POST" class="addItemForm" action="ajax/Pages/Inventory/add_inventoryImage.php" enctype="multipart/form-data">
 
 
-
-<input type="text" class="formItems" id="ItemName" name="ItemName" required="true" placeholder="Item Name"><br>
-<select class="formItems" id="ItemType" name="ItemType">
+<!-- various drop down menus for user to select from-->
+		<input type="text" class="formItems" id="ItemName" name="ItemName" required="true" placeholder="Item Name"><br>
+		<select class="formItems" id="ItemType" name="ItemType">
 			<option value="" selected disabled>Type</option> <!--haha trying using that-->
 			<?php
+			//use types that are in the database - this uses the function on the fillmenu.php page
 			fill_type();
 			?>
 		</select>
@@ -156,9 +158,12 @@ if (isset($_POST['upload'])) {
 		<select class="formItems agreeselect" id="Agreement" name="Agreement">
 			<option value="" selected disabled class="">Agreement Type</option>
 			<?php
+			//use agreements that are in the database - this uses the function on the fillmenu.php page
 			fill_agree();
 			?>
 		</select>
+		<!--James this href doesnt work..well it does but its wrong..., how do I send them to another page?!-->
+		<h1> To add your own agreement please click <a href = "ajax/Pages/Inventory/AgreeUploadForm.php">here</a> </h1>
 		<br>
 		<select class="formItems" id="Restriction" name="Restriction">
 			<option value="" selected disabled class="">Restrictions</option>
@@ -167,15 +172,16 @@ if (isset($_POST['upload'])) {
 			<option value="3">PostGrad only</option>
 			<option value="4">Tutors Only</option>
 		</select>
-				<select class="formItems con" id="Condition" name="Condition">
+		<br>
+		<select class="formItems con" id="Condition" name="Condition">
 			<option value="" selected disabled class="">Condition</option>
 			<option value="1">Perfect</option>			
 			<option value="2">Minor scuffs</option>
 			<option value="3">Some Damage</option>
-			<option value="4">Broken</option>
-			
+			<option value="4">Broken</option>			
 		</select>
-
+		<br>
+		<!--part of form to get the image-->
 		<input type="hidden" name="size" value="500000">
 		<input type="file" name="image">
 		<input  class="formItems" id="upload" name="upload" type="submit" value="Confirm" name="add_item">

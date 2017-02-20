@@ -50,13 +50,16 @@
     }
  
     setTimeout( progress, 500 );
+	//send user back to home page
+	$(location).attr('href','../../../index.php');
   } );
   </script>
 </head>
 <body>
  
 <div id="progressbar"><div class="progress-label">Uploading</div></div>
- <div class="back" style="display: none"><a href="../../../index.php">Click here to return</a></div>
+
+ <!--<div class="back" style="display: none"><a href="../../../index.php">Click here to return</a></div>-->
  
 </body>
 </html>

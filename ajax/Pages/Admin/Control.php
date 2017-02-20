@@ -65,9 +65,8 @@ $(document).ready(function() // wait till the page is ready
 <?php
 echo "<p>Admin Owner Controls</p>"; // dont delete this
 echo "<h2 class='response'></h2>";
-?>
-<?php require '../../../php/Conection.php';?>
-<?php
+require '../../../php/Conection.php';
+
 $sql = "SELECT UserUID, UserTypeUID,UserEmail,UserCampus,IsOwner FROM User where UserTypeUID>='1' order by UserUID";//this will be changed when we need admin level changed
 $result = mysqli_query($conn, $sql);
 echo "<table>
@@ -152,6 +151,8 @@ if (mysqli_num_rows($result) > 0) {
 {
     echo "<h2>No Owners On Database yet</h2>";
 }
+
+
 
 mysqli_close($conn);
 ?> 

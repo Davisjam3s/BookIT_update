@@ -54,7 +54,7 @@ $UserYear = strip_tags($UserYear);
 
 
 		
-$sql = "SELECT * FROM User WHERE UserUID = '$UserName'";
+$sql = "SELECT UserTypeUID,UserFname,UserCampus,UserYear FROM User WHERE UserUID = '$UserName'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {

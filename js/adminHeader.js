@@ -7,7 +7,7 @@ $(document).ready(function() // wait till the page is ready
           $("p").hide(); // hide the paragraph
           $("Title").text("BookIT|Admin|Control"); // change the title
           $(".holder").show(); // show the holder
-          $(".holder").load("ajax/Pages/Admin/Control.php"); // load the control.php page
+          $(".holder").load("ajax/Pages/Admin/Control1.php"); // load the control.php page
       });
   });
 $(document).ready(function()
