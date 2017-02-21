@@ -113,7 +113,6 @@ if (isset($_POST['upload']))
 	.addItemForm
 	{
 	background-color: transparent;
-
 	text-align: center;
 	}
 	.restext
@@ -127,6 +126,8 @@ if (isset($_POST['upload']))
 		text-align: center;
 		font-family: 'Amaranth', sans-serif; /*what a nice font*/
 		font-size: 1em;
+		height: 4em;
+		width: 75%;
 	}
 	.addextra
 	{
@@ -136,7 +137,7 @@ if (isset($_POST['upload']))
 	.boxbox
 	{
 		width: 100%;
-		height: 25em;
+		height: 15em;
 		
 	}
 
@@ -180,10 +181,10 @@ if (isset($_POST['upload']))
 			<option value="3">Some Damage</option>
 			<option value="4">Broken</option>			
 		</select>
-		<br>
+		<br><br>
 		<!--part of form to get the image-->
 		<input type="hidden" name="size" value="500000">
-		<input type="file" name="image">
+		<input type="file" name="image"><br>
 		<input  class="formItems" id="upload" name="upload" type="submit" value="Confirm" name="add_item">
 	</form>			
 	<br>
