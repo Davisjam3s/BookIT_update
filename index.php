@@ -1,10 +1,11 @@
 
 <?php require 'php/Conection.php';?> <!--This is the connection file-->
+<?php require 'test/Ft/FirstTime.php';?>
 <?php require 'php/user_info.php';?> <!--give me the user name-->
 <?php require 'php/email.php';?> <!--give me the users email-->
-<?php require 'php/CheckInsert.php';?> <!--this will check if the user exists, if they dont it will add them into the database, if they do it will carry on as normal-->
+ <!--this will check if the user exists, if they dont it will add them into the database, if they do it will carry on as normal-->
 <?php require 'php/banned.php';?>
-<?php require 'php/DoesUserExist.php';?>
+
 <!--this is some php for adding the user when they first log in-->
  <!--We better get on this lads and ladies thats right, im not sexist, take that feminists-->
 <!--don't break anything
@@ -105,6 +106,6 @@ I dont know why you're reading the code, there is nothing intresting here, unles
       <div class="holder">Nothing to display</div> <!--hidden div which will contain working 
       ajax when needed-->
 
-    </section> <!--end of section which should contain things within the page.-->	
+    </section> <!--end of section which should contain things within the page.--> 
   </body>
   </html>
