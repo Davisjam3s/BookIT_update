@@ -22,3 +22,15 @@ $(document).ready(function()
           $(".holder").load("ajax/Pages/Admin/Manage1.php"); // load the manage.php page
       });
   });
+  $(document).ready(function()
+{
+    $(".Edit").click(function()
+      {
+          $(".mainnav").show();
+          $(".adminnav").hide();
+          $("p").hide();
+          $("Title").text("BookIT|Admin|Edit");
+          $(".holder").show();
+          $(".holder").load("ajax/Pages/Admin/ManageOwner.php"); // load the manage.php page
+      });
+  });

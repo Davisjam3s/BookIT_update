@@ -56,8 +56,8 @@ if (mysqli_num_rows($result) > 0) {
 		if (mysqli_query($conn, $sql2)) {
 			echo " New record created successfully ";
 			if (mysqli_query($conn, $sql3)) {
-			echo " New record created successfully ";
-			} else {
+				echo " New record created successfully ";
+				} else {
 				echo "Error: " . $sql3 . "<br>" . mysqli_error($conn);
 			}
 		} else {

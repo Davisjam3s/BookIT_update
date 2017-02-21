@@ -101,13 +101,13 @@ function carousel() {
      if ($AssetType == 1) { // Book
        $AssetType = "Book"; // Book
        $TypeCss = "ItemBook"; // ItemBook
-       $MyHeight = 283;
-       $MyWidth = 205;
+       $MyHeight = 250;
+       $MyWidth = 150;
        // set the hight and width for different types of Item that is on the page 
      }
      
 
-     echo "<div class='catalog_item $TypeCss'><div class='item_overlay'>$ItemName $AssetType </div> <img src='ajax/Pages/Inventory/images/$ImageLink' height='$MyHeight' width='$MyWidth'> </div>";
+     echo "<a href='ItemPage/GetItemInfro.php?id=$ItemID'><div class='catalog_item $TypeCss'><div class='item_overlay'>$ItemName $AssetType </div> <img src='ajax/Pages/Inventory/images/$ImageLink' height='$MyHeight' width='$MyWidth'> </div></a>";
    }
  } else {
   echo "0 results";
@@ -117,19 +117,7 @@ mysqli_close($conn);
 
 
 ?>
-<div class="newhold">
-<div class="innerbox">
-   <h1>The BookIT Booking system</h1>
-  This System was creaated To allow borrowing of eqipment between students and staff, thus making it easier to find the items that you are looking for. 
-</div>
-<div class="innerbox">
-    <h1>Brought to you today</h1>
-   Find things to borrow
-</div>
-<div class="innerbox">
-    <h1>by the letter B and the colour RED</h1>
-    Lend things to others
-</div>
+
 
 
 

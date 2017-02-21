@@ -25,28 +25,28 @@
 <?php
 
 //Read variables from previous page
-$RoomName = $_POST['RoomName']; // for the room
-$Group = $_POST['Group']; // for the group
-$UserName = $_POST['UserName']; // for that username 
+$OwnerLocation = $_POST['OwnerLocation']; // for the room
+$GroupUID = $_POST['GroupUID']; // for the group
+$Owner = $_POST['Owner']; // for that username 
 
 require '../../../php/Conection.php'; //connect to server
 
 // escape special characters
-$RoomName = mysqli_real_escape_string($conn, $RoomName); // get rid of them injections
-$RoomName = strip_tags($RoomName); // what you tryin to do? dont be tryin that
-$Group = mysqli_real_escape_string($conn, $Group);
-$Group = strip_tags($Group);
-$UserName = mysqli_real_escape_string($conn, $UserName);
-$UserName = strip_tags($UserName);
+$OwnerLocation = mysqli_real_escape_string($conn, $OwnerLocation); // get rid of them injections
+$OwnerLocation = strip_tags($OwnerLocation); // what you tryin to do? dont be tryin that
+$GroupUID = mysqli_real_escape_string($conn, $GroupUID);
+$GroupUID = strip_tags($GroupUID);
+$Owner = mysqli_real_escape_string($conn, $Owner);
+$Owner = strip_tags($Owner);
 
-$sql = "SELECT * FROM Owner WHERE OwnerUID = '$UserName'";
+$sql = "SELECT * FROM Owner WHERE OwnerUID = '$Owner'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
         // we need to set the values of the info that we got from the user
-        $sql1 = "UPDATE Owner SET GroupUID = $Group, OwnerLocation='$RoomName' WHERE OwnerUID='$UserName'";
+        $sql1 = "UPDATE Owner SET GroupUID = $GroupUID, OwnerLocation='$OwnerLocation' WHERE OwnerUID='$Owner'";
 
 		//display success or failure
 		if (mysqli_query($conn, $sql1)) {

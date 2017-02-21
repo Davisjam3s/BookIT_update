@@ -195,6 +195,7 @@ if (mysqli_num_rows($result) > 0) {
 {
     echo "0 results";
 }
+
 mysqli_close($conn);
 ?>
 
@@ -250,7 +251,7 @@ $(document).ready(function() // wait till the page is ready
         <input type='text' id='ItemName' required class ='FormItems testname' disabled='true'>
     <span id='error'></span>
         <button id='Infobutton2' class='FormItems'> Submit </button>
-        <button   class='FormItems CancelDelete'> Cancel </button>
+        <button class='FormItems CancelDelete'> Cancel </button>
 </div>
 <script>
 $(document).ready(function() {

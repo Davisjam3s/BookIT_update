@@ -30,6 +30,21 @@
 {
     display:none
 }
+    input, select{
+      width: 100%;
+      border: none;
+    }
+    input:disabled, select:disabled{
+      border: none;
+      background-color: transparent;
+    }
+    input:disabled, select:disabled{
+      color: black;
+    }
+    .owner, .Downer, .Eowner {
+      width: 100%;
+      height: 100%;
+    }
 </style> <!--this is to make the from disapear when we dont need it-->
 
 <script>

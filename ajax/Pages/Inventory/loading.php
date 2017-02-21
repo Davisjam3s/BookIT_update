@@ -51,7 +51,7 @@
  
     setTimeout( progress, 500 );
 	//send user back to home page
-	$(location).attr('href','../../../index.php');
+	$(location).delay(300).attr('href','../../../index.php');
   } );
   </script>
 </head>

@@ -164,7 +164,9 @@ if (isset($_POST['upload']))
 			?>
 		</select>
 		<!--James this href doesnt work..well it does but its wrong..., how do I send them to another page?!-->
-		<h1> To add your own agreement please click <a href = "ajax/Pages/Inventory/AgreeUploadForm.php">here</a> </h1>
+		<h1> To add your own agreement please click 
+
+		<a href = "ajax/Pages/Inventory/AgreeUploadForm.php">here</a> </h1>
 		<br>
 		<select class="formItems" id="Restriction" name="Restriction">
 			<option value="" selected disabled class="">Restrictions</option>
@@ -185,7 +187,7 @@ if (isset($_POST['upload']))
 		<!--part of form to get the image-->
 		<input type="hidden" name="size" value="500000">
 		<input type="file" name="image"><br>
-		<input  class="formItems" id="upload" name="upload" type="submit" value="Confirm" name="add_item">
+		<input  class="formItems" id="upload" name="upload" type="submit" value="Add New Item" name="add_item">
 	</form>			
 	<br>
 	<textarea class="boxbox"></textarea>

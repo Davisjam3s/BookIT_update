@@ -86,8 +86,9 @@ I dont know why you're reading the code, there is nothing intresting here, unles
              <li class="lihead"><a href="#" class="back">Back</a></li>
            </ul> <!--end of the contact us menu-->
            <ul class="ulmain ul5  adminnav"> <!--start of bookings menu-->
-             <li class="lihead"><a href="#" class="Control">Control</a></li>
-             <li class="lihead"><a href="#" class="Manage">Manage</a></li>
+             <li class="lihead"><a href="#" class="Manage">Manage Users</a></li>
+			 <li class="lihead"><a href="#" class="Control">Owner Control</a></li>
+			 <li class="lihead"><a href="#" class="Edit">Edit Owner</a></li>
              <li class="lihead"><a href="#" class="back">Back</a></li>
            </ul> <!--end of bookings menu-->
          </nav> <!--end of the navagation menu-->

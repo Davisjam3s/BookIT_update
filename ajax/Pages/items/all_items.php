@@ -24,6 +24,11 @@
 
     });
   </script>
+  <style>
+    a{
+      color: black;
+    }
+  </style>
 
 
   <!-- Show the date picker on the page, put the button and that within the p tag or it dont work bro --> 
@@ -74,7 +79,7 @@
        $MyWidth = 400;
      }
 
-     echo "<div class='catalog_item $TypeCss'><div class='item_overlay'>$ItemName $AssetType </div> <img src='ajax/Pages/Inventory/images/$ImageLink' height='$MyHeight' width='$MyWidth'> </div>";
+     echo "<a href='ItemPage/GetItemInfro.php?id=$ItemID'><div class='catalog_item $TypeCss'><div class='item_overlay'>$ItemName $AssetType  </div> <img src='ajax/Pages/Inventory/images/$ImageLink' height='$MyHeight' width='$MyWidth'> </div></a>";
    }
  } else {
   echo "0 results";

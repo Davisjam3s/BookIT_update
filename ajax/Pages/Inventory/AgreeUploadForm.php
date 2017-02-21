@@ -72,11 +72,11 @@ if (isset($_POST['upload']))
 
 </style>
 
-	<p>Add an agreement - you will then be able to use this agreement in the selection menu on the add item page</p> 
+	<p>Add an agreement - you will then be able to use this agreement in the selection menu on the add item page</p>
 	<!--form to add the file and get a name for it from the user-->
 	<form method="POST" class="addItemForm" action="ajax/Pages/Inventory/AgreeUploadForm.php" enctype="multipart/form-data">
 		<!-- must have a name for the agreement to put in the database-->
-		<p> Please give your agreement a name </p>
+		<p>Please give your agreement a name </p>
 		<input required="true" type="text" name="docName">
 		<!--the file upload goes in here-->
 		<input type="hidden" name="size" value="1000000">

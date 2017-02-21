@@ -31,14 +31,40 @@ require '../../../php/Conection.php'; //connect to server
 $AssetUID = mysqli_real_escape_string($conn, $AssetUID);
 $AssetUID = strip_tags($AssetUID);
 
+//1st query to find and delete the item image
+$sql1 = "SELECT * FROM Asset WHERE AssetUID=$AssetUID";
+	$result = mysqli_query($conn,$sql1);
+			
+		while ($row=mysqli_fetch_array($result)) 
+				{
+					//get these returned rows and turn into variables
+					$AssetImage = $row["AssetImage"];
+					//delete the image
+					unlink("public_html/ajax/Pages/Inventory/images/".$AssetImage);
+				}
+	
+	
+	
 // gather information from their user account
-$sql = "DELETE FROM Asset WHERE AssetUID=$AssetUID";
+$sql2 = "DELETE FROM Asset WHERE AssetUID=$AssetUID";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Record deleted successfully";
-} else {
-    echo "Error deleting record: " . $conn->error;
-}
+//display success or failure
+	if (mysqli_query($conn, $sql1)) {
+			echo " Image deleted succesfully ";
+			if (mysqli_query($conn, $sql2)) {
+				echo " Asset deleted successfully ";
+				} else {
+				echo "Error: " . $sql3 . "<br>" . mysqli_error($conn);
+			}
+		} else {
+			echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
+		}
+
+//if ($conn->query($sql) === TRUE) {
+ //   echo "Record deleted successfully";
+//} else {
+ //   echo "Error deleting record: " . $conn->error;
+//}
 
 $conn->close();
 ?>
