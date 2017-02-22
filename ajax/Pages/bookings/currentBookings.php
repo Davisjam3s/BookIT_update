@@ -9,13 +9,15 @@ require '../../../php/user_info.php';
 require '../../../php/Conection.php';
 
 //this is the sql to get all the needed info from the joined tables to show the user their bookings
+
+// hey guys i just changed the SQL so it orders it by the most recent booking first this was done byt using ORDER BY DESC which you can see below
 	$sql = "SELECT Asset.AssetDescription, Loan.LoanDate, LoanContent.ReturnDate, User.UserFName, Owner.OwnerLocation, User.UserCampus 
 	FROM Loan 
 	JOIN LoanContent on Loan.LoanUID = LoanContent.LoanUID 
 	JOIN Asset on LoanContent.AssetUID = Asset.AssetUID 
 	JOIN Owner on Asset.OwnerUID = Owner.OwnerUID 
 	JOIN User on Owner.OwnerUID = User.UserUID  
-	WHERE Loan.UserUID = '$user'";
+	WHERE Loan.UserUID = '$user' ORDER BY Loan.LoanUID DESC ";
 	 
 	//just a variable to store the query result
 	$result = mysqli_query($conn, $sql);

@@ -109,6 +109,15 @@ if (isset($_POST['upload']))
 		}
 	})
 </script>
+<script>
+$(document).ready(function() // wait till the page is ready
+{
+    $(".AddAgreement").click(function() // wait till this button has been pressed
+      { 
+       $(".holder").load("ajax/Pages/Inventory/AgreeUploadForm.php");
+      });
+  });
+</script>
 <style>
 	.addItemForm
 	{
@@ -164,9 +173,8 @@ if (isset($_POST['upload']))
 			?>
 		</select>
 		<!--James this href doesnt work..well it does but its wrong..., how do I send them to another page?!-->
-		<h1> To add your own agreement please click 
-
-		<a href = "ajax/Pages/Inventory/AgreeUploadForm.php">here</a> </h1>
+		<br>Oh Noes I can't find an agreement maybe i'll try this button 
+		<button class='AddAgreement' style='margin-right:25%'>Add Agreement</button>
 		<br>
 		<select class="formItems" id="Restriction" name="Restriction">
 			<option value="" selected disabled class="">Restrictions</option>

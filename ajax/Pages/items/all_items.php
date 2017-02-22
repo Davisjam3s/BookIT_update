@@ -29,10 +29,20 @@
       color: black;
     }
   </style>
+<script>
+    $(document).ready(function() {
+        $('.catalog_item').click(function() {
+            var jamjam = $(this).attr("value");
+            $(".holder").load("ItemPage/GetItemInfro.php?id="+jamjam+"");
+        });
+    });
+</script>
+
 
 
   <!-- Show the date picker on the page, put the button and that within the p tag or it dont work bro --> 
   <p>Enter Date To Check Available Items: <input type = "text" id = "datepicker"> <button id="SubmitDate">check</button></p> 
+  
 
 
 
@@ -79,7 +89,7 @@
        $MyWidth = 400;
      }
 
-     echo "<a href='ItemPage/GetItemInfro.php?id=$ItemID'><div class='catalog_item $TypeCss'><div class='item_overlay'>$ItemName $AssetType  </div> <img src='ajax/Pages/Inventory/images/$ImageLink' height='$MyHeight' width='$MyWidth'> </div></a>";
+     echo "<div class='catalog_item $TypeCss' value='$ItemID'><div class='item_overlay'>$ItemName $AssetType  </div> <img src='ajax/Pages/Inventory/images/$ImageLink' height='$MyHeight' width='$MyWidth'> </div>";
    }
  } else {
   echo "0 results";

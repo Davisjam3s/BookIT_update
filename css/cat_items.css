@@ -11,6 +11,7 @@
 	text-align: center;
 	position: relative;
 	z-index: 1;
+  cursor: pointer; 
 }
 /*each ididual item that is on the page has a set height and stuff*/
 /*oveflow is hidden, no in div will appear outside the div*/

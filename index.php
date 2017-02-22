@@ -77,10 +77,10 @@ I dont know why you're reading the code, there is nothing intresting here, unles
               <li class="lihead"><a href="#" class="all">Catalogue</a></li> <!--whats this? you want to see the catalog? you better click here then-->
               <li class="lihead"><a href="#" class="currentBookings">My Bookings</a></li><!--oh you now want to see the bookings? guess you will be clcking this-->
               <?php require 'php/UserBar.php';?> <!--oh no, some wild PHP appeard, james Used display these items if the user is one of these, it was super effective-->
-             
+              <?php require 'php/UserBarAdmin.php';?> <!--oh no, some wild PHP appeard, james Used display these items if the user is one of these, it was super effective-->
            </ul><!--end of orginal header-->
            <ul class="ulmain ul4  invnav"><!--start of contact us-->
-             <li class="lihead"><a href="#" class="addi">Add</a></li>
+             <li class="lihead"><a href="#" class="addi">Add Asset</a></li>
              <li class="lihead"><a href="#" class="UploadAgree">Upload Agreement</a></li>
              <li class="lihead"><a href="#" class="CurrentInventory">Manage Inventory</a></li>
              <li class="lihead"><a href="#" class="back">Back</a></li>
