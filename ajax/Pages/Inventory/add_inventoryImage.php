@@ -60,6 +60,7 @@ if (isset($_POST['upload']))
 		$ItemType = $_POST['ItemType'];
 		$Agreement = $_POST['Agreement'];
 		$Restriction = $_POST['Restriction'];
+		$Supervision = $_POST['Supervision'];
 		$Condition = $_POST['Condition'];
 
 		// prevent injections and XSS
@@ -71,6 +72,8 @@ if (isset($_POST['upload']))
 		$Agreement = strip_tags($Agreement);
 		$Restriction = mysqli_real_escape_string($conn, $Restriction);
 		$Restriction = strip_tags($Restriction);
+		$Supervision = mysqli_real_escape_string($conn, $Supervision);
+		$Supervision = strip_tags($Supervision);
 		$Condition = mysqli_real_escape_string($conn, $Condition);
 		$Condition = strip_tags($Condition);
 
@@ -78,7 +81,7 @@ if (isset($_POST['upload']))
 		if (checkImage())
 			{
 
-				$sql = "INSERT INTO Asset (AgreementUID, OwnerUID, AssetTypeUID, AssetDescription, AssetCondition, AssetImage, AssetRestriction, AssetInBasket) VALUES ('$Agreement','$user','$ItemType','$ItemName',$Condition,'$image',$Restriction,0)";
+				$sql = "INSERT INTO Asset (AgreementUID, OwnerUID, AssetTypeUID, AssetDescription, AssetCondition, AssetImage, AssetRestriction, AssetInBasket, AssetSupervised) VALUES ('$Agreement','$user','$ItemType','$ItemName',$Condition,'$image',$Restriction,0,$Supervision)";
 				mysqli_query($conn, $sql);
 				//send to loading page	
 				header('Location: loading.php');
@@ -106,6 +109,10 @@ if (isset($_POST['upload']))
 		else if (this.value == 5) 
 		{
 			$(".boxbox").load("Agreements/Matteo_Agreement.txt");
+		}
+		else if (this.value == 6) 
+		{
+			$(".boxbox").load("Agreements/none.txt");
 		}
 	})
 </script>
@@ -182,6 +189,12 @@ $(document).ready(function() // wait till the page is ready
 			<option value="2">Third Year or Above</option>
 			<option value="3">PostGrad only</option>
 			<option value="4">Tutors Only</option>
+		</select>
+		<br>
+		<select class="formItems" id="Supervision" name="Supervision">
+			<option value="" selected disabled class="">Supervision required?</option>
+			<option value="0">No</option>
+			<option value="1">Yes</option>
 		</select>
 		<br>
 		<select class="formItems con" id="Condition" name="Condition">

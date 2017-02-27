@@ -71,20 +71,21 @@ echo "<p>Your Inventory</p>"; // dont delete this
 <?php require 'user_info.php' ?>
 <?php require '../../../php/Conection.php';?>
 <?php
-$sql = "SELECT Asset.AssetUID,Agreement.AgreementUID,Agreement.AgreementName,Owner.OwnerUID,Asset.AssetTypeUID,Asset.AssetDescription,Asset.AssetCondition,Asset.AssetRestriction FROM Asset LEFT JOIN Owner ON Asset.OwnerUID=Owner.OwnerUID LEFT JOIN Agreement ON Asset.AgreementUID=Agreement.AgreementUID WHERE Owner.OwnerUID='$user'";
+$sql = "SELECT Asset.AssetUID,Agreement.AgreementUID,Agreement.AgreementName,Owner.OwnerUID,Asset.AssetTypeUID,Asset.AssetDescription,Asset.AssetCondition,Asset.AssetRestriction,Asset.AssetSupervised FROM Asset LEFT JOIN Owner ON Asset.OwnerUID=Owner.OwnerUID LEFT JOIN Agreement ON Asset.AgreementUID=Agreement.AgreementUID WHERE Owner.OwnerUID='$user'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     echo "<table>
 		<tr class='toptitles'>
-			<th>AssetUID</th>
-			<th>AgreementName</th>
-			<th>AgreementUID</th>
-			<th>AssetTypeUID</th>
-			<th>AssetDescription</th>
-			<th>AssetCondition</th>
-			<th>AssetRestriction</th>
+			<th>Asset UID</th>
+
+			<th>Agreement Name</th>
+			<th>Asset Type</th>
+			<th>Asset Description</th>
+			<th>Asset Condition</th>
+			<th>Asset Restriction</th>
+			<th>Asset Supervision</th>
 			<th>Delete</th>
             <th>Edit</th>
 			
@@ -97,7 +98,7 @@ if (mysqli_num_rows($result) > 0) {
 		$AssetType = $row['AssetTypeUID'];
     	$AssetDescription =$row["AssetDescription"];
 		$AssetCondition =$row["AssetCondition"];
-    	
+    	$AssetSupervised =$row["AssetSupervised"];
     	$ItemType =$row["AssetTypeUID"];   	
     	$Restriction =$row["AssetRestriction"];
     	
@@ -152,11 +153,17 @@ if (mysqli_num_rows($result) > 0) {
 		if ($Restriction ==4){
 			$Restriction = 'Tutors only';
 		}
+		if ($AssetSupervised ==0){
+			$AssetSupervised = 'No';
+		}
+		if ($AssetSupervised ==1){
+			$AssetSupervised = 'Yes';
+		}
 
 
     	 echo "<tr class='$Asset'>
 		    	 <td>$Asset</td>
-				 <td>$AgreementName</td>
+
 		    	 <td>
                     <select class='Agreement$Asset' disabled='true'>
                         <option value='' selected disabled>$AgreementType</option>
@@ -187,6 +194,12 @@ if (mysqli_num_rows($result) > 0) {
                         <option value='4'>Tutors Only</option>
                     </select>
                  </td>
+				 <td><select class='Supervision$Asset' disabled='true'>
+                        <option value='' selected disabled>$AssetSupervised</option>
+                        <option value='0'>No</option>
+                        <option value='1'>Yes</option>
+					</select>
+				</td>
                  <td><button class='deleteItem $Asset' value='$Asset' id='Infobutton1'>Delete</button></td>
                  <td><button class='editItem $Asset' value='$Asset' id='Infobutton2'>Edit</button></td>
     	 		</tr>"; // delete does not do anything yet
@@ -213,6 +226,7 @@ $(document).ready(function() // wait till the page is ready
           $( "select[class|='Agreement"+jam+"']" ).attr("id","Agreement");
           $( "select[class|='Condition"+jam+"']" ).attr("id","Condition");
           $( "select[class|='Restriction"+jam+"']" ).attr("id","Restriction");
+		  $( "select[class|='Supervision"+jam+"']" ).attr("id","Supervision");
           $( "#Infobutton2").addClass(jam);
           $( ".CancelDelete").addClass(jam);
 
@@ -303,16 +317,20 @@ $(document).ready(function() // wait till the page is ready
 	   var val3 = $('#Agreement').val();
 	   var val4 = $('#Condition').val();
 	   var val5 = $('#Restriction').val();
+	   var val6 = $('#Supervision').val();
         
+		 if (val2 !== '' && val3 == '3' || val3 =='4' || val3 =='5' || val3 =='6' && val4 =='1' || val4 =='2' || val4 =='3'|| val4 =='4' && val5 =='1'|| val5 =='2'|| val5 =='3'|| val5 =='4' && val6 =='0'|| val6 =='1') //check the values
+    {
         $.ajax({ // now the ajax
         type: 'POST', // we are posting it 
         url: 'ajax/Pages/Inventory/edit_inventory.php', // this is where we're posting 
-        data: { AssetUID: val1,Description: val2,Agreement: val3,Condition: val4,Restriction: val5}, // set the php values
+        data: { AssetUID: val1,Description: val2,Agreement: val3,Condition: val4,Restriction: val5, Supervision:val6}, // set the php values
         success: function(response) { // this wont work lol, it does not need to, 
             $('#result').html(response);
             $(".holder").load("ajax/Pages/Inventory/current_inventory.php");
         }
         });
+	}
 });
 </script>
 </table>

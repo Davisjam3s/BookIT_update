@@ -23,7 +23,7 @@ if (isset($_POST['upload']))
 		//check the file, if its all ok then put the details into the database (file is moved in the check function)
 		if (checkDoc())
 		{
-			$sql = "INSERT INTO Agreement (AgreementDescription, AgreementName) VALUES ('$uploadfile','$agName')";
+			$sql = "INSERT INTO Agreement (AgreementDescription, AgreementName) VALUES ('$file','$agName')";
 			mysqli_query($conn, $sql);
 			//send user to the loading screen so they can see its working
 			header('Location: loading.php');

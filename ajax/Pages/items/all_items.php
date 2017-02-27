@@ -17,13 +17,6 @@
 
     -->
     <!-- Script is for the data picker, using this will show the data picker when its needed -->
-    <script>
-     $(function() {
-      $( "#datepicker" ).datepicker();
-      $( "#datepicker" ).datepicker("show");
-
-    });
-  </script>
   <style>
     a{
       color: black;
@@ -41,7 +34,7 @@
 
 
   <!-- Show the date picker on the page, put the button and that within the p tag or it dont work bro --> 
-  <p>Enter Date To Check Available Items: <input type = "text" id = "datepicker"> <button id="SubmitDate">check</button></p> 
+  <p>&nbsp;</p> 
   
 
 

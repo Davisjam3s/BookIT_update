@@ -48,3 +48,4 @@ $agree_result = mysqli_query($conn,$agree_query);
   			mysqli_close($conn);
 }
 
+?>

@@ -28,6 +28,7 @@ $Description= $_POST['Description'];
 $Agreement = $_POST['Agreement'];
 $Restriction = $_POST['Restriction'];
 $Condition = $_POST['Condition'];
+$Supervision = $_POST['Supervision'];
 require '../../../php/Conection.php'; //connect to server
 
 
@@ -41,6 +42,8 @@ $Restriction = mysqli_real_escape_string($conn, $Restriction);
 $Restriction = strip_tags($Restriction);
 $Condition = mysqli_real_escape_string($conn, $Condition);
 $Condition = strip_tags($Condition);
+$Supervision = mysqli_real_escape_string($conn, $Supervision);
+$Supervision = strip_tags($Supervision);
 
 
 
@@ -49,8 +52,8 @@ echo "$Description";
 echo "$Agreement";
 echo "$Restriction";
 echo "$Condition";
-
-$sql = "UPDATE Asset SET AgreementUID=$Agreement,AssetDescription='$Description',AssetCondition=$Condition,AssetRestriction=$Restriction Where AssetUID='$AssetUID'";
+echo "$Supervision";
+$sql = "UPDATE Asset SET AgreementUID=$Agreement,AssetDescription='$Description',AssetCondition=$Condition,AssetRestriction=$Restriction, AssetSupervised=$Supervision Where AssetUID='$AssetUID'";
 
 
 

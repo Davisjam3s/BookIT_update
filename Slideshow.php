@@ -93,7 +93,7 @@ function carousel() {
 <?php require 'php/Conection.php';
 
   // selecting all the assets from the asset table, then ordering them, maybe we dont need order by random, but its looks different each time yo
-  $sql = "SELECT * FROM Asset where AssetTypeUID = 1 ORDER BY RAND() limit 8";
+  $sql = "SELECT * FROM Asset where AssetTypeUID = 1 ORDER BY RAND() limit 11";
   $result = mysqli_query($conn, $sql);
 
   //once we got that stuff from the db
@@ -110,7 +110,7 @@ function carousel() {
        $AssetType = "Book"; // Book
        $TypeCss = "ItemBook"; // ItemBook
        $MyHeight = 250;
-       $MyWidth = 150;
+       $MyWidth = 145;
        // set the hight and width for different types of Item that is on the page 
      }
      

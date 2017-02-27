@@ -34,6 +34,18 @@ $(document).ready(function() // when the document is ready
                 $(".holder").load("ajax/Pages/Inventory/current_inventory.php"); // fill the hidden div
             });
     });
+$(document).ready(function() // when the document is ready
+    {
+        $(".CurrentAgreement").click(function() // when has this div been pressed?
+            {
+                $(".mainnav").show(); // show the orginal menu
+                $(".invnav").hide(); // hede the menu we just used
+                $("p").hide(); // for the love of god, remember to hide this
+                $("Title").text("BookIT|Current Agreement"); // chnage the page title
+                $(".holder").show(); // show the hidden div
+                $(".holder").load("ajax/Pages/Inventory/current_agreement.php"); // fill the hidden div
+            });
+    });
 
 $(document).ready(function() // when the document is ready
     {

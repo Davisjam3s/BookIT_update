@@ -1,7 +1,7 @@
 <?php
 echo "<div class='phpechoback'></div>
 <div class='phpechofront'>
-    <h1 class='agreeTitle'>Welcome New User</h1>
+    <h1 class='agreeTitle'>Welcome New staff</h1>
     <h2>Please fill out the form below</h2>
     <form class='infoFormArea'>
         <input type='text' id='Fullname' required class='FormItems' placeholder='Fullname'>

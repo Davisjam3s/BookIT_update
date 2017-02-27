@@ -51,9 +51,6 @@ I dont know why you're reading the code, there is nothing intresting here, unles
 <!--end of scripts-->
 <!--this is some amaxing tests fam-->
 
-<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
-<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
 <script src="js/adminHeader.js"></script>
 <script>
   $( document ).ready(function() 
@@ -81,7 +78,8 @@ I dont know why you're reading the code, there is nothing intresting here, unles
            </ul><!--end of orginal header-->
            <ul class="ulmain ul4  invnav"><!--start of contact us-->
              <li class="lihead"><a href="#" class="addi">Add Asset</a></li>
-             <li class="lihead"><a href="#" class="UploadAgree">Upload Agreement</a></li>
+             <li class="lihead"><a href="#" class="UploadAgree">Add Agreement</a></li>
+			 <li class="lihead"><a href="#" class="CurrentAgreement">View Agreements</a></li>
              <li class="lihead"><a href="#" class="CurrentInventory">Manage Inventory</a></li>
              <li class="lihead"><a href="#" class="back">Back</a></li>
            </ul> <!--end of the contact us menu-->

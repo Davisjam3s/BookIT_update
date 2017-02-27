@@ -114,7 +114,7 @@ mysqli_close($conn);
 			
 		}
 		.ItemStats{
-			background-color: pink;
+			background-color: #FF69B4;
 			width: 10em;
 			font-size: 1.5em;
 			overflow: auto;
@@ -161,7 +161,7 @@ mysqli_close($conn);
 <?php echo "<a href='ItemPage/InsertLoan.php?id=$AssetUID'><button class='BookButton' name='Book' id='Book'>BOOK NOW</button></a><br>";?>
 	
 	<button class="BookButton">CHECK DATES</button><br>
-	<button class="BookButton">Catalogue</button><br>
+	<button class="BookButton Catalogue">Catalogue</button><br>
 	<span style="font-size: 0.7em;">You Can press this button all you want but it dont work yet</span>
 </div>
 <?php
@@ -169,6 +169,18 @@ $myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
 echo fgets($myfile);
 fclose($myfile);
 ?>
+<script>
+	$(document).ready(function() // when the document is ready
+    {
+    	$(".Catalogue").click(function() // when has this div been pressed?
+            {
+            	
+                $("Title").text("BookIT|Catalogue"); // change the title
+            	$(".holder").show(); // show the hidden div
+            	$(".holder").load("ajax/Pages/items/all_items.php"); // fill the hidden div
+            });
+    });
+</script>
 
 
 </body>
