@@ -129,6 +129,7 @@ mysqli_close($conn);
   			color: white;
   			margin-bottom: 1px;
   			min-width: 25%;
+  			cursor: pointer;
 		}
 		@media only screen and (max-width: 768px) {
 			.BookButton, .ItemStats{
@@ -158,9 +159,40 @@ mysqli_close($conn);
 </div>
 
 <div class="buttonHolder">
-<?php echo "<a href='ItemPage/InsertLoan.php?id=$AssetUID'><button class='BookButton' name='Book' id='Book'>BOOK NOW</button></a><br>";?>
+
+
+
+
+	<select id="advanced" class="BookButton" name="advanced">
+		<?php // this is for getting the days, the user can choose the day they want to collect the item
+			$dayday = 1; // this is a verible used to count and set the value
+			$mydate2 = date("Y/m/d"); // set the date for today 
+			while($dayday<= 182) { // lets half year 
+			$dateadd2 = date('Y/m/d', strtotime($mydate2. '+'.$dayday.' days')); // this is the value we needl, we needed to add 7 days to the current date so lets add them days 
+    		echo "<option value='$dayday'>$dateadd2</option>"; // echo them out in within the option box 
+   			$dayday++; // add one to this so it can add more day
+			} 
+		?>
+	</select>
+	<br>
 	
-	<button class="BookButton">CHECK DATES</button><br>
+	<select id="DaysBooked" class="BookButton" name="DaysBooked">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+	</select>
+	<div id="result">
+		
+	</div>
+
+<?php echo "<button class='BookButton BookBook' value='$AssetUID'>BOOK NOW</button><br>";?>
+
+
+	
 	<button class="BookButton Catalogue">Catalogue</button><br>
 	<span style="font-size: 0.7em;">You Can press this button all you want but it dont work yet</span>
 </div>
@@ -169,6 +201,7 @@ $myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
 echo fgets($myfile);
 fclose($myfile);
 ?>
+
 <script>
 	$(document).ready(function() // when the document is ready
     {
@@ -180,6 +213,23 @@ fclose($myfile);
             	$(".holder").load("ajax/Pages/items/all_items.php"); // fill the hidden div
             });
     });
+    // end of bacl to catalog
+</script>
+<script>
+	$('.BookBook').click(function() {
+		var jamjam = $(this).attr("value"); 
+	   	var val1 = $('#advanced').val();	
+		var val2 = $('#DaysBooked').val();
+		$.ajax({ 
+		type: 'POST', 
+        url: 'ItemPage/InsertLoan.php?id='+jamjam+'', 
+        data: { advanced: val1 , DaysBooked: val2 }, 
+        success: function(response) {
+            $('#result').html(response);
+            $(".BookBook").attr("disabled", true).css("background-color", "yellow");
+        }
+        });
+});
 </script>
 
 
