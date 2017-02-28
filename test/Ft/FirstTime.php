@@ -52,7 +52,7 @@ if (!$conn) {
 	  	if ($UserFname == null || $UserYear == null || $UserCampus == null) { // either of these are null
 	  		if ($userType == 'ugtstudent') { // check the type of the user to show them a different from
 	  			include 'StudentForm.php'; // if they are a student show them this
-	  		}elseif ($userType == 'staff') {
+	  		}else{
 	  			include 'StaffForm.php'; // if they are staff show them this
 	  		}
 	  		
