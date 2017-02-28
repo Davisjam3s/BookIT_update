@@ -15,7 +15,7 @@ if (isset($_POST['upload']))
 		$target = "Agreements/".basename($_FILES['file']['name']);
 		//get the file details and name provided via the form
 		$file = $_FILES['file']['name'];
-		$file = "raptor.kent.ac.uk/proj/co600/project/m04_bookit/ajax/Pages/Inventory/Agreements/".$file;
+		$file = "ajax/Pages/Inventory/Agreements/".$file;
 		$agName = $_POST['docName'];
 		//protect against SQL injection
 		$agName = mysqli_real_escape_string($conn, $agName);
