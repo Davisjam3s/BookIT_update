@@ -28,64 +28,13 @@
         * Check the type of users
         * Refactor 
 -->
-<?php 
+<?php
 include '../php/user_info.php'; // we need this page to get the informatiom abouyt the user 
 ?>
 <?php
-
 $Item_ID = $_REQUEST['id']; // get the ID for the item 
-            $dayAdd = $_POST['advanced']; // get the value from this 
-
-            $BookedDays = $_POST['DaysBooked']; // get the value from this
-
-            $daySum = $dayAdd + $BookedDays; // add them together for later 
-
-            $mydate = date("Y/m/d"); // what is todays day?
-            $dateadd = date('Y/m/d', strtotime($mydate. '+'.$dayAdd.' days')); // add the pick up day to the date 
-            $dayDrop = date('Y/m/d', strtotime($mydate. '+'.$daySum.' days')); // how long does the user need it 
-
-$servername = "dragon.kent.ac.uk";
-$username = "m04_bookit";
-$password = "b*asiis";
-$dbname = "m04_bookit";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
- 
-
-$sql = "INSERT INTO Loan (UserUID, LoanDate) VALUES ('$user', '$dateadd')";
-
-if (mysqli_query($conn, $sql)) {
-
-    $sql_select = "SELECT LoanUID FROM Loan WHERE UserUID = '$user' ORDER BY LoanUID DESC LIMIT 1";
-
-    $result = mysqli_query($conn, $sql_select);
-    if (mysqli_num_rows($result) > 0) {
-    	while($row = mysqli_fetch_assoc($result)) {
-    	$LoanUID = $row["LoanUID"];
-    	}
-    	$sql_content = "INSERT into LoanContent (LoanUID, AssetUID,setReturn,ReturnDate)values ($LoanUID,$Item_ID,1,'$dayDrop')";
-		if (mysqli_query($conn, $sql_content)) {
-    	    echo "days to pick up $dayAdd <br>"; // day to pick up
-            echo "days with item $BookedDays <br>"; // how long they will have it 
-            echo "Days together $daySum <br> "; // lets add them
-            echo "Day to collect $dateadd <br>"; //when does the user need to pick it up?
-            echo "Day to return $dayDrop  <br>"; // when does the user need to return it
-            include 'GetBookingInfo.php';
-            include 'sendConfrimEmail.php';
-		} else {
-    		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-	}
-    	}
-	} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-
-mysqli_close($conn);
+include 'getDateInfo.php';
+require '../php/Conection.php';
+include 'InsertSQLLoan.php';
 ?>
 

@@ -6,7 +6,7 @@ $dbname = "m04_bookit"; // name of the database on the server
 
 $user=$_SERVER['REMOTE_USER'];
 $email=$_SERVER['MELLON_urn:oid:0_9_2342_19200300_100_1_3'];
-$userType=$_SERVER['MELLON_unikentaccountType'];
+$userType=$_SERVER['MELLON_unikentaccountType_0'];
 
 if ($userType = 'ugtstudent') // this is checking what type the user is
 {

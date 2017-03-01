@@ -68,6 +68,7 @@ h1{
   <img class="mySlides" src="images/slideshow/pic2.jpg">
   <img class="mySlides" src="images/slideshow/pic3.jpg">
   <img class="mySlides" src="images/slideshow/pic4.jpg">
+  <img class="mySlides" src="images/slideshow/matt.jpeg">
   <img class="mySlides" src="images/slideshow/pic5.jpg">
   <img class="mySlides" src="images/slideshow/pic6.jpg">
   <img class="mySlides" src="images/slideshow/pic7.jpg">

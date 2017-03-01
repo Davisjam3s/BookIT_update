@@ -1,5 +1,16 @@
 <!-- this page shows the user all of their current loans by connection to the db.  The delete button doesnt work YET--> 
-
+<style>
+	.toptitles{
+		background-color: white;
+		font-size: 1.5em;
+		font-family: 'Amaranth', sans-serif;
+		text-transform: uppercase;
+	}
+	tr{
+		font-family: 'Amaranth', sans-serif;
+		text-transform: capitalize;
+	}
+</style>
 
 <?php
 echo "<p>Your Bookings</p>"; // dont delete this the <p> is what stops everything hiding under the menu bar!

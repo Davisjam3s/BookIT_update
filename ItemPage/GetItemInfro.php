@@ -1,92 +1,111 @@
-<?php require '../php/Conection.php';?>
+<?php
+require '../php/Conection.php';
+?>
 <?php
 $Item_ID = $_REQUEST['id'];
-$sql = "SELECT * FROM Asset WHERE AssetUID = $Item_ID  ";
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) > 0) {
-    // output data of each row
-
-    while($row = mysqli_fetch_assoc($result)) 
-    {
-    	$AssetUID =$row["AssetUID"];
-		$AgreementType =$row["AgreementUID"];
-		$OwnerUID =$row["OwnerUID"];
-		$AssetType = $row['AssetTypeUID'];
-    	$AssetDescription =$row["AssetDescription"];
-		$AssetCondition =$row["AssetCondition"];
-		$AssetImage = $row["AssetImage"];
-    	$AssetType =$row["AssetTypeUID"];   	
-    	$Restriction =$row["AssetRestriction"];
-    	$AssetInBasket =$row["AssetInBasket"];    	 
-    }
-} else
+$sql     = "SELECT * FROM Asset WHERE AssetUID = $Item_ID  ";
+$result  = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0)
 {
-    echo "This Item Does not exist";
+	// output data of each row
+	while ($row = mysqli_fetch_assoc($result))
+	{
+		$AssetUID         = $row["AssetUID"];
+		$AgreementType    = $row["AgreementUID"];
+		$OwnerUID         = $row["OwnerUID"];
+		$AssetType        = $row['AssetTypeUID'];
+		$AssetDescription = $row["AssetDescription"];
+		$AssetCondition   = $row["AssetCondition"];
+		$AssetImage       = $row["AssetImage"];
+		$AssetType        = $row["AssetTypeUID"];
+		$Restriction      = $row["AssetRestriction"];
+		$AssetInBasket    = $row["AssetInBasket"];
+	}
 }
-if ($AgreementType == 3 ) {
-    		$AgreementType = 'EEG Agree';
-    	}
-        if ($AgreementType == 4 ) {
-            $AgreementType = 'Ian Agree';
-        }
-         if ($AgreementType == 5 ) {
-            $AgreementType = 'Matteo Agree';
-        }
-         if ($AgreementType == 6 ) {
-            $AgreementType = 'None';
-        }
-    	
-    	if ($AssetType == 1 ) {
-    		$AssetType = 'Book';
-    		$MyHeight = 400;
-       		$MyWidth = 350;
-    	}
-    	if ($AssetType == 2 ) {
-    		$AssetType = 'Lego';
-    		$MyHeight = 250;
-       		$MyWidth = 150;
-    	}
-    	if ($AssetType == 3 ) {
-    		$AssetType = 'Pi';
-    		$MyHeight = 350;
-       		$MyWidth = 450;
-    	}
-      	if ($AssetType == 4 ) {
-        	$AssetType = 'EEG Headset';
-        	$MyHeight = 350;
-       		$MyWidth = 450;
-      	}
-    	if ($AssetCondition == 1 ) {
-    		$AssetCondition = 'Perfect';
-    	}
-    	if ($AssetCondition == 2 ) {
-    		$AssetCondition = 'Minor Scuffs';
-    	}
-    	if ($AssetCondition == 3 ) {
-    		$AssetCondition = 'Some Damage';
-    	}
-    	if ($AssetCondition == 4 ) {
-    		$AssetCondition = 'Broken';
-    	}
-		if ($Restriction ==1){
-			$Restriction = 'All';
-		}
-		if ($Restriction ==2){
-			$Restriction = 'Third Year and Above';
-		}
-		if ($Restriction ==3){
-			$Restriction = 'Post Grads only';
-		}
-		if ($Restriction ==4){
-			$Restriction = 'Tutors only';
-		}
+else
+{
+	echo "This Item Does not exist";
+}
+if ($AgreementType == 3)
+{
+	$AgreementType = 'EEG Agree';
+}
+if ($AgreementType == 4)
+{
+	$AgreementType = 'Ian Agree';
+}
+if ($AgreementType == 5)
+{
+	$AgreementType = 'Matteo Agree';
+}
+if ($AgreementType == 6)
+{
+	$AgreementType = 'None';
+}
+if ($AssetType == 1)
+{
+	$AssetType = 'Book';
+	$MyHeight  = 400;
+	$MyWidth   = 350;
+}
+if ($AssetType == 2)
+{
+	$AssetType = 'Lego';
+	$MyHeight  = 250;
+	$MyWidth   = 150;
+}
+if ($AssetType == 3)
+{
+	$AssetType = 'Pi';
+	$MyHeight  = 350;
+	$MyWidth   = 450;
+}
+if ($AssetType == 4)
+{
+	$AssetType = 'EEG Headset';
+	$MyHeight  = 350;
+	$MyWidth   = 450;
+}
+if ($AssetCondition == 1)
+{
+	$AssetCondition = 'Perfect';
+}
+if ($AssetCondition == 2)
+{
+	$AssetCondition = 'Minor Scuffs';
+}
+if ($AssetCondition == 3)
+{
+	$AssetCondition = 'Some Damage';
+}
+if ($AssetCondition == 4)
+{
+	$AssetCondition = 'Broken';
+}
+if ($Restriction == 1)
+{
+	$Restriction = 'All';
+}
+if ($Restriction == 2)
+{
+	$Restriction = 'Third Year and Above';
+}
+if ($Restriction == 3)
+{
+	$Restriction = 'Post Grads only';
+}
+if ($Restriction == 4)
+{
+	$Restriction = 'Tutors only';
+}
 mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?php echo "$AssetDescription";  ?></title>
+	<title><?php
+echo "$AssetDescription";
+?></title>
 	<style>
 		body, html{
 			background-color: #ebebeb;
@@ -142,20 +161,38 @@ mysqli_close($conn);
 
 
 
-<?php echo "<p>$AssetDescription</p>"; ?>
+<?php
+echo "<p>$AssetDescription</p>";
+?>
 
 <div class="ItemImage">
-	<?php echo "<img src='ajax/Pages/Inventory/images/$AssetImage' height='$MyHeight' width='$MyWidth'>";  ?>
+	<?php
+echo "<img src='ajax/Pages/Inventory/images/$AssetImage' height='$MyHeight' width='$MyWidth'>";
+?>
 </div>
 
 <div class="ItemStats">
-	ItemID : <?php echo "$AssetUID"; ?><br>
-	Type : <?php echo "$AssetType"; ?><br>
-	Condition : <?php echo "$AssetCondition  "; ?><br>
-	Restriction : <?php echo "$Restriction"; ?><br>
-	AgreementType : <?php echo "$AgreementType"; ?><br>
-	In Basket? : <?php echo "$AssetInBasket"; ?><br>
-	Owner : <?php echo "$OwnerUID "; ?><br>
+	ItemID : <?php
+echo "$AssetUID";
+?><br>
+	Type : <?php
+echo "$AssetType";
+?><br>
+	Condition : <?php
+echo "$AssetCondition  ";
+?><br>
+	Restriction : <?php
+echo "$Restriction";
+?><br>
+	AgreementType : <?php
+echo "$AgreementType";
+?><br>
+	In Basket? : <?php
+echo "$AssetInBasket";
+?><br>
+	Owner : <?php
+echo "$OwnerUID ";
+?><br>
 </div>
 
 <div class="buttonHolder">
@@ -165,14 +202,15 @@ mysqli_close($conn);
 
 	<select id="advanced" class="BookButton" name="advanced">
 		<?php // this is for getting the days, the user can choose the day they want to collect the item
-			$dayday = 1; // this is a verible used to count and set the value
-			$mydate2 = date("Y/m/d"); // set the date for today 
-			while($dayday<= 182) { // lets half year 
-			$dateadd2 = date('Y/m/d', strtotime($mydate2. '+'.$dayday.' days')); // this is the value we needl, we needed to add 7 days to the current date so lets add them days 
-    		echo "<option value='$dayday'>$dateadd2</option>"; // echo them out in within the option box 
-   			$dayday++; // add one to this so it can add more day
-			} 
-		?>
+$dayday  = 1; // this is a verible used to count and set the value
+$mydate2 = date("Y/m/d"); // set the date for today 
+while ($dayday <= 182) // lets half year 
+{
+	$dateadd2 = date('Y/m/d', strtotime($mydate2 . '+' . $dayday . ' days')); // this is the value we needl, we needed to add 7 days to the current date so lets add them days 
+	echo "<option value='$dayday'>$dateadd2</option>"; // echo them out in within the option box 
+	$dayday++; // add one to this so it can add more day
+}
+?>
 	</select>
 	<br>
 	
@@ -189,7 +227,9 @@ mysqli_close($conn);
 		
 	</div>
 
-<?php echo "<button class='BookButton BookBook' value='$AssetUID'>BOOK NOW</button><br>";?>
+<?php
+echo "<button class='BookButton BookBook' value='$AssetUID'>BOOK NOW</button><br>";
+?>
 
 
 	
