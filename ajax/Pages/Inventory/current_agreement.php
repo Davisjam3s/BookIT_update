@@ -34,7 +34,7 @@
 	.AgreementBox
 	{
 		
-		width: 100%;
+		width: 60%;
 		height: 15em;
 		
 	}
@@ -47,8 +47,8 @@
 <?php
 echo "<p>Agreements</p>"; // dont delete this
 ?>
-<div>
-    <textarea rows='20' cols='70' class='AgreementBox'id='result'></textarea>
+<div align="center">
+    <textarea class='AgreementBox'id='result'></textarea>
 </div>
 <?php require '../../../php/Conection.php';?>
 <?php

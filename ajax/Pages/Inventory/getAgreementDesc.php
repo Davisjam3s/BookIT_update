@@ -15,7 +15,9 @@ if (mysqli_num_rows($result) > 0)
         
         $fileName = $AgreementDescription;
         $myfile = fopen("../../../$fileName", "r") or die("Unable to open file!");
-        echo fgets($myfile);
+		while(!feof($myfile)) {
+			echo fgets($myfile) . '&#13';
+		}
         fclose($myfile);
     }
     
