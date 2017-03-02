@@ -9,15 +9,15 @@
  	* Change student to staff
 -->
 <?php
-$user=$_SERVER['REMOTE_USER'];
-if(isset ($_SERVER['MELLON_unikentaccountType']))
-  {
-    $userType=$_SERVER['MELLON_unikentaccountType'];
-      if ($userType == 'staff' or $user == 'mh708' or $user == 'jd601' or $user == 'mh709' or $user == 'dm458' ) // just for lol's fam, this needs changing 
-        {
-            // put this on the page
-          echo "<li class='lihead'><a href='#' onclick='InventoryNav()'>My Inventory</a></li>"; // and this whilst you're at it
-                 // these could be echoed at the same time, but its too confusing and long, well not realling confusing, just makes the code look ugly
-        }
-    }				
+$user = $_SERVER['REMOTE_USER'];
+if (isset($_SERVER['MELLON_unikentaccountType']))
+{
+	$userType = $_SERVER['MELLON_unikentaccountType'];
+	if ($userType == 'staff' or $user == 'mh708' or $user == 'jd601' or $user == 'mh709' or $user == 'dm458') // just for lol's fam, this needs changing 
+	{
+		// put this on the page
+		echo "<li class='lihead'><a href='#' onclick='InventoryNav()'>My Inventory</a></li>"; // and this whilst you're at it
+		// these could be echoed at the same time, but its too confusing and long, well not realling confusing, just makes the code look ugly
+	}
+}
 ?>

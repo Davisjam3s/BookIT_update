@@ -1,17 +1,4 @@
 <!-- this page shows the user all of their current loans by connection to the db.  The delete button doesnt work YET--> 
-<style>
-	.toptitles{
-		background-color: white;
-		font-size: 1.5em;
-		font-family: 'Amaranth', sans-serif;
-		text-transform: uppercase;
-	}
-	tr{
-		font-family: 'Amaranth', sans-serif;
-		text-transform: capitalize;
-	}
-</style>
-
 <?php
 echo "<p>Your Bookings</p>"; // dont delete this the <p> is what stops everything hiding under the menu bar!
 
@@ -71,7 +58,16 @@ require '../../../php/Conection.php';
 		}
 	} else //if the user does not have any loans
 	{
-		echo "You have no loans at present";
+		echo "<table>
+			<tr class='toptitles'>
+				<th>Item</th>
+				<th>Pickup Date</th>
+				<th>Return Date</th>
+				<th>Owners Name</th>
+				<th>Item Location</th>
+				<th>Campus</th>
+							
+			</tr>";
 	}
 	mysqli_close($conn);
 	?>

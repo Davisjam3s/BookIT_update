@@ -40,6 +40,7 @@ I dont know why you're reading the code, there is nothing intresting here, unles
 <link rel="stylesheet" type="text/css" href="css/agreeForm.css"/> <!--this is for the agree form-->
 <link rel="stylesheet" type="text/css" href="css/tables.css"/> <!--this is for the tables on the booking pages-->
 <link rel="stylesheet" type="text/css" href="css/InfoFrom.css"/>
+<link rel="stylesheet" type="text/css" href="css/TableHeaders.css">
 <!--end of styles-->
  <!--Scripts-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> <!--thats right jquery is being used here, you better use them libarys rather than doing it the long way-->

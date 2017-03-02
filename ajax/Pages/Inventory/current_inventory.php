@@ -45,6 +45,7 @@
     }
 
 </style>
+
 <script>
 // this script is from showing the form when the deleteItem Button is clicked
 $(document).ready(function() // wait till the page is ready
@@ -206,7 +207,20 @@ if (mysqli_num_rows($result) > 0) {
     }
 } else
 {
-    echo "0 results";
+    echo "<table>
+    <tr class='toptitles'>
+      <th>Asset UID</th>
+
+      <th>Agreement Name</th>
+      <th>Asset Type</th>
+      <th>Asset Description</th>
+      <th>Asset Condition</th>
+      <th>Asset Restriction</th>
+      <th>Asset Supervision</th>
+      <th>Delete</th>
+            <th>Edit</th>
+      
+    </tr>";
 }
 
 mysqli_close($conn);
