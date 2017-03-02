@@ -21,6 +21,18 @@
     a{
       color: black;
     }
+    .BookButton{
+        background:none;
+        border: none;
+        background-color: #05345C;
+        width: 10em;
+        font-size: 2em;
+        color: white;
+        margin-bottom: 1px;
+        min-width: 25%;
+        cursor: pointer;
+        float: left;
+    }
   </style>
 <script>
     $(document).ready(function() {
@@ -42,9 +54,20 @@
   <!--you know if you connect to the database you would be able to use it? who knew am i right-->
   <?php require '../../../php/Conection.php';
 
+  echo "
+        <select id='FilterItems' class='BookButton' name='FilterItems'>
+        <option value='0'>All Items</option>
+        <option value='1'>Books</option>
+        <option value='2'>Lego</option>
+        <option value='3'>Pi</option>
+        <option value='4'>EEG Headset</option>
+  </select> <br><br><br>
+
+  " ;
   // selecting all the assets from the asset table, then ordering them, maybe we dont need order by random, but its looks different each time yo
   $sql = "SELECT * FROM Asset ORDER BY RAND()";
   $result = mysqli_query($conn, $sql);
+
 
   //once we got that stuff from the db
   if (mysqli_num_rows($result) > 0) {
@@ -110,3 +133,45 @@ mysqli_close($conn);
         });
         });
       </script>
+<script>
+  $('#FilterItems').change(function() {
+    var jamjamjam = $(this).val(); 
+    if (jamjamjam == 0)//book 
+    {
+      $(".ItemBook").show();
+      $(".ItemPi").show();
+      $(".ItemLego").show();
+      $(".ItemEEGHeadset").show();
+    }
+    if (jamjamjam == 1)//book 
+    {
+      $(".ItemBook").show();
+      $(".ItemPi").hide();
+      $(".ItemLego").hide();
+      $(".ItemEEGHeadset").hide();
+    }
+    if (jamjamjam == 2)//book 
+    {
+      $(".ItemBook").hide();
+      $(".ItemPi").hide();
+      $(".ItemLego").show();
+      $(".ItemEEGHeadset").hide();
+    }
+     if (jamjamjam == 3)//book 
+    {
+      $(".ItemBook").hide();
+      $(".ItemPi").show();
+      $(".ItemLego").hide();
+      $(".ItemEEGHeadset").hide();
+    }
+     if (jamjamjam == 4)//book 
+    {
+      $(".ItemBook").hide();
+      $(".ItemPi").hide();
+      $(".ItemLego").hide();
+      $(".ItemEEGHeadset").show();
+    }
+
+
+});
+</script>
