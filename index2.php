@@ -39,6 +39,7 @@ $(document).ready(function()
 <body>
 <div class="header">
 <img class="shownav" src="images/expand.png" >
+ <a href="index2.php"><img onclick="HomeClick()" src="images/uni_logo.png"></a>
   	<div class="test">
 
             <ul class="ulmain mainnav"> <!--this is the orginal navagation menu-->
