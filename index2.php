@@ -36,6 +36,14 @@ a{
 	color: inherit;
 	text-decoration: inherit;
 }
+p{
+    font-family: sans-serif;
+    font-size: 30px;
+    color: #969696;
+    text-align: center;
+    position: relative;
+    text-transform: uppercase;
+}
 .header {
 	top: 0;
 	background-color: #05345C;
