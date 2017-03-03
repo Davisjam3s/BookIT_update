@@ -1,8 +1,10 @@
+
 <?php require 'php/Conection.php';?> <!--This is the connection file-->
+<?php require 'test/Ft/FirstTime.php';?>
 <?php require 'php/user_info.php';?> <!--give me the user name-->
-<?php require 'php/email.php';?>
-<?php require 'php/CheckInsert.php';?> <!--give me the users email-->
-<!--this will check if the user exists, if they dont it will add them into the database, if they do it will carry on as normal-->
+<?php require 'php/email.php';?> <!--give me the users email-->
+ <!--this will check if the user exists, if they dont it will add them into the database, if they do it will carry on as normal-->
+<?php require 'php/banned.php';?>
 <!--this is some php for adding the user when they first log in-->
 <!DOCTYPE html>
 <html>
@@ -21,8 +23,7 @@
 <link rel="stylesheet" type="text/css" href="css/agreeForm.css"/> <!--this is for the agree form-->
 <link rel="stylesheet" type="text/css" href="css/tables.css"/> <!--this is for the tables on the booking pages-->
 <link rel="stylesheet" type="text/css" href="css/InfoFrom.css"/>
-<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
-<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="css/TableHeaders.css">
 <style>
 /* For desktop: */
 body {
@@ -136,36 +137,28 @@ $(document).ready(function()
 <div class="header">
 <img class="shownav" src="images/expand.png" >
   	<div class="test">
-  	<ul class="ulmain mainnav">
-	  	
-	    <li><a href="#" onclick="CatalogNav()">Catalogue</a></li> <!--whats this? you want to see the catalog? you better click here then-->
-	    <li><a href="#" onclick="BookingNav()">My Bookings</a></li><!--oh you now want to see the bookings? guess you will be clcking this-->
-    <?php require 'php/UserBar.php';?>
-  	</ul>
-    <ul class="ulmain ul2 catnav"> <!--this is for the catalog items, set to hidden, wont be displayed until activated by user-->
-        <li><a href="#" class="all">All</a></li>
-        <li><a href="#" class="lego">Lego</a></li>
-        <li><a href="#" class="pi">Pi's</a></li>
-        <li><a href="#" class="t4">Type 4</a></li>
-        <li><a href="#" class="books">Books</a></li>
-        <li><a href="#" class="back">Back</a></li> <!--helps navagate the menu-->
-    </ul> <!--end of catalog--> 
-	<ul class="ulmain ul3  booknav"> <!--start of bookings menu-->
-        <li><a href="#" class="currentBookings">Current Bookings</a></li>
-        <li><a href="#" class="pastBookings">Past Bookings</a></li>
-        <li><a href="#" class="back">Back</a></li>
-    </ul> <!--end of bookings menu--> 
-    <ul class="ulmain ul4  invnav"><!--start of contact us-->
-        <li><a href="#" class="addi">Add</a></li>
-        <li><a href="#" class="RemoveInventory">Remove</a></li>
-        <li><a href="#" class="CurrentInventory">Current</a></li>
-        <li><a href="#" class="back">Back</a></li>
-    </ul> <!--end of the contact us menu-->
-    <ul class="ulmain ul5  adminnav"> <!--start of bookings menu-->
-        <li><a href="#" class="Control">Control</a></li>
-        <li><a href="#" class="Manage">Manage</a></li>
-        <li><a href="#" class="back">Back</a></li>
-    </ul> <!--end of bookings menu-->	
+
+            <ul class="ulmain mainnav"> <!--this is the orginal navagation menu-->
+             
+              <li class="lihead"><a href="#" class="all">Catalogue</a></li> <!--whats this? you want to see the catalog? you better click here then-->
+              <li class="lihead"><a href="#" class="currentBookings">My Bookings</a></li><!--oh you now want to see the bookings? guess you will be clcking this-->
+              <?php require 'php/UserBar.php';?> <!--oh no, some wild PHP appeard, james Used display these items if the user is one of these, it was super effective-->
+              <?php require 'php/UserBarAdmin.php';?> <!--oh no, some wild PHP appeard, james Used display these items if the user is one of these, it was super effective-->
+           </ul><!--end of orginal header-->
+
+           <ul class="ulmain ul4  invnav"><!--start of contact us-->
+             <li class="lihead"><a href="#" class="addi">Add Asset</a></li>
+             <li class="lihead"><a href="#" class="UploadAgree">Add Agreement</a></li>
+       <li class="lihead"><a href="#" class="CurrentAgreement">View Agreements</a></li>
+             <li class="lihead"><a href="#" class="CurrentInventory">Manage Inventory</a></li>
+             <li class="lihead"><a href="#" class="back">Back</a></li>
+           </ul> <!--end of the contact us menu-->
+           <ul class="ulmain ul5  adminnav"> <!--start of bookings menu-->
+             <li class="lihead"><a href="#" class="Manage">Manage Users</a></li>
+       <li class="lihead"><a href="#" class="Control">Owner Control</a></li>
+       <li class="lihead"><a href="#" class="Edit">Edit Owner</a></li>
+             <li class="lihead"><a href="#" class="back">Back</a></li>
+           </ul> <!--end of bookings menu-->
   	</div>
   	
 </div>
