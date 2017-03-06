@@ -100,19 +100,19 @@ if (isset($_POST['upload']))
 	$('.agreeselect').on('change', function() {
 		if (this.value == 3) 
 		{
-			$(".boxbox").load("Agreements/EEG_Agreement.txt");
+			$(".boxbox").load("ajax/Pages/Inventory/Agreements/EEG_Agreement.txt");
 		}
 		else if (this.value == 4) 
 		{
-			$(".boxbox").load("Agreements/Ians_Agreement.txt");
+			$(".boxbox").load("ajax/Pages/Inventory/Agreements/Ians_Agreement.txt");
 		}
 		else if (this.value == 5) 
 		{
-			$(".boxbox").load("Agreements/Matteo_Agreement.txt");
+			$(".boxbox").load("ajax/Pages/Inventory/Agreements/Matteo_Agreement.txt");
 		}
 		else if (this.value == 6) 
 		{
-			$(".boxbox").load("Agreements/none.txt");
+			$(".boxbox").load("ajax/Pages/Inventory/Agreements/none.txt");
 		}
 	})
 </script>
@@ -185,7 +185,7 @@ $(document).ready(function() // wait till the page is ready
 		<br>
 		<select class="formItems" id="Restriction" name="Restriction">
 			<option value="" selected disabled class="">Restrictions</option>
-			<option value="1">All</option>
+			<option value="1">No Restriction</option>
 			<option value="2">Third Year or Above</option>
 			<option value="3">PostGrad only</option>
 			<option value="4">Tutors Only</option>

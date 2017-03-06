@@ -35,6 +35,5 @@ include '../php/user_info.php'; // we need this page to get the informatiom abou
 $Item_ID = $_REQUEST['id']; // get the ID for the item 
 include 'getDateInfo.php';
 require '../php/Conection.php';
-include 'CheckLoanNew.php';
+include 'InsertSQLLoan.php';
 ?>
-
