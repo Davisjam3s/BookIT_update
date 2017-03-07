@@ -14,7 +14,7 @@
 			$Banned = $row["UserBanned"];
 			$UserAgreed = $row["UserAgreed"];
 			$UserYear = $row["UserYear"];
-			$UserUID = $row["UserTypeUID"];
+			$UserTypeUID = $row["UserTypeUID"];
 			$UserType = $row["UserTypeDescription"];
 		}
     }
@@ -43,21 +43,26 @@
 	//make sure the user is not banned and has agreed to the main usage agreement..	
 		//depending on the restriction of the asset
 		//if there is no restriction (all allowed to borrow)
-		if ($Banned == 0 && $UserAgreed == 1 && $Restrictions == 1)
+		if ($Banned == 0 and $UserAgreed == 1 and $Restrictions == 1)
 			//allow and insert the loan into db via this .php script
-			{include 'InsertSQLLoan.php';}
+			{
+				include'InsertSQLLoan.php';
+			}
 		//if its restricted to 3rd yr and above and the user is a third year or postgrad/admin/staff	
-		elseif($Banned == 0 && $UserAgreed == 1 && $Restrictions == 2 && $UserYear == 3 || $UserUID >= 2)
+		elseif(($Banned == 0 and $UserAgreed == 1 and $Restrictions == 2) and ($UserYear >= 3) or ($UserTypeUID !==1))
 		//allow and insert the loan into db via this .php script
-			{include 'InsertSQLLoan.php';}
+			{
+				include'InsertSQLLoan.php';
+			}
 		//if its restricted to postgrad and above and the user is a postgrad/admin/staff
-		elseif($Banned == 0 && $UserAgreed == 1 && $Restrictions == 3 && $UserUID >= 2)
+		elseif(($Banned == 0 and $UserAgreed == 1 and $UserTypeUID >2) and ($Restrictions == 3) or ($Restrictions == 4))
+		
 		//allow and insert the loan into db via this .php script
-			{include 'InsertSQLLoan.php';}
+			{include'InsertSQLLoan.php';}
 		//if its restricted to staff only and the user is staff	
-		elseif ($Banned == 0 && $UserAgreed == 1 && $Restrictions == 4 && $UserUID == 3)
+		//elseif ($Banned == 0 && $UserAgreed == 1 && $Restrictions == 4 && $UserUID >= 2)
 		//allow and insert the loan into db via this .php script
-			{include 'InsertSQLLoan.php';}
+		//	{include 'InsertSQLLoan.php';}
 		//otherwise  echo a problem
 		else
 			{echo "You are not permitted to borrow this item, please check the items year restriction";}

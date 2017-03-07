@@ -3,7 +3,7 @@ require '../php/Conection.php';
 ?>
 <?php
 $Item_ID = $_REQUEST['id'];
-$sql     = "SELECT * FROM Asset WHERE AssetUID = $Item_ID  ";
+$sql     = "SELECT * FROM Asset join Agreement on Asset.AgreementUID=Agreement.AgreementUID WHERE AssetUID = $Item_ID  ";
 $result  = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0)
 {
@@ -12,6 +12,7 @@ if (mysqli_num_rows($result) > 0)
 	{
 		$AssetUID         = $row["AssetUID"];
 		$AgreementType    = $row["AgreementUID"];
+		$AgreementName    = $row["AgreementName"];
 		$OwnerUID         = $row["OwnerUID"];
 		$AssetType        = $row['AssetTypeUID'];
 		$AssetDescription = $row["AssetDescription"];
@@ -26,33 +27,18 @@ else
 {
 	echo "This Item Does not exist";
 }
-if ($AgreementType == 3)
-{
-	$AgreementType = 'EEG Agree';
-}
-if ($AgreementType == 4)
-{
-	$AgreementType = 'Ian Agree';
-}
-if ($AgreementType == 5)
-{
-	$AgreementType = 'Matteo Agree';
-}
-if ($AgreementType == 6)
-{
-	$AgreementType = 'None';
-}
+
 if ($AssetType == 1)
 {
 	$AssetType = 'Book';
-	$MyHeight  = 400;
-	$MyWidth   = 350;
+	$MyHeight  = 500;
+	$MyWidth   = 450;
 }
 if ($AssetType == 2)
 {
 	$AssetType = 'Lego';
-	$MyHeight  = 250;
-	$MyWidth   = 150;
+	$MyHeight  = 500;
+	$MyWidth   = 450;
 }
 if ($AssetType == 3)
 {
@@ -133,17 +119,19 @@ echo "$AssetDescription";
 			
 		}
 		.ItemStats{
-			background-color: #FF69B4;
-			width: 10em;
+			background-color: #05345C;
+			width: 20em;
 			font-size: 1.5em;
+			color: white;
 			overflow: auto;
+			margin-bottom: 1px;
 
 		}
 		.BookButton{
   			background:none;
   			border: none;
   			background-color: #05345C;
-  			width: 10em;
+  			width: 15em;
   			font-size: 2em;
   			color: white;
   			margin-bottom: 1px;
@@ -185,7 +173,7 @@ echo "$AssetCondition  ";
 echo "$Restriction";
 ?><br>
 	AgreementType : <?php
-echo "$AgreementType";
+echo "$AgreementName";
 ?><br>
 	In Basket? : <?php
 echo "$AssetInBasket";
@@ -193,6 +181,7 @@ echo "$AssetInBasket";
 	Owner : <?php
 echo "$OwnerUID ";
 ?><br>
+
 </div>
 
 <div class="buttonHolder">
@@ -201,27 +190,29 @@ echo "$OwnerUID ";
 
 
 	<select id="advanced" class="BookButton" name="advanced">
+	<option value='' selected disabled>Select a Date</option>
 		<?php // this is for getting the days, the user can choose the day they want to collect the item
-$dayday  = 1; // this is a verible used to count and set the value
-$mydate2 = date("Y/m/d"); // set the date for today 
-while ($dayday <= 182) // lets half year 
-{
-	$dateadd2 = date('Y/m/d', strtotime($mydate2 . '+' . $dayday . ' days')); // this is the value we needl, we needed to add 7 days to the current date so lets add them days 
-	echo "<option value='$dayday'>$dateadd2</option>"; // echo them out in within the option box 
-	$dayday++; // add one to this so it can add more day
-}
+		$dayday  = 1; // this is a verible used to count and set the value
+		$mydate2 = date("Y/m/d"); // set the date for today 
+		while ($dayday <= 91) // 3 months ish
+		{
+			$dateadd2 = date('Y/m/d', strtotime($mydate2 . '+' . $dayday . ' days')); // this is the value we needl, we needed to add 7 days to the current date so lets add them days 
+			echo "<option value='$dayday'>$dateadd2</option>"; // echo them out in within the option box 
+			$dayday++; // add one to this so it can add more day
+		}
 ?>
 	</select>
 	<br>
 	
 	<select id="DaysBooked" class="BookButton" name="DaysBooked">
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
-		<option value="4">4</option>
-		<option value="5">5</option>
-		<option value="6">6</option>
-		<option value="7">7</option>
+		<option value='' selected disabled>Booking Duration</option>
+		<option value="1">1 Day</option>
+		<option value="2">2 Days</option>
+		<option value="3">3 Days</option>
+		<option value="4">4 Days</option>
+		<option value="5">5 Days</option>
+		<option value="6">6 Days</option>
+		<option value="7">1 Week</option>
 	</select>
 	<div id="result">
 		

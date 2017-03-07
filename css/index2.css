@@ -34,7 +34,8 @@ p{
 	background-color: transparent;
 	width: auto;
 	float: right;
-	margin-right: 0.5em;
+	margin-right: 3em;
+  margin-top: -1em;
 }
 ul
 {
@@ -102,4 +103,9 @@ li , ul{
   float: right;
   display: block;
 }
+}
+@media only screen and (min-width: 768px) {
+
+
+
 }

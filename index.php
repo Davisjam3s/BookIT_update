@@ -33,12 +33,29 @@ $(document).ready(function()
       {
           $(".test").toggle();    
       });
+    
 });
+</script>
+<script>
+
+ $(window).resize(function() {
+  if ($(window).width() < 748) {
+     
+  }
+ else {
+    $(".test").show();  
+ }
+});
+
+
+
+
 </script>
 </head>
 <body>
 <div class="header">
 <img class="shownav" src="images/expand.png" >
+<br>
  <a href="index.php"><img onclick="HomeClick()" src="images/uni_logo.png"></a>
   	<div class="test">
 
@@ -78,6 +95,6 @@ $(document).ready(function()
 	<div class="holder">Nothing to display
     </div>
 </div>
-<div class="Footer">Website Created by James Davis, Matt, and Marie</div>
+<div class="Footer">Website Created by James Davis, Matt, and Marie Remove this later lololol</div>
 </body>
 </html>

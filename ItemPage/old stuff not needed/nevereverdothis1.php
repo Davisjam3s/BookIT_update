@@ -14,7 +14,7 @@
 			$Banned = $row["UserBanned"];
 			$UserAgreed = $row["UserAgreed"];
 			$UserYear = $row["UserYear"];
-			$UserUID = $row["UserTypeUID"];
+			$UserTypeUID = $row["UserTypeUID"];
 			$UserType = $row["UserTypeDescription"];
 		}
     }
@@ -41,31 +41,41 @@
 	}
 	
 	//make sure the user is not banned and has agreed to the main usage agreement..	
-while ($Banned == 0 && $UserAgreed == 1)
-	{
+while ($Banned == 0 && $UserAgreed == 1):
+	
 		//depending on the restriction of the asset
 		//if there is no restriction (all allowed to borrow)
 		if ($Restrictions == 1)
 			//allow and insert the loan into db via this .php script
-			{include 'InsertSQLLoan.php';}
+			{
+				include 'InsertSQLLoan.php';
+			break;}
+			
 		//if its restricted to 3rd yr and above and the user is a third year or postgrad/admin/staff	
-		elseif( $Restrictions == 2 && $UserYear == 3 || $UserTypeUID >= 2)
+		elseif( ($Restrictions == 2 && $UserYear == 3) || ($Restrictions ==2 && UserTypeUID >= 2))
 		//allow and insert the loan into db via this .php script
-			{include 'InsertSQLLoan.php';}
+			{
+				include 'InsertSQLLoan.php';
+			break;}
 		//if its restricted to postgrad and above and the user is a postgrad/admin/staff
 		elseif($Restrictions == 3 && $UserTypeUID >= 2)
 		//allow and insert the loan into db via this .php script
-			{include 'InsertSQLLoan.php';}
+			{
+				include 'InsertSQLLoan.php';
+			}
 		//if its restricted to staff only and the user is staff	
 		elseif ($Restrictions == 4 && $UserTypeUID == 3)
 		//allow and insert the loan into db via this .php script
-			{include 'InsertSQLLoan.php';}
+			{
+				include 'InsertSQLLoan.php';
+			break;}
 		//otherwise  echo a problem
 		else
-			{echo "there is an issue with this!";}
+			{echo "there is an issue with this!";
 	
-				
-	}		
+			break;		}	
+	endwhile;	
+		
 	
 	
 	

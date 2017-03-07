@@ -22,11 +22,23 @@
       color: black;
     }
     .newres{
-      
       width: 100%;
-      
       overflow: auto;
 
+    }
+    .filerOptions{
+      width: 100%;
+      height: 3em;
+      margin-left: 0.5em;
+      
+    }
+    .SortItems{
+      height: inherit;
+    }
+    .SortItems2{
+      
+      height: 95%;
+      margin-left: 1px;
     }
 
   </style>
@@ -42,17 +54,22 @@
 
   <!--you know if you connect to the database you would be able to use it? who knew am i right-->
   <?php require '../../../php/Conection.php';
+echo "<div class='filerOptions'>
 
-  echo "
-        <select id='FilterItems' class='SortItems' name='FilterItems'>
+<select id='FilterItems' class='SortItems' name='FilterItems'>
         <option value='0'>All Items</option>
         <option value='1'>Books</option>
         <option value='2'>Lego</option>
         <option value='3'>Pi</option>
         <option value='4'>EEG Headset</option>
-  </select> 
-  " ;
-  echo "<input type='text' name='search' id='search' class='SortItems' placeholder='Search'><br><br><br>";
+</select> 
+
+<input type='text' name='search' id='search' class='SortItems SortItems2' placeholder='Search'>
+
+
+
+</div>";
+
 
   // selecting all the assets from the asset table, then ordering them, maybe we dont need order by random, but its looks different each time yo
   $sql = "SELECT * FROM Asset ORDER BY RAND()";
@@ -162,6 +179,8 @@ mysqli_close($conn);
 </script>
 <script>
   $('#search').keypress(function() {
+
+     $('input').trigger("keydown", {which: 13});
     var jamjam = $(this).val(); 
     var val1 = jamjam;
     $.ajax({ 
@@ -173,4 +192,8 @@ mysqli_close($conn);
         }
         });
 });
+
+</script>
+<script >
+
 </script>

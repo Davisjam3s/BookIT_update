@@ -96,23 +96,26 @@ if (isset($_POST['upload']))
 	}
 
 ?>
-
-<script>//fills drop down for agreement names and hidden field agreementuid
-    $('.agreeselect').on('change',function() {
-
-        var jamjam = $(this).val(); 
-        var val1 = jamjam;
-        $.ajax({ 
-        type: 'POST', 
-        url: 'ajax/Pages/Inventory/getAgreementDesc.php', 
-        data: { Description: val1}, 
-        success: function(response) {
-            $('#result').html(response);
-        }
-        });
-});
+<script>
+	$('.agreeselect').on('change', function() {
+		if (this.value == 3) 
+		{
+			$(".boxbox").load("ajax/Pages/Inventory/Agreements/EEG_Agreement.txt");
+		}
+		else if (this.value == 4) 
+		{
+			$(".boxbox").load("ajax/Pages/Inventory/Agreements/Ians_Agreement.txt");
+		}
+		else if (this.value == 5) 
+		{
+			$(".boxbox").load("ajax/Pages/Inventory/Agreements/Matteo_Agreement.txt");
+		}
+		else if (this.value == 6) 
+		{
+			$(".boxbox").load("ajax/Pages/Inventory/Agreements/none.txt");
+		}
+	})
 </script>
-
 <script>
 $(document).ready(function() // wait till the page is ready
 {
@@ -147,9 +150,9 @@ $(document).ready(function() // wait till the page is ready
 		width: 25em;
 		height: 5em;
 	}
-	.AgreementBox
+	.boxbox
 	{
-		width: 60%;
+		width: 100%;
 		height: 15em;
 		
 	}
@@ -177,7 +180,7 @@ $(document).ready(function() // wait till the page is ready
 			?>
 		</select>
 		<!--James this href doesnt work..well it does but its wrong..., how do I send them to another page?!-->
-		<br><br>If you would like to add your own agreement use this button
+		<br>Oh Noes I can't find an agreement maybe i'll try this button 
 		<button class='AddAgreement' style='margin-right:25%'>Add Agreement</button>
 		<br>
 		<select class="formItems" id="Restriction" name="Restriction">
@@ -208,9 +211,8 @@ $(document).ready(function() // wait till the page is ready
 		<input  class="formItems" id="upload" name="upload" type="submit" value="Add New Item" name="add_item">
 	</form>			
 	<br>
-<div align="center">
-	<textarea class="AgreementBox" id='result'></textarea>
-</div>
+	<textarea class="boxbox"></textarea>
+
 
 
 
