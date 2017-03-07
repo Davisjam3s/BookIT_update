@@ -1,12 +1,24 @@
 /*this is for each catalog item that will appear on the page*/
 /*sets height width and colour*/
+    .SortItems{
+        background:none;
+        border: none;
+        background-color: #05345C;
+        width: 10em;
+        font-size: 2em;
+        color: white;
+        margin-bottom: 1px;
+        min-width: 25%;
+        cursor: pointer;
+        float: left;
+    }
 
 .catalog_item {
     float: left;
     margin: 0.5em;
     height: 10em;
     width: 10em;
-    background-color: red;
+    background-color: transparent;
     overflow: hidden;
     text-align: center;
     position: relative;
@@ -60,6 +72,9 @@
         height: auto;
         bottom: 0;
         z-index: 9999;
+    }
+    .SortItems{
+        width: 100%;
     }
 }
 /*overlay is there for looking nice, this will be changed, possibliy*/

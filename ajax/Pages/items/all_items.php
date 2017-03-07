@@ -21,18 +21,7 @@
     a{
       color: black;
     }
-    .BookButton{
-        background:none;
-        border: none;
-        background-color: #05345C;
-        width: 10em;
-        font-size: 2em;
-        color: white;
-        margin-bottom: 1px;
-        min-width: 25%;
-        cursor: pointer;
-        float: left;
-    }
+
   </style>
 <script>
     $(document).ready(function() {
@@ -55,7 +44,7 @@
   <?php require '../../../php/Conection.php';
 
   echo "
-        <select id='FilterItems' class='BookButton' name='FilterItems'>
+        <select id='FilterItems' class='SortItems' name='FilterItems'>
         <option value='0'>All Items</option>
         <option value='1'>Books</option>
         <option value='2'>Lego</option>
