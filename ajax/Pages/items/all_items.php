@@ -18,7 +18,7 @@
     -->
     <!-- Script is for the data picker, using this will show the data picker when its needed -->
   <style>
-    a{
+    .item_overlay{
       color: black;
     }
 
@@ -53,6 +53,7 @@
   </select> <br><br><br>
 
   " ;
+  echo "";
   // selecting all the assets from the asset table, then ordering them, maybe we dont need order by random, but its looks different each time yo
   $sql = "SELECT * FROM Asset ORDER BY RAND()";
   $result = mysqli_query($conn, $sql);
@@ -94,7 +95,7 @@
        $MyWidth = 400;
      }
 
-     echo "<div class='catalog_item $TypeCss' value='$ItemID'><div class='item_overlay'>$ItemName $AssetType  </div> <img src='ajax/Pages/Inventory/images/$ImageLink' height='$MyHeight' width='$MyWidth'> </div>";
+     echo "<div class='catalog_item $TypeCss' value='$ItemID'><div class='item_overlay'>$ItemName</div> <img src='ajax/Pages/Inventory/images/$ImageLink' height='$MyHeight' width='$MyWidth'> </div>";
    }
  } else {
   echo "0 results";
