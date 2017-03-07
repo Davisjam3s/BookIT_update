@@ -1,6 +1,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <input type="text" name="search" id="search">
+
 <select name="search2" id="search2">
 	<option value="0" selected="true" disabled="true" >Filter</option>
 	<option value="1">Book</option>

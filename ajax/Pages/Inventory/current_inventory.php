@@ -68,10 +68,10 @@ $(document).ready(function() // wait till the page is ready
 </script>
 <?php
 echo "<p>Your Inventory</p>"; // dont delete this
-?>
-<?php require 'user_info.php' ?>
-<?php require '../../../php/Conection.php';?>
-<?php
+require 'user_info.php';
+require '../../../php/Conection.php';
+require 'fillmenu.php';
+
 $sql = "SELECT Asset.AssetUID,Agreement.AgreementUID,Agreement.AgreementName,Owner.OwnerUID,Asset.AssetTypeUID,Asset.AssetDescription,Asset.AssetCondition,Asset.AssetRestriction,Asset.AssetSupervised FROM Asset LEFT JOIN Owner ON Asset.OwnerUID=Owner.OwnerUID LEFT JOIN Agreement ON Asset.AgreementUID=Agreement.AgreementUID WHERE Owner.OwnerUID='$user'";
 $result = mysqli_query($conn, $sql);
 
@@ -80,7 +80,6 @@ if (mysqli_num_rows($result) > 0) {
     echo "<table>
 		<tr class='toptitles'>
 			<th>Asset UID</th>
-
 			<th>Agreement Name</th>
 			<th>Asset Type</th>
 			<th>Asset Description</th>
@@ -105,18 +104,7 @@ if (mysqli_num_rows($result) > 0) {
     	
     	
 
-    	if ($AgreementType == 3 ) {
-    		$AgreementType = 'EEG Agree';
-    	}
-        if ($AgreementType == 4 ) {
-            $AgreementType = 'Ian Agree';
-        }
-         if ($AgreementType == 5 ) {
-            $AgreementType = 'Matteo Agree';
-        }
-         if ($AgreementType == 6 ) {
-            $AgreementType = 'None';
-        }
+
     	
     	if ($ItemType == 1 ) {
     		$ItemType = 'Book';
@@ -166,12 +154,13 @@ if (mysqli_num_rows($result) > 0) {
 		    	 <td>$Asset</td>
 
 		    	 <td>
-                    <select class='Agreement$Asset' disabled='true'>
-                        <option value='' selected disabled>$AgreementType</option>
-                        <option value='3'>EEG Agreement</option>
-                        <option value='4'>Ians Agreement</option>
-                        <option value='5'>Matteo Agreement</option>
-                        <option value='6'>None</option>
+                    <select class='Agreement$Asset agreeselect' id='Agreement' name='Agreement' disabled='true'>
+                        <option value='' selected disabled class=''>$AgreementName</option>";
+						
+						//use agreements that are in the database - this uses the function on the fillmenu.php page
+						fill_agree();
+						
+		echo "
                     </select>
                  </td>
 
@@ -225,7 +214,21 @@ if (mysqli_num_rows($result) > 0) {
 
 mysqli_close($conn);
 ?>
+<script>//fills 
+    $('.agreeselect').on('change',function() {
 
+        var jamjam = $(this).val(); 
+        var val1 = jamjam;
+        $.ajax({ 
+        type: 'POST', 
+        url: 'ajax/Pages/Inventory/getAgreementDesc.php', 
+        data: { Description: val1}, 
+        success: function(response) {
+            $('#result').html(response);
+        }
+        });
+});
+</script>
 <script>
 // some complicated script. actuyally written by James, i made it myself lolololol, no joke it worked, it worked so well i named the var after me 
 $(document).ready(function() // wait till the page is ready

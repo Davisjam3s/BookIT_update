@@ -96,26 +96,23 @@ if (isset($_POST['upload']))
 	}
 
 ?>
-<script>
-	$('.agreeselect').on('change', function() {
-		if (this.value == 3) 
-		{
-			$(".boxbox").load("ajax/Pages/Inventory/Agreements/EEG_Agreement.txt");
-		}
-		else if (this.value == 4) 
-		{
-			$(".boxbox").load("ajax/Pages/Inventory/Agreements/Ians_Agreement.txt");
-		}
-		else if (this.value == 5) 
-		{
-			$(".boxbox").load("ajax/Pages/Inventory/Agreements/Matteo_Agreement.txt");
-		}
-		else if (this.value == 6) 
-		{
-			$(".boxbox").load("ajax/Pages/Inventory/Agreements/none.txt");
-		}
-	})
+
+<script>//fills drop down for agreement names and hidden field agreementuid
+    $('.agreeselect').on('change',function() {
+
+        var jamjam = $(this).val(); 
+        var val1 = jamjam;
+        $.ajax({ 
+        type: 'POST', 
+        url: 'ajax/Pages/Inventory/getAgreementDesc.php', 
+        data: { Description: val1}, 
+        success: function(response) {
+            $('#result').html(response);
+        }
+        });
+});
 </script>
+
 <script>
 $(document).ready(function() // wait till the page is ready
 {
@@ -150,9 +147,9 @@ $(document).ready(function() // wait till the page is ready
 		width: 25em;
 		height: 5em;
 	}
-	.boxbox
+	.AgreementBox
 	{
-		width: 100%;
+		width: 60%;
 		height: 15em;
 		
 	}
@@ -180,7 +177,7 @@ $(document).ready(function() // wait till the page is ready
 			?>
 		</select>
 		<!--James this href doesnt work..well it does but its wrong..., how do I send them to another page?!-->
-		<br>Oh Noes I can't find an agreement maybe i'll try this button 
+		<br>If you would like to add your own agreement use this button
 		<button class='AddAgreement' style='margin-right:25%'>Add Agreement</button>
 		<br>
 		<select class="formItems" id="Restriction" name="Restriction">
@@ -211,8 +208,9 @@ $(document).ready(function() // wait till the page is ready
 		<input  class="formItems" id="upload" name="upload" type="submit" value="Add New Item" name="add_item">
 	</form>			
 	<br>
-	<textarea class="boxbox"></textarea>
-
+<div>
+	<textarea class="AgreementBox" id='result'>bling bling</textarea>
+</div>
 
 
 

@@ -21,16 +21,16 @@
     .item_overlay{
       color: black;
     }
+    .newres{
+      
+      width: 100%;
+      
+      overflow: auto;
+
+    }
 
   </style>
-<script>
-    $(document).ready(function() {
-        $('.catalog_item').click(function() {
-            var jamjam = $(this).attr("value");
-            $(".holder").load("ItemPage/GetItemInfro.php?id="+jamjam+"");
-        });
-    });
-</script>
+
 
 
 
@@ -50,10 +50,10 @@
         <option value='2'>Lego</option>
         <option value='3'>Pi</option>
         <option value='4'>EEG Headset</option>
-  </select> <br><br><br>
-
+  </select> 
   " ;
-  echo "";
+  echo "<input type='text' name='search' id='search' class='SortItems' placeholder='Search'><br><br><br>";
+
   // selecting all the assets from the asset table, then ordering them, maybe we dont need order by random, but its looks different each time yo
   $sql = "SELECT * FROM Asset ORDER BY RAND()";
   $result = mysqli_query($conn, $sql);
@@ -62,6 +62,7 @@
   //once we got that stuff from the db
   if (mysqli_num_rows($result) > 0) {
       // output data of each row
+    echo "<div class='newres' id='result'>";
     while($row = mysqli_fetch_assoc($result)) {
      $ItemID =$row["AssetUID"];
      $AssetType = $row["AssetTypeUID"];
@@ -97,6 +98,7 @@
 
      echo "<div class='catalog_item $TypeCss' value='$ItemID'><div class='item_overlay'>$ItemName</div> <img src='ajax/Pages/Inventory/images/$ImageLink' height='$MyHeight' width='$MyWidth'> </div>";
    }
+  echo "</div>";
  } else {
   echo "0 results";
 }
@@ -107,22 +109,7 @@ mysqli_close($conn);
 ?>
 
 <!-- now we better send the date, i might have thought of a better way to do this, idk yet-->
-<script>
-      $('#SubmitDate').click(function() { //wait for the button to be pressed, this will need a name change 
-      var Date = $('#datepicker').val(); // set Date to the date picked
 
-      
-          $.ajax({ // now the ajax
-          type: 'POST', // we are posting it 
-          url: 'php/AvailableItems.php', // this is where we're posting 
-          data: { ItemName: Date }, // set the php values
-          success: function(response) { // this wont work lol, it does not need to, 
-            $('#result').html(response);
-
-          }
-        });
-        });
-      </script>
 <script>
   $('#FilterItems').change(function() {
     var jamjamjam = $(this).val(); 
@@ -163,5 +150,27 @@ mysqli_close($conn);
     }
 
 
+});
+</script>
+<script>
+    $(document).ready(function() {
+        $('.catalog_item').click(function() {
+            var jamjam = $(this).attr("value");
+            $(".holder").load("ItemPage/GetItemInfro.php?id="+jamjam+"");
+        });
+    });
+</script>
+<script>
+  $('#search').keypress(function() {
+    var jamjam = $(this).val(); 
+    var val1 = jamjam;
+    $.ajax({ 
+    type: 'POST', 
+        url: 'ajax/Pages/items/searchphp.php', 
+        data: { Fullname: val1}, 
+        success: function(response) {
+            $('#result').html(response);
+        }
+        });
 });
 </script>
