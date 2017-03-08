@@ -9,7 +9,7 @@ require '../../../php/Conection.php';
 //this is the sql to get all the needed info from the joined tables to show the user their bookings
 
 // hey guys i just changed the SQL so it orders it by the most recent booking first this was done byt using ORDER BY DESC which you can see below
-	$sql = "SELECT Asset.AssetDescription, Loan.LoanDate, LoanContent.ReturnDate, User.UserFName, Owner.OwnerLocation, User.UserCampus 
+	$sql = "SELECT Asset.AssetDescription, Loan.LoanDate, Loan.LoanConfirm, LoanContent.ReturnDate, User.UserFName, Owner.OwnerLocation, User.UserCampus 
 	FROM Loan 
 	JOIN LoanContent on Loan.LoanUID = LoanContent.LoanUID 
 	JOIN Asset on LoanContent.AssetUID = Asset.AssetUID 
@@ -31,13 +31,24 @@ require '../../../php/Conection.php';
 				<th>Owners Name</th>
 				<th>Item Location</th>
 				<th>Campus</th>
-							
+				<th>Status</th>
+				<th>Cancel</th>				
 			</tr>";
 			//use the results as variables
 		while($row = mysqli_fetch_assoc($result)) 
 		{
 			$Asset =$row["AssetDescription"];
 			$LoanDate =$row["LoanDate"];
+			$Confirmed = $row["LoanConfirm"];
+			if ($Confirmed == 0){
+					$Confirmed ="Pending";
+				}
+			elseif ($Confirmed == 1){
+					$Confirmed = "Confirmed";
+				}
+			elseif ($Confirmed == 2){
+					$Confirmed = "Refused";
+				}
 			$ReturnDate = $row["ReturnDate"];
 			$UserFName = $row['UserFName'];
 			$OwnerLocation =$row["OwnerLocation"];
@@ -51,7 +62,7 @@ require '../../../php/Conection.php';
 					 <td>$UserFName</td>
 					 <td>$OwnerLocation</td>
 					 <td>$UserCampus</td>
-					 
+					 <td>$Confirmed</td>
 					 
 					 <td><button class='deleteItem $Asset' value='$Asset' id='Infobutton1'>Delete</button></td>
 					</tr>"; // delete does not do anything yet but we will do something with it later

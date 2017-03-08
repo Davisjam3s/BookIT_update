@@ -64,18 +64,20 @@ h1{
 
 
 <div class="w3-content w3-section" style="width: 100%;">
-  <img class="mySlides" src="images/slideshow/pic1.jpg">
-  <img class="mySlides" src="images/slideshow/pic2.jpg">
-  <img class="mySlides" src="images/slideshow/pic3.jpg">
-  <img class="mySlides" src="images/slideshow/pic4.jpg">
-  <img class="mySlides" src="images/slideshow/matt.jpeg">
-  <img class="mySlides" src="images/slideshow/pic5.jpg">
-  <img class="mySlides" src="images/slideshow/pic6.jpg">
-  <img class="mySlides" src="images/slideshow/pic7.jpg">
-  <img class="mySlides" src="images/slideshow/pic8.jpg">
+  <img class="mySlides" alt="slideshow image" src="images/slideshow/pic1.jpg">
+  <img class="mySlides" alt="slideshow image" src="images/slideshow/pic2.jpg">
+  <img class="mySlides" alt="slideshow image" src="images/slideshow/pic3.jpg">
+  <img class="mySlides" alt="slideshow image" src="images/slideshow/pic4.jpg">
+  <img class="mySlides" alt="slideshow image" src="images/slideshow/matt.jpeg">
+  <img class="mySlides" alt="slideshow image" src="images/slideshow/pic5.jpg">
+  <img class="mySlides" alt="slideshow image" src="images/slideshow/pic6.jpg">
+  <img class="mySlides" alt="slideshow image" src="images/slideshow/pic7.jpg">
+  <img class="mySlides" alt="slideshow image" src="images/slideshow/pic8.jpg">
 </div>
 
 <script>
+
+// this code was taken from W3c schools
 var myIndex = 0;
 carousel();
 

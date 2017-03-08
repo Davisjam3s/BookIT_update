@@ -62,7 +62,7 @@ while ($Banned == 0 && $UserAgreed == 1):
 			break;}
 			
 		//if its restricted to 3rd yr and above and the user is a third year or postgrad/admin/staff	
-		elseif( ($Restrictions == 2 && $UserYear == 3) || ($Restrictions ==2 && UserTypeUID >= 2))
+		elseif( ($Restrictions == 2 && $UserYear == 3) || ($Restrictions ==2 && $UserTypeUID >= 2))
 		//allow and insert the loan into db via this .php script
 			{
 				include 'InsertSQLLoan.php';

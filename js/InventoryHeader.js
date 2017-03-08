@@ -56,3 +56,15 @@ $(document).ready(function() // when the document is ready
                 $(".phpechoback").hide(); // for now hide it when the user clicks this
             });
     });
+$(document).ready(function() // when the document is ready
+    {
+        $(".ManageBookings").click(function() // when has this div been pressed?
+            {
+                $(".mainnav").show(); // show the orginal menu
+                $(".invnav").hide(); // hede the menu we just used
+                $("p").hide(); // for the love of god, remember to hide this
+                $("Title").text("BookIT|Manage Bookings"); //change the title of the page
+                $(".holder").show(); // show the hidden div
+                $(".holder").load("ajax/Pages/Inventory/manage_bookings.php"); // fill the hidden div
+            });
+    });

@@ -178,9 +178,10 @@ mysqli_close($conn);
     });
 </script>
 <script>
+  
   $('#search').keypress(function() {
-
-     $('input').trigger("keydown", {which: 13});
+   
+    
     var jamjam = $(this).val(); 
     var val1 = jamjam;
     $.ajax({ 
