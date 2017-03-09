@@ -2,7 +2,7 @@
 <style>
 	.Status{
 		width: 100%;
-		height: auto;
+		height: auto; 
 		padding: 0;
 	}
 </style>
