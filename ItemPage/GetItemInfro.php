@@ -189,8 +189,8 @@ echo "$OwnerUID ";
 
 
 
-	<select id="advanced" class="BookButton" name="advanced">
-	<option value='' selected disabled>Select a Date</option>
+	<select id="advanced" class="BookButton" required name="advanced">
+	<option value='0' selected disabled>Select a Date</option>
 		<?php // this is for getting the days, the user can choose the day they want to collect the item
 		$dayday  = 1; // this is a verible used to count and set the value
 		$mydate2 = date("Y/m/d"); // set the date for today 
@@ -204,8 +204,8 @@ echo "$OwnerUID ";
 	</select>
 	<br>
 	
-	<select id="DaysBooked" class="BookButton" name="DaysBooked">
-		<option value='' selected disabled>Booking Duration</option>
+	<select id="DaysBooked" class="BookButton" required name="DaysBooked">
+		<option value='0' selected disabled>Booking Duration</option>
 		<option value="1">1 Day</option>
 		<option value="2">2 Days</option>
 		<option value="3">3 Days</option>
@@ -251,6 +251,10 @@ fclose($myfile);
 		var jamjam = $(this).attr("value"); 
 	   	var val1 = $('#advanced').val();	
 		var val2 = $('#DaysBooked').val();
+
+			if (val1 == null || val2 == null) {
+		alert("Fill in the form");
+	}else{
 		$.ajax({ 
 		type: 'POST', 
         url: 'ItemPage/InsertLoan.php?id='+jamjam+'', 
@@ -260,6 +264,9 @@ fclose($myfile);
             $(".BookBook").attr("disabled", true).css("background-color", "yellow");
         }
         });
+	}
+
+		
 });
 </script>
 
