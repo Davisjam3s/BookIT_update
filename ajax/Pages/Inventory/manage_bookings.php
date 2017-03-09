@@ -9,7 +9,7 @@ require '../../../php/Conection.php';
 //this is the sql to get all the needed info from the joined tables to show the owners bookings
 
 // this sql statement brings in all information about possible bookings for that owner
-	$sql = "SELECT Asset.AssetDescription, Loan.LoanUID,Loan.LoanDate, LoanContent.ReturnDate, User.UserEmail, Owner.OwnerLocation, User.UserCampus 
+	$sql = "SELECT Asset.AssetDescription, Loan.LoanUID,Loan.LoanDate, Loan.LoanConfirm, LoanContent.ReturnDate, User.UserEmail, Owner.OwnerLocation, User.UserCampus 
 	FROM User 
 	JOIN Loan on User.UserUID = Loan.UserUID 
 	JOIN LoanContent on Loan.LoanUID = LoanContent.LoanUID 
@@ -29,7 +29,7 @@ require '../../../php/Conection.php';
 				<th>Item</th>
 				<th>Pickup Date</th>
 				<th>Return Date</th>
-				<th>Users Email</th>
+				<th>Borrower's Email</th>
 				<th>Status</th>
 				<th>Confirm</th>
 				<th>Deny</th>
@@ -44,6 +44,17 @@ require '../../../php/Conection.php';
 			$UserEmail = $row['UserEmail'];
 			$OwnerLocation =$row["OwnerLocation"];
 			$UserCampus =$row["UserCampus"];
+			$Confirmed=$row['LoanConfirm'];
+			
+			if ($Confirmed == 0){
+				$Confirmed ="Pending";
+			}
+			elseif ($Confirmed == 1){
+				$Confirmed = "Confirmed";
+			}
+			elseif ($Confirmed == 2){
+				$Confirmed = "Refused";
+			}
 			
 					//use the variables as the table data
 			echo 	"<tr class='$Asset'>
@@ -52,9 +63,9 @@ require '../../../php/Conection.php';
 						<td>$LoanDate</td>
 						<td>$ReturnDate</td>
 						<td>$UserEmail</td>
-						<td>somone write the sql, many loves james</td>
-						<td><button >Confirm</button></td>
-						<td><button >Deny</button></td>
+						<td>$Confirmed</td>
+						<td><button class=' Status $LoanID' value='1' id='Infobutton2'>Confirm</button></td>
+						<td><button class='Status $LoanID' value='2' id='Infobutton2'>Deny</button></td>
 					</tr>"; // delete does not do anything yet but we will do something with it later
 		}
 	} else //if the user does not have any loans
@@ -72,3 +83,22 @@ require '../../../php/Conection.php';
 	}
 	mysqli_close($conn);
 	?>
+
+<script>
+    $('.Status').click(function() {
+    	$(".Status").removeClass("Status");
+        var val1 = $(this).val();
+		var val2 = $(this).attr('class');
+        $.ajax({ 
+        type: 'POST', 
+        url: 'ajax/Pages/bookings/confirmsql.php', 
+        data: { Status: val1, LoanID: val2}, 
+        success: function(response) {
+            $('#result').html(response);
+			//$('.holder').load("ajax/Pages/Inventory/current_bookings.php");
+			$(".holder").load("ajax/Pages/Inventory/manage_bookings.php");
+        }
+        });
+});
+</script>
+<div id='result'></div>

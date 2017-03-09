@@ -207,7 +207,7 @@ if (mysqli_num_rows($result) > 0) {
       <th>Asset Restriction</th>
       <th>Asset Supervision</th>
       <th>Delete</th>
-            <th>Edit</th>
+      <th>Edit</th>
       
     </tr>";
 }

@@ -3,6 +3,9 @@
 	.PastBooking{
 		background-color: red;
 	}
+	.TodayBooking{
+		background-color: yellow;
+	}
 </style>
 <?php
 echo "<p>Your Bookings</p>"; // dont delete this the <p> is what stops everything hiding under the menu bar!
@@ -14,7 +17,7 @@ require '../../../php/Conection.php';
 //this is the sql to get all the needed info from the joined tables to show the user their bookings
 
 // hey guys i just changed the SQL so it orders it by the most recent booking first this was done byt using ORDER BY DESC which you can see below
-	$sql = "SELECT Asset.AssetDescription, Loan.LoanDate, Loan.LoanConfirm, LoanContent.ReturnDate, User.UserFName, Owner.OwnerLocation, User.UserCampus 
+	$sql = "SELECT Asset.AssetDescription, Loan.LoanUID, Loan.LoanDate, Loan.LoanConfirm, LoanContent.ReturnDate, User.UserFName, Owner.OwnerLocation, User.UserCampus 
 	FROM Loan 
 	JOIN LoanContent on Loan.LoanUID = LoanContent.LoanUID 
 	JOIN Asset on LoanContent.AssetUID = Asset.AssetUID 
@@ -42,6 +45,7 @@ require '../../../php/Conection.php';
 			//use the results as variables
 		while($row = mysqli_fetch_assoc($result)) 
 		{
+			$LoanID = $row["LoanUID"];
 			$Asset =$row["AssetDescription"];
 			$LoanDate =$row["LoanDate"];
 			$Confirmed = $row["LoanConfirm"];
@@ -65,11 +69,10 @@ require '../../../php/Conection.php';
 			$TodaysDay = date("Y/m/d");
 			
 			if($Create < $TodaysDay) {
-			echo "Past Booking";
 			echo "<tr class='$Asset PastBooking'>
 					 <td>$Asset</td>
 					 <td>$LoanDate</td>
-					 <td>$ReturnDate $Create </td>
+					 <td>$Create </td>
 					 <td>$UserFName</td>
 					 <td>$OwnerLocation</td>
 					 <td>$UserCampus</td>
@@ -78,11 +81,24 @@ require '../../../php/Conection.php';
 					 <td><button class='deleteItem $Asset' value='$Asset' id='Infobutton1'>Delete</button></td>
 					</tr>"; // delete does not do anything yet but we will do something with it later
 			}
-			else{
-			echo "<tr class='$Asset'>
+			elseif ($Create == $TodaysDay) {
+				echo "<tr class='$Asset TodayBooking'>
 					 <td>$Asset</td>
 					 <td>$LoanDate</td>
-					 <td>$ReturnDate $Create </td>
+					 <td>$Create </td>
+					 <td>$UserFName</td>
+					 <td>$OwnerLocation</td>
+					 <td>$UserCampus</td>
+					 <td>$Confirmed</td>
+					 
+					 <td><button class='deleteItem $Asset' value='$Asset' id='Infobutton1'>Delete</button></td>
+					</tr>"; // delete does not do anything yet but we will do something with it later
+			}else
+			{
+								echo "<tr class='$Asset TodayBooking'>
+					 <td>$Asset</td>
+					 <td>$LoanDate</td>
+					 <td>$Create </td>
 					 <td>$UserFName</td>
 					 <td>$OwnerLocation</td>
 					 <td>$UserCampus</td>
