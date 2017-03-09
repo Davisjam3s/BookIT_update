@@ -1,4 +1,9 @@
 <!-- this page shows the user all of their current loans by connection to the db.  The delete button doesnt work YET--> 
+<style>
+	.PastBooking{
+		background-color: red;
+	}
+</style>
 <?php
 echo "<p>Your Bookings</p>"; // dont delete this the <p> is what stops everything hiding under the menu bar!
 
@@ -40,25 +45,31 @@ require '../../../php/Conection.php';
 			$Asset =$row["AssetDescription"];
 			$LoanDate =$row["LoanDate"];
 			$Confirmed = $row["LoanConfirm"];
-			if ($Confirmed == 0){
-					$Confirmed ="Pending";
-				}
-			elseif ($Confirmed == 1){
-					$Confirmed = "Confirmed";
-				}
-			elseif ($Confirmed == 2){
-					$Confirmed = "Refused";
-				}
 			$ReturnDate = $row["ReturnDate"];
 			$UserFName = $row['UserFName'];
 			$OwnerLocation =$row["OwnerLocation"];
 			$UserCampus =$row["UserCampus"];
 			
-					//use the variables as the table data
-			 echo "<tr class='$Asset'>
+			if ($Confirmed == 0){
+					$Confirmed ="Pending";
+			}
+			elseif ($Confirmed == 1){
+					$Confirmed = "Confirmed";
+				}
+			elseif ($Confirmed == 2){
+					$Confirmed = "Refused";
+			}
+
+			$Create = date_create($ReturnDate);
+			$Create = $Create->format("Y/m/d");
+			$TodaysDay = date("Y/m/d");
+			
+			if($Create < $TodaysDay) {
+			echo "Past Booking";
+			echo "<tr class='$Asset PastBooking'>
 					 <td>$Asset</td>
 					 <td>$LoanDate</td>
-					 <td>$ReturnDate</td>
+					 <td>$ReturnDate $Create </td>
 					 <td>$UserFName</td>
 					 <td>$OwnerLocation</td>
 					 <td>$UserCampus</td>
@@ -66,6 +77,23 @@ require '../../../php/Conection.php';
 					 
 					 <td><button class='deleteItem $Asset' value='$Asset' id='Infobutton1'>Delete</button></td>
 					</tr>"; // delete does not do anything yet but we will do something with it later
+			}
+			else{
+			echo "<tr class='$Asset'>
+					 <td>$Asset</td>
+					 <td>$LoanDate</td>
+					 <td>$ReturnDate $Create </td>
+					 <td>$UserFName</td>
+					 <td>$OwnerLocation</td>
+					 <td>$UserCampus</td>
+					 <td>$Confirmed</td>
+					 
+					 <td><button class='deleteItem $Asset' value='$Asset' id='Infobutton1'>Delete</button></td>
+					</tr>"; // delete does not do anything yet but we will do something with it later
+			}
+
+					//use the variables as the table data
+
 		}
 	} else //if the user does not have any loans
 	{
