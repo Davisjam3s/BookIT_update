@@ -22,3 +22,21 @@ elseif ($Create > $TodaysDay) {
 }
 
 ?>
+<?php
+$MyDayBooked = date_create('2017/03/10');
+$MyDayBooked = $MyDayBooked->format("Y/m/d");
+$Booked1 = date_create('2017/03/08');
+$Booked1 = $Booked1->format("Y/m/d");
+$Booked2 = date_create('2017/03/10');
+$Booked2 = $Booked2->format("Y/m/d");
+echo "<br>";
+
+
+if ($MyDayBooked >= $Booked1 && $MyDayBooked <= $Booked2) {
+	echo "<br>";
+	echo "$MyDayBooked  is between $Booked1 and $Booked2 You cannot Book This Item";
+}else {
+	echo "<br>";
+	echo "$MyDayBooked  is between not $Booked1 and $Booked2 You can Book This Item";
+}
+?>
