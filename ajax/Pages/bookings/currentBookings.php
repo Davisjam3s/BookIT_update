@@ -56,6 +56,7 @@ require '../../../php/Conection.php';
 			
 			if ($Confirmed == 0){
 					$Confirmed ="Pending";
+					
 			}
 			elseif ($Confirmed == 1){
 					$Confirmed = "Confirmed";

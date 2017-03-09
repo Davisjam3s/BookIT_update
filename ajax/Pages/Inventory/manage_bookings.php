@@ -1,4 +1,11 @@
 <!-- this page shows the owner all of the pending loans awaiting confirm or deny. possible recall at a later date  The confirm and deny button doesnt work YET--> 
+<style>
+	.Status{
+		width: 100%;
+		height: auto;
+		padding: 0;
+	}
+</style>
 <?php
 echo "<p>Bookings of your Inventory</p>"; // dont delete this the <p> is what stops everything hiding under the menu bar!
 
@@ -47,13 +54,19 @@ require '../../../php/Conection.php';
 			$Confirmed=$row['LoanConfirm'];
 			
 			if ($Confirmed == 0){
-				$Confirmed ="Pending";
+				$Confirmed ="Pending";#
+				$ConfirmedButton = "<button class=' Status $LoanID' value='1' id='Infobutton2'>Confirm</button>";
+				$DeniedButton = "<button class='Status $LoanID' value='2' id='Infobutton2'>Deny</button>";
 			}
 			elseif ($Confirmed == 1){
 				$Confirmed = "Confirmed";
+				$ConfirmedButton = "<button class=' Status $LoanID' disabled value='1' id='Infobutton2'>Confirm</button>";
+				$DeniedButton = "<button class='Status $LoanID' value='2' id='Infobutton2'>Deny</button>";
 			}
 			elseif ($Confirmed == 2){
 				$Confirmed = "Refused";
+				$ConfirmedButton = "<button class=' Status $LoanID' value='1' id='Infobutton2'>Confirm</button>";
+				$DeniedButton = "<button class='Status $LoanID' disabled value='2' id='Infobutton2'>Deny</button>";
 			}
 			
 					//use the variables as the table data
@@ -64,8 +77,8 @@ require '../../../php/Conection.php';
 						<td>$ReturnDate</td>
 						<td>$UserEmail</td>
 						<td>$Confirmed</td>
-						<td><button class=' Status $LoanID' value='1' id='Infobutton2'>Confirm</button></td>
-						<td><button class='Status $LoanID' value='2' id='Infobutton2'>Deny</button></td>
+						<td>$ConfirmedButton</td>
+						<td>$DeniedButton</td>
 					</tr>"; // delete does not do anything yet but we will do something with it later
 		}
 	} else //if the user does not have any loans
