@@ -22,7 +22,9 @@ require '../../../php/Conection.php';
 	JOIN LoanContent on Loan.LoanUID = LoanContent.LoanUID 
 	JOIN Asset on LoanContent.AssetUID = Asset.AssetUID 
 	JOIN Owner on Asset.OwnerUID = Owner.OwnerUID  
-	WHERE Owner.OwnerUID = '$user' ORDER BY Loan.LoanUID DESC ";
+	WHERE Owner.OwnerUID = '$user'
+	AND LoanContent.setReturn=1
+	ORDER BY Loan.LoanUID DESC ";
 	 
 	//just a variable to store the query result
 	$result = mysqli_query($conn, $sql);
@@ -40,6 +42,7 @@ require '../../../php/Conection.php';
 				<th>Status</th>
 				<th>Confirm</th>
 				<th>Deny</th>
+				<th>Received back</th>
 			</tr>";
 			//use the results as variables
 		while($row = mysqli_fetch_assoc($result)) 
@@ -57,16 +60,19 @@ require '../../../php/Conection.php';
 				$Confirmed ="Pending";#
 				$ConfirmedButton = "<button class=' Status $LoanID' value='1' id='Infobutton2'>Confirm</button>";
 				$DeniedButton = "<button class='Status $LoanID' value='2' id='Infobutton2'>Deny</button>";
+				$ReturnButton = "<button class='Status $LoanID' disabled id='Infobutton3'>Returned</button>";
 			}
 			elseif ($Confirmed == 1){
 				$Confirmed = "Confirmed";
 				$ConfirmedButton = "<button class=' Status $LoanID' disabled value='1' id='Infobutton2'>Confirm</button>";
 				$DeniedButton = "<button class='Status $LoanID' value='2' id='Infobutton2'>Deny</button>";
+				$ReturnButton = "<button class='Status $LoanID' value='3' id='Infobutton2'>Returned</button>";
 			}
 			elseif ($Confirmed == 2){
 				$Confirmed = "Refused";
 				$ConfirmedButton = "<button class=' Status $LoanID' value='1' id='Infobutton2'>Confirm</button>";
 				$DeniedButton = "<button class='Status $LoanID' disabled value='2' id='Infobutton2'>Deny</button>";
+				$ReturnButton = "<button class='Status $LoanID' disabled id='Infobutton2'>Returned</button>";
 			}
 			
 					//use the variables as the table data
@@ -79,6 +85,7 @@ require '../../../php/Conection.php';
 						<td>$Confirmed</td>
 						<td>$ConfirmedButton</td>
 						<td>$DeniedButton</td>
+						<td>$ReturnButton</td>
 					</tr>"; // delete does not do anything yet but we will do something with it later
 		}
 	} else //if the user does not have any loans

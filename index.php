@@ -2,6 +2,7 @@
 <?php require 'php/Conection.php';?> <!--This is the connection file-->
 <?php require 'php/user_info.php';?>
 <?php require 'php/CountMyBookings.php';?>
+<?php require 'php/CountMyLoans.php';?>
 <?php require 'test/Ft/FirstTime.php';?>
  <!--give me the user name-->
 <?php require 'php/email.php';?> <!--give me the users email-->
@@ -69,7 +70,7 @@ $(document).ready(function()
 	<li class="lihead"><a href="#" class="addi">Add Asset</a></li>
 	<li class="lihead"><a href="#" class="UploadAgree">Add Agreement</a></li>
 	<li class="lihead"><a href="#" class="CurrentAgreement">View Agreements</a></li>
-	<li class="lihead"><a href="#" class="ManageBookings">Manage Bookings</a></li>
+	<li class="lihead"><a href="#" class="ManageBookings">Manage Bookings <?php echo "($countL)"; ?></a></li>
 	<li class="lihead"><a href="#" class="CurrentInventory">Manage Inventory</a></li>
 <li class="lihead"><a href="#" class="back">Back</a></li>
 </ul> <!--end of the contact us menu-->

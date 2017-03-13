@@ -189,15 +189,15 @@ echo "$OwnerUID ";
 
 
 
-	<select id="advanced" class="BookButton" required name="advanced">
+	<select id="advanced" class="BookButton" required name="advanced" >
 	<option value='0' selected disabled>Select a Date</option>
 		<?php // this is for getting the days, the user can choose the day they want to collect the item
-		$dayday  = 1; // this is a verible used to count and set the value
+		$dayday  = 1; // this is a variable used to count and set the value
 		$mydate2 = date("Y/m/d"); // set the date for today 
 		while ($dayday <= 91) // 3 months ish
 		{
 			$dateadd2 = date('Y/m/d', strtotime($mydate2 . '+' . $dayday . ' days')); // this is the value we needl, we needed to add 7 days to the current date so lets add them days 
-			echo "<option value='$dayday'>$dateadd2</option>"; // echo them out in within the option box 
+			echo "<option value='$dayday'  >$dateadd2</option>"; // echo them out in within the option box 
 			$dayday++; // add one to this so it can add more day
 		}
 ?>
@@ -232,6 +232,25 @@ $myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
 echo fgets($myfile);
 fclose($myfile);
 ?>
+
+<script>
+  
+  $('#advanced').change(function() {   
+    
+	var date = $(this).val(); 
+    var val1 = date;
+	var val2 = $('.BookBook').val();
+    $.ajax({ 
+    type: 'POST', 
+        url: 'ItemPage/checkdate.php', 
+        data: { date: val1, asset:val2}, 
+        success: function(response) {
+            $('#result').html(response);
+        }
+        });
+});
+
+</script>
 
 <script>
 	$(document).ready(function() // when the document is ready
@@ -269,7 +288,9 @@ fclose($myfile);
 		
 });
 </script>
+<div id='result'>
 
+</div>
 
 </body>
 </html>

@@ -46,7 +46,7 @@
 
 
 
-  <!-- Show the date picker on the page, put the button and that within the p tag or it dont work bro --> 
+  <!-- Show the date picker on the page(scrapped the datepicker!), put the button and that within the p tag or it dont work bro --> 
   <p>&nbsp;</p> 
   
 

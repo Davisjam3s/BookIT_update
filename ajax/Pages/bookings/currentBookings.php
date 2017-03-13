@@ -1,4 +1,18 @@
-<!-- this page shows the user all of their current loans by connection to the db.  The delete button doesnt work YET--> 
+<!-- 
+**this page shows the user all of their current loans by connection to the db. 
+**This connects to the database, it then gets the current bookings and then it deletes them
+
+    
+**This page was Created by 
+**Commented by Dominic Moseley
+
+**What I have done
+	
+**Added the top comments
+**Spellchecked the comments below
+**Code was untouched	
+
+--> 
 <style>
 	.PastBooking{
 		background-color: red;
@@ -8,7 +22,7 @@
 	}
 </style>
 <?php
-echo "<p>Your Bookings</p>"; // dont delete this the <p> is what stops everything hiding under the menu bar!
+echo "<p>Your Bookings</p>"; // Dont delete this the <p> is what stops everything hiding under the menu bar!
 
 //need to use the users information and the database connection files
 require '../../../php/user_info.php';
