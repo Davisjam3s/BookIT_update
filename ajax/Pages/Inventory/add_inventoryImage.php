@@ -209,7 +209,7 @@ $(document).ready(function() // wait till the page is ready
 	</form>			
 	<br>
 <div align="center">
-	<textarea class="AgreementBox" id='result'></textarea>
+	<textarea disabled class="AgreementBox" id='result'></textarea>
 </div>
 
 

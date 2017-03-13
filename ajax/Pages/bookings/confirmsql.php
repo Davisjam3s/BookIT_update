@@ -31,7 +31,7 @@ if (mysqli_query($conn, $sql_confirm))
   				$status = "Confirmed";
   			$to      = "$UserEmail";
 			$subject = "RE: Your Loan of $Asset ";
-			$txt     = "Your Loan of $Asset has been $status feel free to pick it up on $LoanDate and return it by $ReturnDate ";
+			$txt     = "Your Loan of  $Asset  has been $status feel free to pick it up on $LoanDate and return it by $ReturnDate ";
 			$headers = "From: BookIT@noreply.ac.uk" . "\r\n" . "CC:";
 			mail($to, $subject, $txt, $headers);
   			}

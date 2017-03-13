@@ -48,7 +48,7 @@
 echo "<p>Agreements</p>"; // dont delete this
 ?>
 <div align="center">
-    <textarea class='AgreementBox'id='result'></textarea>
+    <textarea disabled class='AgreementBox'id='result'></textarea>
 </div>
 <?php require '../../../php/Conection.php';?>
 <?php

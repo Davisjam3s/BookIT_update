@@ -114,4 +114,4 @@ require '../../../php/Conection.php';
         });
 });
 </script>
-<div id='result'></div>
+<div  id='result'></div>
