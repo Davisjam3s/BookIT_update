@@ -37,7 +37,9 @@ require '../../../php/Conection.php';
 	JOIN Asset on LoanContent.AssetUID = Asset.AssetUID 
 	JOIN Owner on Asset.OwnerUID = Owner.OwnerUID 
 	JOIN User on Owner.OwnerUID = User.UserUID  
-	WHERE Loan.UserUID = '$user' ORDER BY Loan.LoanUID DESC ";
+	WHERE Loan.UserUID = '$user' 
+	AND Loan.LoanConfirm <=2
+	ORDER BY Loan.LoanUID DESC ";
 	 
 	//just a variable to store the query result
 	$result = mysqli_query($conn, $sql);
@@ -77,6 +79,9 @@ require '../../../php/Conection.php';
 				}
 			elseif ($Confirmed == 2){
 					$Confirmed = "Refused";
+			}
+			elseif ($Confirmed == 3){
+					$Confirmed = "Returned";
 			}
 
 			$Create = date_create($ReturnDate);

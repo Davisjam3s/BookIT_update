@@ -76,9 +76,13 @@ li:hover
     background-color: transparent;
 }
 .Footer{
-	  bottom: 0;
-	  width: 100%;
-    background-color: red;
+	bottom: 0;
+	width: 100%;
+	font-family: sans-serif;
+    font-size: 15px;
+    color: #969696;
+	text-align: center;
+    background-color: #05345C;
     position: fixed;
     z-index: 99999;
 }

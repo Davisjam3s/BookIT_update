@@ -98,13 +98,13 @@ $( document ).ready(function()
 	</div>
 </div>
 
-<div class="Footer">If you've read this code put your name down here: James, Matt, and Marie Remove this later lololol</div>
+<div class="Footer">CO600 Project m04_Bookit created by : James, Matt, Marie and Dominic</div>
 <script>
 	setInterval(function(){blink()}, 1000);
                 
               
     function blink() {
-        $(".Footer").fadeTo(100, 0.1).fadeTo(200, 1.0);
+        //$(".Footer").fadeTo(100, 0.1).fadeTo(200, 1.0);
     }
 </script>
 </body>

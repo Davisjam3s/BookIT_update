@@ -219,7 +219,7 @@ echo "$OwnerUID ";
 	</div>
 
 <?php
-echo "<button class='BookButton BookBook' value='$AssetUID'>BOOK NOW</button><br>";
+echo "<button id='btn' class='BookButton BookBook' value='$AssetUID'>BOOK NOW</button><br>";
 ?>
 
 
@@ -234,20 +234,21 @@ fclose($myfile);
 ?>
 
 <script>
-  
+//this runs each time the selected date is changed and calls checkdate.php (just in case you wondered where it came from! ;) Marie)  
   $('#advanced').change(function() {   
-    
+    //sends the values from the date selector and the book button (the AssetUID) as variables to checkdate.php
 	var date = $(this).val(); 
     var val1 = date;
 	var val2 = $('.BookBook').val();
-    $.ajax({ 
+	$.ajax({ 
     type: 'POST', 
         url: 'ItemPage/checkdate.php', 
         data: { date: val1, asset:val2}, 
+		
         success: function(response) {
-            $('#result').html(response);
+            $('#result').html(response);//sends back the resulting message (available/not avail)
         }
-        });
+			});
 });
 
 </script>

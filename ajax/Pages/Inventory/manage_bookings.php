@@ -1,4 +1,15 @@
-<!-- this page shows the owner all of the pending loans awaiting confirm or deny. possible recall at a later date  The confirm and deny button doesnt work YET--> 
+<!-- this page shows the owner all of the pending loans awaiting confirm or deny. 
+     possible recall at a later date  The confirm and deny button doesnt work YET
+ 
+    **This page was Created by 
+    **Commented by Dominic Moseley
+
+    **What I have done
+	
+	**Added the top comments
+	**Added the comments below
+    **Code was untouched	
+--> 
 <style>
 	.Status{
 		width: 100%;
@@ -16,7 +27,7 @@ require '../../../php/Conection.php';
 //this is the sql to get all the needed info from the joined tables to show the owners bookings
 
 // this sql statement brings in all information about possible bookings for that owner
-	$sql = "SELECT Asset.AssetDescription, Loan.LoanUID,Loan.LoanDate, Loan.LoanConfirm, LoanContent.ReturnDate, User.UserEmail, Owner.OwnerLocation, User.UserCampus 
+	$sql = "SELECT Asset.AssetDescription, Loan.LoanUID,Loan.LoanDate, Loan.LoanConfirm, LoanContent.ReturnDate, User.UserFName, User.UserEmail, Owner.OwnerLocation, User.UserCampus 
 	FROM User 
 	JOIN Loan on User.UserUID = Loan.UserUID 
 	JOIN LoanContent on Loan.LoanUID = LoanContent.LoanUID 
@@ -38,11 +49,12 @@ require '../../../php/Conection.php';
 				<th>Item</th>
 				<th>Pickup Date</th>
 				<th>Return Date</th>
-				<th>Borrower's Email</th>
+				<th>Users Name</th>
+				<th>Users Email</th>
 				<th>Status</th>
 				<th>Confirm</th>
 				<th>Deny</th>
-				<th>Received back</th>
+				<th>Returned</th>
 			</tr>";
 			//use the results as variables
 		while($row = mysqli_fetch_assoc($result)) 
@@ -52,6 +64,7 @@ require '../../../php/Conection.php';
 			$LoanDate =$row["LoanDate"];
 			$ReturnDate = $row["ReturnDate"];
 			$UserEmail = $row['UserEmail'];
+			$UserFName= $row['UserFName'];
 			$OwnerLocation =$row["OwnerLocation"];
 			$UserCampus =$row["UserCampus"];
 			$Confirmed=$row['LoanConfirm'];
@@ -60,19 +73,19 @@ require '../../../php/Conection.php';
 				$Confirmed ="Pending";#
 				$ConfirmedButton = "<button class=' Status $LoanID' value='1' id='Infobutton2'>Confirm</button>";
 				$DeniedButton = "<button class='Status $LoanID' value='2' id='Infobutton2'>Deny</button>";
-				$ReturnButton = "<button class='Status $LoanID' disabled id='Infobutton3'>Returned</button>";
+				$ReturnButton = "<button class='Status $LoanID' disabled id='Infobutton3'>Complete</button>";
 			}
 			elseif ($Confirmed == 1){
 				$Confirmed = "Confirmed";
 				$ConfirmedButton = "<button class=' Status $LoanID' disabled value='1' id='Infobutton2'>Confirm</button>";
 				$DeniedButton = "<button class='Status $LoanID' value='2' id='Infobutton2'>Deny</button>";
-				$ReturnButton = "<button class='Status $LoanID' value='3' id='Infobutton2'>Returned</button>";
+				$ReturnButton = "<button class='Status $LoanID' value='3' id='Infobutton2'>Complete</button>";
 			}
 			elseif ($Confirmed == 2){
 				$Confirmed = "Refused";
 				$ConfirmedButton = "<button class=' Status $LoanID' value='1' id='Infobutton2'>Confirm</button>";
 				$DeniedButton = "<button class='Status $LoanID' disabled value='2' id='Infobutton2'>Deny</button>";
-				$ReturnButton = "<button class='Status $LoanID' disabled id='Infobutton2'>Returned</button>";
+				$ReturnButton = "<button class='Status $LoanID' disabled id='Infobutton2'>Complete</button>";
 			}
 			
 					//use the variables as the table data
@@ -81,6 +94,7 @@ require '../../../php/Conection.php';
 						<td>$Asset</td>
 						<td>$LoanDate</td>
 						<td>$ReturnDate</td>
+						<td>$UserFName</td>
 						<td>$UserEmail</td>
 						<td>$Confirmed</td>
 						<td>$ConfirmedButton</td>
@@ -90,16 +104,7 @@ require '../../../php/Conection.php';
 		}
 	} else //if the user does not have any loans
 	{
-		echo "<table>
-			<tr class='toptitles'>
-				<th>Item</th>
-				<th>Pickup Date</th>
-				<th>Return Date</th>
-				<th>Owners Name</th>
-				<th>Item Location</th>
-				<th>Campus</th>
-							
-			</tr>";
+		echo "<div class='toptitles'>You have no active loans in the system</div>";
 	}
 	mysqli_close($conn);
 	?>
