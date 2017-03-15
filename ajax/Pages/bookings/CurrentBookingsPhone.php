@@ -55,7 +55,7 @@ div.ShowPanel{
 	padding: 0 18px;
     background-color: red;
     display: block;
-    margin-top: -1em;
+    
     margin-bottom: 0.1em;
     
 }
