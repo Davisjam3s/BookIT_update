@@ -99,17 +99,6 @@ require '../php/Conection.php';
 		//if there is a result from the query (the user does have loans) put headers into a table
 	if (mysqli_num_rows($result) > 0) {
 		// output data of each row
-		echo "<table>
-			<tr class='toptitles'>
-				<th>Item</th>
-				<th>Pickup Date</th>
-				<th>Return Date</th>
-				<th>Owners Name</th>
-				<th>Item Location</th>
-				<th>Campus</th>
-				<th>Status</th>
-				<th>Cancel</th>				
-			</tr>";
 			//use the results as variables
 		while($row = mysqli_fetch_assoc($result)) 
 		{
@@ -140,62 +129,50 @@ require '../php/Conection.php';
 			$Create = $Create->format("Y/m/d");
 			$TodaysDay = date("Y/m/d");
 
-			if ($LoanDate >$TodaysDay)
-					{
-						//if the pickup date is in the future the loan CAN be deleted so activate the delete button
-						$CancelButton = "<button class='deleteItem $LoanID'  id='Infobutton1'>Cancel</button>";
-					}
-					else
-					{
-						//if the pickup date has already passed disable the delete button
-						$CancelButton = "<button class='deleteItem $LoanID' disabled id='Infobutton1'>Cancel</button>";
-					}
 
 			
 			
 			if($Create < $TodaysDay) {
-			echo "<tr class='$Asset PastBooking'>
-					 <td>$Asset</td>
-					 <td>$LoanDate</td>
-					 <td>$Create </td>
-					 <td>$UserFName</td>
-					 <td>$OwnerLocation</td>
-					 <td>$UserCampus</td>
-					 <td>$Confirmed</td>
-					 <td>$CancelButton</td>
-					 </tr>";
-					  //check the pickup date of the loan
-				
-				
-					 
-					
-			}
+			
+			echo "
+				<button class='accordion'>$Asset</button>
+				<div class='panel'>
+  					<p>$LoanDate - $Create </p>
+  					<div>$UserFName $OwnerLocation $UserCampus $Confirmed</div>
+  					<div>";
+  						if ($LoanDate >$TodaysDay)
+					{
+						//if the pickup date is in the future the loan CAN be deleted so activate the delete button
+						echo "<button class='deleteItem $LoanID'  id='Infobutton1'>Cancel</button>";
+					}
+					else
+					{
+						//if the pickup date has already passed disable the delete button
+						echo "<button class='deleteItem $LoanID' disabled id='Infobutton1'>Cancel</button>";
+					}
+				echo "</div></div>";
+				}
+
 			elseif ($Create == $TodaysDay) {
-				echo "<tr class='$Asset TodayBooking'>
-					 <td>$Asset</td>
-					 <td>$LoanDate</td>
-					 <td>$Create </td>
-					 <td>$UserFName</td>
-					 <td>$OwnerLocation</td>
-					 <td>$UserCampus</td>
-					 <td>$Confirmed</td>
-					 
-					 <td><button class='deleteItem $LoanID'  id='Infobutton1'>Delete</button></td>
-					</tr>"; // delete does not do anything yet but we will do something with it later
-			}else
-			{
-					echo "<tr class='$Asset TodayBooking'>
-					 <td>$Asset</td>
-					 <td>$LoanDate</td>
-					 <td>$Create </td>
-					 <td>$UserFName</td>
-					 <td>$OwnerLocation</td>
-					 <td>$UserCampus</td>
-					 <td>$Confirmed</td>
-					 
-					 <td><button class='deleteItem $LoanID' id='Infobutton1'>Delete</button></td>
-					</tr>"; // delete does not do anything yet but we will do something with it later
+				echo "
+			<button class='accordion'>$Asset</button>
+				<div class='panel'>
+  					<p>$LoanDate - $Create </p>
+  					<div>$UserFName $OwnerLocation $UserCampus $Confirmed</div>
+  					<div><button class='deleteItem $LoanID'  id='Infobutton1'>Delete</button></div>
+				</div>"	;
+
 			}
+			else
+				{
+					echo "
+			<button class='accordion'>$Asset</button>
+				<div class='panel'>
+  					<p>$LoanDate - $Create </p>
+  					<div>$UserFName $OwnerLocation $UserCampus $Confirmed</div>
+  					<div><button class='deleteItem $LoanID' id='Infobutton1'>Delete</button></div>
+				</div>"	;
+				}
 
 					//use the variables as the table data
 
@@ -233,4 +210,4 @@ require '../php/Conection.php';
 });
 </script>
 	<!---insert into Loan (UserUID, LoanDate)values ('mh709', '2017-02-21');
-	insert into LoanContent (Loan
+	insert into LoanContent (LoanUID, AssetUID,SetReturn,ReturnDate)values (1,409,1,'2017-03-21');-->
