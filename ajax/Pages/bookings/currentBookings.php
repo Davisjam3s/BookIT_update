@@ -87,16 +87,7 @@ require '../../../php/Conection.php';
 			$Create = date_create($ReturnDate);
 			$Create = $Create->format("Y/m/d");
 			$TodaysDay = date("Y/m/d");
-			if ($LoanDate >$TodaysDay)
-					{
-						//if the pickup date is in the future the loan CAN be deleted so activate the delete button
-						$CancelButton = "<button class='deleteItem $LoanID'  id='Infobutton1'>Cancel</button>";
-					}
-					else
-					{
-						//if the pickup date has already passed disable the delete button
-						$CancelButton = "<button class='deleteItem $LoanID' disabled id='Infobutton1'>Cancel</button>";
-					}
+
 
 			
 			
@@ -108,14 +99,21 @@ require '../../../php/Conection.php';
 					 <td>$UserFName</td>
 					 <td>$OwnerLocation</td>
 					 <td>$UserCampus</td>
-					 <td>$Confirmed</td>
-					 <td>$CancelButton</td>
-					 </tr>";
+					 <td>$Confirmed</td>";
 					  //check the pickup date of the loan
-				
+				if ($LoanDate >$TodaysDay)
+					{
+						//if the pickup date is in the future the loan CAN be deleted so activate the delete button
+						echo "<td><button class='deleteItem $LoanID'  id='Infobutton1'>Cancel</button></td>";
+					}
+					else
+					{
+						//if the pickup date has already passed disable the delete button
+						echo "<td><button class='deleteItem $LoanID' disabled id='Infobutton1'>Cancel</button></td>";
+					}
 				
 					 
-					
+					"</tr>"; // delete does not do anything yet but we will do something with it later
 			}
 			elseif ($Create == $TodaysDay) {
 				echo "<tr class='$Asset TodayBooking'>
