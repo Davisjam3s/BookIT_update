@@ -44,7 +44,7 @@ $(document).ready(function()
 
  $(window).resize(function() {
   if ($(window).width() < 748) {
-     
+     //bigger than phone
   }
  else {
     $(".test").show();  

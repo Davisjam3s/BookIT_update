@@ -12,7 +12,29 @@
 **Spellchecked the comments below
 **Code was untouched	
 
---> 
+-->
+<script>
+if ($(window).width() < 748) {
+	//less than
+   $(".holder").load("ajax/Pages/bookings/CurrentBookingsPhone.php"); 
+}
+else {
+   //do nothing 
+}
+</script>
+<script>
+
+ $(window).resize(function() {
+  if ($(window).width() < 748) {
+     $(".holder").load("ajax/Pages/bookings/CurrentBookingsPhone.php"); 
+  }
+ else {
+    
+ }
+});
+
+</script> 
+
 <style>
 	.PastBooking{
 		background-color: red;
