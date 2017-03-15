@@ -1,6 +1,6 @@
 <?php
 //require the db connection
-require "../php/Conection.php";
+require "../../php/Conection.php";
 $btn=0;
 //get the asset uid, date from the getiteminfo page
 $AssetUID = $_POST ['asset'];

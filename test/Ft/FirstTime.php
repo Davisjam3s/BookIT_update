@@ -5,8 +5,11 @@ $password = "b*asiis"; // password for server
 $dbname = "m04_bookit"; // name of the database on the server
 
 $user=$_SERVER['REMOTE_USER'];
+
 $email=$_SERVER['MELLON_urn:oid:0_9_2342_19200300_100_1_3'];
+
 $userType=$_SERVER['MELLON_unikentaccountType_0'];
+
 
 if ($userType = 'ugtstudent') // this is checking what type the user is
 {
@@ -69,7 +72,7 @@ if (!$conn) {
 	  }
 	}else{
 		echo "User Does not exist"; // does this person exist? this is where we can insert the user
-		sleep(3);
+		sleep(1);
 		$sql_New_User = "INSERT INTO User (UserUID, UserTypeUID, UserEmail, UserAgreed, UserBanned, IsOwner) VALUES ('$user','$databaseUT ','$email',0,0,0)"; // if they dont exist put this information in about them
 
 		if (mysqli_query($conn, $sql_New_User)) {
@@ -82,3 +85,4 @@ if (!$conn) {
 	}
 
 ?>
+

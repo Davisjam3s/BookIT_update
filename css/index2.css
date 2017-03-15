@@ -42,7 +42,7 @@ p{
 	margin-right: 0.5em;
   margin-top: -1em;
 }
-ul
+.ulmain
 {
 	margin-top: 1em;
 	padding: 0;
@@ -52,7 +52,7 @@ ul
 	text-transform: uppercase;
   
 }
-li
+.lihead
 {
 	display: inline-block;
 	background-color: #05345C;
@@ -62,7 +62,7 @@ li
 	text-align: center;
 	color: #969696;
 }
-li:hover
+.lihead:hover
 {
 	color: white;
 }

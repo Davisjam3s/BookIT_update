@@ -3,7 +3,8 @@
 <?php require 'php/user_info.php';?>
 <?php require 'php/CountMyBookings.php';?>
 <?php require 'php/CountMyLoans.php';?>
-<?php require 'test/Ft/FirstTime.php';?>
+<?php //require 'test/Ft/FirstTime.php';?>
+<?php require 'test/usertest/checkExist.php';?>
  <!--give me the user name-->
 <?php require 'php/email.php';?> <!--give me the users email-->
  <!--this will check if the user exists, if they dont it will add them into the database, if they do it will carry on as normal-->

@@ -34,7 +34,6 @@ require '../../../php/Conection.php';
 	JOIN Asset on LoanContent.AssetUID = Asset.AssetUID 
 	JOIN Owner on Asset.OwnerUID = Owner.OwnerUID  
 	WHERE Owner.OwnerUID = '$user'
-	AND LoanContent.setReturn=1
 	ORDER BY Loan.LoanUID DESC ";
 	 
 	//just a variable to store the query result
@@ -86,6 +85,12 @@ require '../../../php/Conection.php';
 				$ConfirmedButton = "<button class=' Status $LoanID' value='1' id='Infobutton2'>Confirm</button>";
 				$DeniedButton = "<button class='Status $LoanID' disabled value='2' id='Infobutton2'>Deny</button>";
 				$ReturnButton = "<button class='Status $LoanID' disabled id='Infobutton2'>Complete</button>";
+			}
+			elseif ($Confirmed == 3){
+				$Confirmed = "Returned";
+				$ConfirmedButton = "";
+				$DeniedButton = "";
+				$ReturnButton = "";
 			}
 			
 					//use the variables as the table data

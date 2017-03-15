@@ -1,8 +1,9 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <?php
-require '../php/Conection.php';
+require '../../php/Conection.php';
 ?>
 <?php
-$Item_ID = $_REQUEST['id'];
+$Item_ID = 471;
 $sql     = "SELECT * FROM Asset join Agreement on Asset.AgreementUID=Agreement.AgreementUID WHERE AssetUID = $Item_ID  ";
 $result  = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0)
@@ -215,7 +216,7 @@ echo "$OwnerUID ";
 		<option value="7">1 Week</option>
 	</select>
 	<input disabled style="display:none;" type="text" id="inputId" />
-	<input disabled  type="text" id="inputId2" />
+	<input disabled style="" type="text" id="inputId2" />
 	<div id="result">
 		
 	</div>
@@ -229,32 +230,60 @@ echo "<button class='BookButton BookBook' value='$AssetUID'>Book</button><br>";
 	<button class="BookButton Catalogue">Catalogue</button><br>
 	<span style="font-size: 0.7em;">You Can press this button all you want but it dont work yet</span>
 </div>
-<?php
-$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
-echo fgets($myfile);
-fclose($myfile);
-?>
 
 
+<script>
+//this runs each time the selected date is changed and calls checkdate.php (just in case you wondered where it came from! ;) Marie)  
+  $('#advanced').change(function() {   
+    //sends the values from the date selector and the book button (the AssetUID) as variables to checkdate.php
+	var date = $(this).val(); 
+    var val1 = date;
+	var val2 = $('.BookBook').val();
+	$.ajax({ 
+    type: 'POST', 
+        url: 'CheckDate.php', 
+        data: { date: val1, asset:val2}, 
+		
+        success: function(data)
+		{
+		$( "#inputId" ).val(data);
+		var myValnew = 	$('#inputId').val(); 
+		if (myValnew == 1)
+		{
+			$(".BookBook").attr("disabled", true).css("background-color", "grey").text("Not available");
+		}
+		else
+		{
+			$(".BookBook").attr("disabled", false).css("background-color", "#05345C").text("Available");
+		}
+
+			
+		}
+        
+		
+			});
+});
+
+</script>
 <script>
 //this runs each time the days requested is changed and calls checkreturndate.php (just in case you wondered where it came from! ;) Marie)  
   $('#DaysBooked').change(function() {   
     //sends the values from the date selector and the book button (the AssetUID) as variables to checkdate.php
 	var date = $('#advanced').val(); 
-    var vald = date;
-	var vala = $('.BookBook').val();
+    var val1 = date;
+	var val2 = $('.BookBook').val();
 	var bookedDays = $(this).val();
-	var valc = bookedDays;
+	var val4 = bookedDays;
 	$.ajax({ 
     type: 'POST', 
-        url: 'ItemPage/checkAvailability.php', 
-        data: { date: vald, asset: vala, bookedDays: valc }, 
+        url: 'CheckReturnDate.php', 
+        data: { date: val1, asset: val2, bookedDays: val4 }, 
 		
         success: function(data)
 		{
 		$( "#inputId2" ).val(data);
-		var myValnew2 = 	$('#inputId2').val(); 
-		if (myValnew2 == 1)
+		var myValnew = 	$('#inputId2').val(); 
+		if (myValnew == 1)
 		{
 			$(".BookBook").attr("disabled", true).css("background-color", "grey").text("Not available");
 		}

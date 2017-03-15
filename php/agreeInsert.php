@@ -16,7 +16,7 @@ if (!$conn)
 $sql = "UPDATE User SET UserAgreed = 1 WHERE UserUID = '$user'";
 if (mysqli_query($conn, $sql))
 {
-	echo " New record created successfully ";
+	header("Location: index.php");
 }
 else
 {

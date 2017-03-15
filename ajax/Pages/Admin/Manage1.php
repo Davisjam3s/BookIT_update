@@ -347,6 +347,7 @@ $(document).ready(function() // wait till the page is ready
             $('#result').html(response);
             $('.response').html("Successfully removed from the database");
             $('.phpechofront1').hide();
+			$(".holder").load("ajax/Pages/Admin/Manage1.php");
         }
         });
 });

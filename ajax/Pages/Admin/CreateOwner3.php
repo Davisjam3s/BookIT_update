@@ -61,7 +61,7 @@ if (mysqli_num_rows($result) > 0) {
 				echo "Error: " . $sql3 . "<br>" . mysqli_error($conn);
 			}
 		} else {
-			echo "Error: " . $sq2 . "<br>" . mysqli_error($conn);
+			echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
 		}
     }
 } else {

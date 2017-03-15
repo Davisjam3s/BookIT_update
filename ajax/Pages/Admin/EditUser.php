@@ -45,12 +45,12 @@ $UserCampus = strip_tags($UserCampus);
 $UserYear = mysqli_real_escape_string($conn, $UserYear);
 $UserYear = strip_tags($UserYear);
 
-		 if ($UserCampus == 1) {
+/* 		 if ($UserCampus == 1) {
             $UserCampus = 'Canterbury';
         }
         elseif ($UserCampus == 2) {
             $UserCampus = 'Medway';
-        }
+        } */
 
 
 		
@@ -61,7 +61,7 @@ if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
         // we need to set the values of the info that we got from the user
-        $sql1 = "UPDATE User SET UserTypeUID = $UserType, UserFname='$UserFname', UserCampus='$UserCampus', UserYear=$UserYear WHERE UserUID='$UserName'";
+        $sql1 = "UPDATE User SET UserTypeUID = $UserType, UserFname='$UserFname', UserCampus=$UserCampus, UserYear=$UserYear WHERE UserUID='$UserName'";
 
 		//display success or failure
 		if (mysqli_query($conn, $sql1)) {

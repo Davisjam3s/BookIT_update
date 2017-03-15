@@ -27,7 +27,7 @@ $MyDayBooked = date_create('2017/03/10');
 $MyDayBooked = $MyDayBooked->format("Y/m/d");
 $Booked1 = date_create('2017/03/08');
 $Booked1 = $Booked1->format("Y/m/d");
-$Booked2 = date_create('2017/03/10');
+$Booked2 = date_create('2017/03/7');
 $Booked2 = $Booked2->format("Y/m/d");
 echo "<br>";
 

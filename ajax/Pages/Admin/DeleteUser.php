@@ -31,8 +31,35 @@ require '../../../php/Conection.php'; //connect to server
 $UserName = mysqli_real_escape_string($conn, $UserName);
 $UserName = strip_tags($UserName);
 
+
 // gather information from their user account
-$sql = "SELECT LoanUID  FROM Loan WHERE OwnerUID = '$UserName'";
+$sql5 = "SELECT LoanContentUID FROM LoanContent 
+		JOIN Loan ON LoanContent.LoanUID=Loan.LoanUID
+		JOIN User ON Loan.UserUID=User.UserUID WHERE User.UserUID = '$UserName'";
+$result2 = mysqli_query($conn, $sql5);
+
+if (mysqli_num_rows($result2) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result2)) {
+        // we need to set the values of the info that we got from the user
+
+		$sql6=" DELETE LoanContent FROM LoanContent
+				JOIN Loan ON LoanContent.LoanUID=Loan.LoanUID 
+				JOIN User ON Loan.UserUID=User.UserUID 
+				WHERE User.UserUID='$UserName'";
+		
+		//display success or failure
+		if (mysqli_query($conn, $sql6)) {
+			echo " Deleted all contents from Loans ";
+		} else {
+			echo "Error: " . $sql6 . "<br>" . mysqli_error($conn);
+		}
+    }
+} else {
+    echo "0 results";
+} 
+// gather information from their user account
+$sql = "SELECT LoanUID  FROM Loan WHERE UserUID = '$UserName'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -43,9 +70,9 @@ if (mysqli_num_rows($result) > 0) {
 
 		//display success or failure
 		if (mysqli_query($conn, $sql2)) {
-			echo " New record created successfully ";
+			echo " Deleted Loans assosiated with user ";
 		} else {
-			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+			echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
 		}
     }
 } else {
@@ -63,9 +90,9 @@ if (mysqli_num_rows($result1) > 0) {
 
 		//display success or failure
 		if (mysqli_query($conn, $sql4)) {
-			echo " New record created successfully ";
+			echo " Deleted user ";
 		} else {
-			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+			echo "Error: " . $sql4 . "<br>" . mysqli_error($conn);
 		}
     }
 } else {

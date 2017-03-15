@@ -32,6 +32,83 @@ $UserName = mysqli_real_escape_string($conn, $UserName);
 $UserName = strip_tags($UserName);
 
 // gather information from their user account
+$sql8 = "SELECT LoanContentUID FROM LoanContent 
+		JOIN Asset ON Asset.AssetUID=LoanContent.AssetUID
+		JOIN Owner ON Owner.OwnerUID=Asset.OwnerUID 
+		WHERE Owner.OwnerUID = '$UserName'";
+$result2 = mysqli_query($conn, $sql8);
+
+if (mysqli_num_rows($result2) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result2)) {
+        // we need to set the values of the info that we got from the user
+
+		$sql9=" DELETE LoanContent FROM LoanContent 
+		JOIN Asset ON Asset.AssetUID=LoanContent.AssetUID
+		JOIN Owner ON Owner.OwnerUID=Asset.OwnerUID 
+		WHERE Owner.OwnerUID='$UserName'";
+		
+		//display success or failure
+		if (mysqli_query($conn, $sql9)) {
+			echo " Deleted all contents from Loans for the owner being deleted";
+		} else {
+			echo "Error: " . $sql9 . "<br>" . mysqli_error($conn);
+		}
+    }
+} else {
+    echo "0 results";
+} 
+// Deleting Loans Assosiated with LoanContents that the owner has
+$sql6 = "SELECT Loan.LoanUID FROM Loan 
+		JOIN LoanContent ON LoanContent.LoanUID=Loan.LoanUID
+		JOIN Asset ON Asset.AssetUID=LoanContent.AssetUID 
+		JOIN Owner ON Owner.OwnerUID=Asset.OwnerUID
+		WHERE Owner.OwnerUID= '$UserName'";
+$result3 = mysqli_query($conn, $sql6);
+
+if (mysqli_num_rows($result2) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result2)) {
+        // we need to set the values of the info that we got from the user
+
+		$sql7=" DELETE Loan FROM Loan 
+		JOIN LoanContent ON LoanContent.LoanUID=Loan.LoanUID
+		JOIN Asset ON Asset.AssetUID=LoanContent.AssetUID 
+		JOIN Owner ON Owner.OwnerUID=Asset.OwnerUID
+		WHERE Owner.OwnerUID ='$UserName'";
+		
+		//display success or failure
+		if (mysqli_query($conn, $sql7)) {
+			echo " Deleted all contents from Loans ";
+		} else {
+			echo "Error: " . $sql7 . "<br>" . mysqli_error($conn);
+		}
+    }
+} else {
+    echo "0 results";
+} 
+// gather information from their user account
+$sql = "SELECT LoanUID  FROM Loan WHERE UserUID = '$UserName'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result)) {
+        // we need to set the values of the info that we got from the user
+        $sql2 = "DELETE FROM Loan Where UserUID='$UserName'";
+
+		//display success or failure
+		if (mysqli_query($conn, $sql2)) {
+			echo " Deleted Loans assosiated with user ";
+		} else {
+			echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
+		}
+    }
+} else {
+    echo "0 results";
+}
+
+// gather information from their user account
 $sql = "SELECT AssetUID  FROM Asset WHERE OwnerUID = '$UserName'";
 $result = mysqli_query($conn, $sql);
 
@@ -71,7 +148,7 @@ if (mysqli_num_rows($result1) > 0) {
 				echo "Error: " . $sql5 . "<br>" . mysqli_error($conn);
 			}
 		} else {
-			echo "Error: " . $sq4 . "<br>" . mysqli_error($conn);
+			echo "Error: " . $sql4 . "<br>" . mysqli_error($conn);
 		}
     }
 } else {
