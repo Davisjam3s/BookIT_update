@@ -102,12 +102,12 @@ require '../../../php/Conection.php';
 				if ($LoanDate >$TodaysDay)
 					{
 						//if the pickup date is in the future the loan CAN be deleted so activate the delete button
-						echo "<td><button class='deleteItem $LoanID'  id='Infobutton1'>Delete</button></td>";
+						echo "<td><button class='deleteItem $LoanID'  id='Infobutton1'>Cancel</button></td>";
 					}
 					else
 					{
 						//if the pickup date has already passed disable the delete button
-						echo "<td><button class='deleteItem $LoanID' disabled id='Infobutton1'>Delete</button></td>";
+						echo "<td><button class='deleteItem $LoanID' disabled id='Infobutton1'>Cancel</button></td>";
 					}
 				
 					 

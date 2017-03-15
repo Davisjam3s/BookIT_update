@@ -2,26 +2,27 @@
 <style>
 	/* Style the buttons that are used to open and close the accordion panel */
 button.accordion {
-    background-color: #eee;
+    background-color: #05345C;
     color: #444;
     cursor: pointer;
     padding: 18px;
     width: 100%;
-    text-align: left;
     border: none;
     outline: none;
     transition: 0.4s;
     text-align: center;
-    margin-left: 50%;
+    color: white;
+    margin-bottom: 0.1em;
+    
 }
+
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 button.accordion{
-	width: 40%;
+	width: 100%;
 }
 button.accordion.active, button.accordion:hover {
-    background-color: #ddd;
-    width: 50%;
+    background-color: #05345C;
 }
 
 /* Style the accordion panel. Note: hidden by default */
@@ -34,13 +35,17 @@ div.ShowPanel{
 	padding: 0 18px;
     background-color: red;
     display: block;
+    margin-top: -1em;
+    margin-bottom: 0.1em;
+    
 }
+
 @media only screen and (max-width: 768px) {
 	button.accordion{
 	width: 100%;
 }
 button.accordion.active, button.accordion:hover {
-    background-color: #ddd;
+    background-color: #05345C;
     width: 100%;
 }
 }
