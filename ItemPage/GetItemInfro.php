@@ -204,7 +204,7 @@ echo "$OwnerUID ";
 	</select>
 	<br>
 	
-	<select id="DaysBooked" class="BookButton" required name="DaysBooked">
+	<select disabled="true" id="DaysBooked" class="BookButton" required name="DaysBooked">
 		<option value='0' selected disabled>Booking Duration</option>
 		<option value="1">1 Day</option>
 		<option value="2">2 Days</option>
@@ -215,7 +215,7 @@ echo "$OwnerUID ";
 		<option value="7">1 Week</option>
 	</select>
 	<input disabled style="display:none;" type="text" id="inputId" />
-	<input disabled  type="text" id="inputId2" />
+	<input disabled style="display:none;" type="text" id="inputId2" />
 	<div id="result">
 		
 	</div>
@@ -230,10 +230,17 @@ echo "<button class='BookButton BookBook' value='$AssetUID'>Book</button><br>";
 	<span style="font-size: 0.7em;">You Can press this button all you want but it dont work yet</span>
 </div>
 <?php
-$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
-echo fgets($myfile);
-fclose($myfile);
+include 'GetAgreement.php';
 ?>
+
+<script>
+//this makes sure the user selects a date before the days booked 
+$('#advanced').on('change', function() {
+  
+  $('#DaysBooked').removeAttr('disabled');
+})
+
+</script>
 
 
 <script>
@@ -247,7 +254,7 @@ fclose($myfile);
 	var valc = bookedDays;
 	$.ajax({ 
     type: 'POST', 
-        url: 'ItemPage/checkAvailability.php', 
+        url: 'ItemPage/CheckBookingDate.php', 
         data: { date: vald, asset: vala, bookedDays: valc }, 
 		
         success: function(data)
@@ -257,10 +264,12 @@ fclose($myfile);
 		if (myValnew2 == 1)
 		{
 			$(".BookBook").attr("disabled", true).css("background-color", "grey").text("Not available");
+			$("#advanced").val('0');
 		}
 		else
 		{
-			$(".BookBook").attr("disabled", false).css("background-color", "#05345C").text("Available");
+			$(".BookBook").attr("disabled", false).css("background-color", "#05345C").text("Available BOOK");
+			
 		}
 
 			

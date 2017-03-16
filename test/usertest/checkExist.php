@@ -39,7 +39,7 @@ if ($usertype == 'ugtstudent' )
 	  		$UserAgreed = $row["UserAgreed"]; // needed
 	  	}
 	  	include 'HasUserGotInfo.php';
-	  	include 'HasUserAgreed.php';
+	  	
 	  }else{
 	  	echo "user does not exist <br>";
 	  	include 'AddNewUser.php';

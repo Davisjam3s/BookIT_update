@@ -1,5 +1,5 @@
 <?php
-include '../../php/Conection.php';
+include '../php/Conection.php';
 
 $AssetUID   = $_POST ['asset'];
 $dayAdd     = $_POST['date']; 
@@ -24,7 +24,7 @@ $result = mysqli_query($conn, $sql_GetDays);
 		//$MyDayBooked = $MyDayBooked->format("Y/m/d");
 		$daySum     = $dayAdd + $BookedDays -1;
 		$dayDrop    = date('Y/m/d', strtotime($mydate . '+' . $daySum . ' days'));
-		echo " Choosen Day: $dateadd Return day: $dayDrop  <br> <br>";
+		//echo " Choosen Day: $dateadd Return day: $dayDrop  <br> <br>";
 
 		while($row = mysqli_fetch_assoc($result)) 
 		{
@@ -48,6 +48,6 @@ $result = mysqli_query($conn, $sql_GetDays);
 			}
 		}
 
-			
+	}	
 	 mysqli_close($conn);
 ?>

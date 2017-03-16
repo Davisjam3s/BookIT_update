@@ -6,7 +6,9 @@
 	JOIN LoanContent on Loan.LoanUID = LoanContent.LoanUID 
 	JOIN Asset on LoanContent.AssetUID = Asset.AssetUID 
 	JOIN Owner on Asset.OwnerUID = Owner.OwnerUID  
-	WHERE Owner.OwnerUID = '$user' AND Loan.LoanConfirm <=2";
+	WHERE Owner.OwnerUID = 'mh708' 
+	AND Loan.LoanConfirm <=2
+	AND LoanContent.SetReturn=1";
 	
 	
 $result = mysqli_query($conn, $sql_countLoans);

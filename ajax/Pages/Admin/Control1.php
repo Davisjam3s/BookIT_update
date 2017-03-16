@@ -85,12 +85,12 @@ require '../../../php/Conection.php';
 $sql = "SELECT UserUID, UserTypeUID,UserEmail,UserCampus,IsOwner FROM User where UserTypeUID>='1' order by UserUID";//this will be changed when we need admin level changed
 $result = mysqli_query($conn, $sql);
 echo "<table>
-		<tr>
-			<th>UserUID</th>
-			<th>UserTypeUID</th>
-			<th>UserEmail</th>
+		<tr class='toptitles'>
+			<th>Username</th>
+			<th>User Type</th>
+			<th>User Email</th>
 
-			<th>UserCampus</th>
+			<th>Campus</th>
 			<th>Owner Control</th>
 			
 

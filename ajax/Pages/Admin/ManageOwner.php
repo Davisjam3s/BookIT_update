@@ -18,6 +18,10 @@
       width: 100%;
       height: 100%;
     }
+    .hidden1, .hidden2
+    {
+      display: none;
+    }
 </style> <!--this is to make the from disapear when we dont need it-->
 <!--
     ** This is the page for the admin to manage the users on the website, here the admin should be able to Ban users, Remove Users and make other Users Admins/Owners
@@ -74,7 +78,10 @@ echo "<table>
 			<th>Room</th>
 			<th>Email</th>
 			<th>Group</th>
-			<th>Edit Owner</th>
+			<th class='AdminControl'>Edit Owner</th>
+      <th class='hidden2'>Hidden Value</th>
+      <th class='hidden1'>Submit</th>
+      <th class='hidden1'>Cancel</th>
 		</tr>";//headings for Owner Table
 
 //check for results		
@@ -90,9 +97,19 @@ if (mysqli_num_rows($result) > 0) {
 	// change database variable to readable form
    	if ($GroupUID == '1') {
     		$GroupUID = 'School of Computing';
+        $FillForm = "<select class='GroupUID$OwnerUID' disabled='true'>
+            
+            <option value='1'selected>School of Computing</option>
+            <option value='2'>Digital Humanities</option>
+          </select>";
     	}
     	elseif ($GroupUID = '2') {
     		$GroupUID = 'Digital Humanities';
+        $FillForm = "<select class='GroupUID$OwnerUID' disabled='true'>
+            
+            <option value='1'>School of Computing</option>
+            <option value='2' selected >Digital Humanities</option>
+          </select>";
     	}
 		
 		// set up the inputs and selection boxes that can be enabled when needed to edit
@@ -101,13 +118,13 @@ if (mysqli_num_rows($result) > 0) {
 				<td><input class='OwnerLocation$OwnerUID' disabled='true'  value='$OwnerLocation'></td>
 				<td>$OwnerEmail</td>
 				<td>
-					<select class='GroupUID$OwnerUID' disabled='true'>
-						<option value='' selected disabled>$GroupUID</option>
-						<option value='1'>School of Computing</option>
-						<option value='2'>Digital Humanities</option>
-					</select>
+					
+          $FillForm
 				</td>
-				<td><button value='$OwnerUID' class='editItem $OwnerUID' id='Infobutton2'>Edit Owner</button></td>
+				<td class='AdminControl'><button value='$OwnerUID' class='editItem $OwnerUID' >Edit Owner</button></td>
+        <td class='hidden2'><input type='text' id='Owner' required class='FormItems testname' disabled='true'></td>
+        <td class='hidden1'><button class='Infobutton2'> Submit </button></td>
+        <td class='hidden1'><button class='CancelDelete'> Cancel </button>   </td>
 			</tr>";
     }
 } else
@@ -118,20 +135,15 @@ if (mysqli_num_rows($result) > 0) {
 mysqli_close($conn);
 ?>
 
-<div class='phpechofront2'>
-  <h1 class='agreeTitle'>Edit Owner</h1>
-  <h2 class="help">Edit this fine fellow</h2>
-        <input type='text' id='Owner' required class='FormItems testname' disabled="true">
-    <span id='error'></span>
-        <button id='Infobutton2' class='FormItems'> Submit </button>
-    <button class='FormItems CancelDelete'> Cancel </button>            
-</div>
+
 
 
 <script>
 $(document).ready(function() {
         $('.editItem').click(function() {
             $(".testname").val($(this).val());
+            $(".hidden1").show();
+            $(".AdminControl").hide();
 
         });
     });  
@@ -151,7 +163,7 @@ $(document).ready(function() // wait till the page is ready
           $( "input[class|='OwnerLocation"+jam+"']" ).attr("id","OwnerLocation");
           $( "select[class|='GroupUID"+jam+"']" ).attr("id","GroupUID");
 
-          $( "#Infobutton2").addClass(jam);
+          $( ".Infobutton2").addClass(jam);
           $( ".CancelDelete").addClass(jam);
 
 
@@ -187,7 +199,7 @@ $(document).ready(function() // wait till the page is ready
 
 
 <script>
-  $('#Infobutton2').click(function() { //wait for the button to be pressed, this will need a name change 
+  $('.Infobutton2').click(function() { //wait for the button to be pressed, this will need a name change 
      var val1 = $('#OwnerLocation').val(); // set val1 to the value in fullname
      var val2 = $('#GroupUID').val(); // set val 2 to the value in User Type
      var val3 = $('#Owner').val();

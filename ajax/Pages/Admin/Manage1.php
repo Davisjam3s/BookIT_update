@@ -15,7 +15,7 @@
 
 
     **The page was created by James Davis, Matt Hood
-    **Commented by James Davis
+    **Commented by James Davis & Matt Hood
     **Tasks for this page 
         * The Admin cannot ban Users
         * The admin cannot edit a users information
@@ -30,24 +30,34 @@
 {
     display:none
 }
-    input, select{
-      width: 100%;
-      border: none;
-    }
-    input:disabled, select:disabled{
-      border: none;
-      background-color: transparent;
-    }
-    input:disabled, select:disabled{
-      color: black;
-    }
-    .DUser, .EUser, .BUser {
-      width: 100%;
-      height: 100%;
-    }
-    .hidden1{
-      display: none;
-    }
+
+input, select
+{
+    width: 100%;
+    border: none;
+}
+
+input:disabled, select:disabled
+{
+    border: none;
+    background-color: transparent;
+}
+    
+input:disabled, select:disabled
+{
+    color: black;
+}
+
+.DUser, .EUser, .BUser 
+{
+    width: 100%;
+    height: 100%;
+}
+    
+.hidden1,.hidden2
+{
+    display: none;
+}
 </style> <!--this is to make the from disapear when we dont need it-->
 
 
@@ -60,6 +70,7 @@ $(document).ready(function() // wait till the page is ready
       });
   });
 </script>
+
 <script>
 $(document).ready(function() // wait till the page is ready
 {
@@ -69,6 +80,7 @@ $(document).ready(function() // wait till the page is ready
       });
   });
 </script>
+
 <script>
 $(document).ready(function() // wait till the page is ready
 {
@@ -78,6 +90,7 @@ $(document).ready(function() // wait till the page is ready
       });
   });
 </script>
+
 <script>
 $(document).ready(function() // wait till the page is ready
 {
@@ -91,191 +104,176 @@ $(document).ready(function() // wait till the page is ready
 
 
 <?php
+//title for the page
 echo "<p>Admin User Controls</p>"; // dont delete this
 echo "<h2 class='response'></h2>";
-?>
-<?php require '../../../php/Conection.php';?>
-<?php
+//load connection for database
+require '../../../php/Conection.php';
+
+//bring back titles for the table
 $sql = "SELECT * FROM User where UserTypeUID<'5' order by UserUID";//this will be changed when we need admin level changed
 $result = mysqli_query($conn, $sql);
 echo "<table>
-    <tr class='toptitles'>
-      <th>UserUID</th>
-      <th>UserTypeUID</th>
-      <th>UserYear</th>
-      <th>UserEmail</th>
-      <th>UserFname</th>
-      <th>UserCampus</th>
-      <th class='AdminButtons'>Delete User</th>
-      <th class='AdminButtons'>Edit User</th>
-      <th class='AdminButtons'>Ban User</th>
-      <th class='hidden1'>Hidden value</th>
-      <th class='hidden1'>Update</th>
-      <th class='hidden1'>Cancel</th>
-
-    </tr>";
+		<tr class='toptitles'>
+			<th>Username</th>
+			<th>User Type</th>
+			<th>User Year</th>
+			<th>User Email</th>
+			<th>User Full name</th>
+			<th>Campus</th>
+			<th class='AdminButtons'>Delete User</th>
+			<th class='AdminButtons'>Edit User</th>
+			<th class='AdminButtons'>Ban User</th>
+			<th class='hidden2'>Hidden value</th>
+			<th class='hidden1'>Update</th>
+			<th class='hidden1'>Cancel</th>
+		</tr>";
+// use the results of the query to populate the table if there are users of the correct level to make owners
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) 
     {
-      $UserUID =$row["UserUID"];
-      $UserTypeUID =$row["UserTypeUID"];
-      $UserBanned =$row["UserBanned"];
-      $UserEmail =$row["UserEmail"];
-      $UserFname =$row["UserFname"];
-      $UserCampus =$row["UserCampus"];
-    $UserYear =$row["UserYear"];
+		$UserUID =$row["UserUID"];
+		$UserTypeUID =$row["UserTypeUID"];
+		$UserBanned =$row["UserBanned"];
+		$UserEmail =$row["UserEmail"];
+		$UserFname =$row["UserFname"];
+		$UserCampus =$row["UserCampus"];
+		$UserYear =$row["UserYear"];
       
 
-      //lazy way of checking user types
-      if ($UserTypeUID == '1') {
+    //creates selectors for different user types 
+    if ($UserTypeUID == '1') 
+	{
         $UserTypeUID = 'Student';
         $TypeEchoSelect ="
-                        <select class='UserTypeUID$UserUID' disabled='true'>
-                        <option value='1' selected>Student</option>
-                        <option value='2'>Admin</option>
-                        <option value='3'>Staff</option>
-                        <option value='4'>Post Grad</option>
-                        </select>";
-      }
+            <select class='UserTypeUID$UserUID' disabled='true'>
+				<option value='1' selected>Student</option>
+                <option value='2'>Admin</option>
+                <option value='3'>Staff</option>
+                <option value='4'>Post Grad</option>
+            </select>";
+    }
       elseif ($UserTypeUID == '2') {
         $UserTypeUID = 'Admin';
         $TypeEchoSelect ="
-                        <select class='UserTypeUID$UserUID' disabled='true'>
-                        <option value='1'>Student</option>
-                        <option value='2' selected>Admin</option>
-                        <option value='3'>Staff</option>
-                        <option value='4'>Post Grad</option>
-                        </select>";
-      }
+            <select class='UserTypeUID$UserUID' disabled='true'>
+                <option value='1'>Student</option>
+                <option value='2' selected>Admin</option>
+                <option value='3'>Staff</option>
+                <option value='4'>Post Grad</option>
+            </select>";
+    }
       elseif ($UserTypeUID == '3') {
         $UserTypeUID = 'Staff';
-         $TypeEchoSelect ="
-                        <select class='UserTypeUID$UserUID' disabled='true'>
-                        <option value='1'>Student</option>
-                        <option value='2'>Admin</option>
-                        <option value='3' selected >Staff</option>
-                        <option value='4'>Post Grad</option>
-                        </select>";
-      }
+        $TypeEchoSelect ="
+            <select class='UserTypeUID$UserUID' disabled='true'>
+                <option value='1'>Student</option>
+                <option value='2'>Admin</option>
+                <option value='3' selected >Staff</option>
+                <option value='4'>Post Grad</option>
+            </select>";
+    }
     elseif ($UserTypeUID == '4'){
-      $UserTypeUID = 'Post Grad';
-      $TypeEchoSelect ="
-                        <select class='UserTypeUID$UserUID' disabled='true'>
-                        <option value='1' selected>Student</option>
-                        <option value='2'>Admin</option>
-                        <option value='3'>Staff</option>
-                        <option value='4' selected >Post Grad</option>
-                        </select>";
+		$UserTypeUID = 'Post Grad';
+		$TypeEchoSelect ="
+            <select class='UserTypeUID$UserUID' disabled='true'>
+                <option value='1' selected>Student</option>
+                <option value='2'>Admin</option>
+                <option value='3'>Staff</option>
+                <option value='4' selected >Post Grad</option>
+            </select>";
     }
 
     if ($UserYear == '1') {
         $UserYear = 'Year 1';
-        $SelectYear ="  <select class='UserYear$UserUID' disabled='true'>
-                        <option value='1' selected>Year 1</option>
-                        <option value='2'>Year 2</option>
-                        <option value='3'>Year 3</option>
-                        <option value='4'>Not Applicable</option>
-                    </select>";
-      }
+        $SelectYear ="
+			<select class='UserYear$UserUID' disabled='true'>
+                <option value='1' selected>Year 1</option>
+                <option value='2'>Year 2</option>
+                <option value='3'>Year 3</option>
+                <option value='4'>Not Applicable</option>
+            </select>";
+    }
       elseif ($UserYear == '2') {
         $UserYear= 'Year 2';
-        $SelectYear ="  <select class='UserYear$UserUID' disabled='true'>
-                        <option value='1'>Year 1</option>
-                        <option value='2' selected >Year 2</option>
-                        <option value='3'>Year 3</option>
-                        <option value='4'>Not Applicable</option>
-                    </select>";
-      }
-      elseif ($UserYear == '3') {
+        $SelectYear ="  
+			<select class='UserYear$UserUID' disabled='true'>
+                <option value='1'>Year 1</option>
+                <option value='2' selected >Year 2</option>
+                <option value='3'>Year 3</option>
+                <option value='4'>Not Applicable</option>
+            </select>";
+    }
+    elseif ($UserYear == '3') {
         $UserYear = 'Year 3';
-        $SelectYear ="  <select class='UserYear$UserUID' disabled='true'>
-                        <option value='1' selected>Year 1</option>
-                        <option value='2'>Year 2</option>
-                        <option value='3' selected >Year 3</option>
-                        <option value='4'>Not Applicable</option>
-                    </select>";
-      }
+        $SelectYear ="  
+			<select class='UserYear$UserUID' disabled='true'>
+                <option value='1' selected>Year 1</option>
+                <option value='2'>Year 2</option>
+                <option value='3' selected >Year 3</option>
+                <option value='4'>Not Applicable</option>
+            </select>";
+    }
     elseif ($UserYear == '4'){
-      $UserYear = 'Not Applicable';
-      $SelectYear ="  <select class='UserYear$UserUID' disabled='true'>
-                        <option value='1' selected>Year 1</option>
-                        <option value='2'>Year 2</option>
-                        <option value='3'>Year 3</option>
-                        <option value='4' selected>Not Applicable</option>
-                    </select>";
+		$UserYear = 'Not Applicable';
+		$SelectYear ="  
+			<select class='UserYear$UserUID' disabled='true'>
+                <option value='1' selected>Year 1</option>
+                <option value='2'>Year 2</option>
+                <option value='3'>Year 3</option>
+                <option value='4' selected>Not Applicable</option>
+            </select>";
     }
 
     
     if ($UserCampus == 1) {
-            $UserCampus = 'Canterbury';
-            $SelectYear2 =" <select class='UserCampus$UserUID' disabled='true'>
-                        <option value='1' selected >Canterbury</option>
-                        <option value='2'>Medway</option>
-                    </select>";
-        }
-        elseif ($UserCampus == 2) {
-            $UserCampus = 'Medway';
-            $SelectYear2 =" <select class='UserCampus$UserUID' disabled='true'>
-                        <option value='1'>Canterbury</option>
-                        <option value='2' selected >Medway</option>
-                    </select>";
-        }
+        $UserCampus = 'Canterbury';
+        $SelectYear2 =" 
+			<select class='UserCampus$UserUID' disabled='true'>
+                <option value='1' selected >Canterbury</option>
+                <option value='2'>Medway</option>
+            </select>";
+    }
+    elseif ($UserCampus == 2) {
+        $UserCampus = 'Medway';
+        $SelectYear2 =" 
+			<select class='UserCampus$UserUID' disabled='true'>
+                <option value='1'>Canterbury</option>
+                <option value='2' selected >Medway</option>
+            </select>";
+    }
        
     if ($UserBanned == 0) {
-      $btnClass = "Ban BUser"; // the class needed two values, each class needs a space between
-      $btnText = "Ban User";
-      $btnID="Infobutton3";
-
-
-      
-    }else{
-      $btnClass = "Unban UBUser";
-      $btnText = "Unban User";
-      $btnID = "Infobutton4";
+		$btnClass = "Ban BUser"; // the class needed two values, each class needs a space between
+		$btnText = "Ban User";
+		$btnID="Infobutton3";
+	}
+	else{
+		$btnClass = "Unban UBUser";
+		$btnText = "Unban User";
+		$btnID = "Infobutton4";
     }
 
 
-       echo "
-          <tr class='$UserUID'>
-          <td>$UserUID
-          </td>
-          <td>
-              $TypeEchoSelect
-          </td>
-          <td>
-           $SelectYear
-          </td>
-          <td style='text-transform: lowercase;'>$UserEmail</td>
-          <td>
-          <input class='UserFname$UserUID' disabled='true'  value='$UserFname'>
-          </td>
-          <td>
-          $SelectYear2
-          </td>
-          <td <th class='AdminButtons'>
-          <button value='$UserUID' class='DUser $UserUID' id='Infobutton1'>Remove User</button>
-          </td>
-          <td <th class='AdminButtons'>
-          <button value='$UserUID' class='EUser $UserUID'>Edit User</button>
-          </td>
-          <td <th class='AdminButtons'>
-          <button value='$UserUID' class='$btnClass' id='$btnID'>$btnText</button>
-          </td>
-          <td class='hidden1'>
-          <input type='text' id='UserName' required class='FormItems testname' disabled='true'>
-          </td>
-          <td class='hidden1'>
-          <button class=' SubmitEdit$UserUID Infobutton2'> Submit </button> 
-          </td>
-          <td class='hidden1'>
-          <button class='CancelDelete'> Cancel </button>
-          </td>
-
-
-          </tr>"; // delete does not do anything yet
+    echo "
+        <tr class='$UserUID'>
+			<td>$UserUID</td>
+			<td>$TypeEchoSelect</td>
+			<td>$SelectYear</td>
+			<td style='text-transform: lowercase;'>$UserEmail</td>
+			<td><input class='UserFname$UserUID' disabled='true'  value='$UserFname'></td>
+			<td>$SelectYear2</td>
+			<td <th class='AdminButtons'><button value='$UserUID' class='DUser $UserUID' id='Infobutton1'>Remove User</button></td>
+			<td <th class='AdminButtons'><button value='$UserUID' class='EUser $UserUID'>Edit User</button></td>
+			<td <th class='AdminButtons'><button value='$UserUID' class='$btnClass' id='$btnID'>$btnText</button></td>
+			<td class='hidden2'><input type='text' id='UserName' required class='FormItems testname' disabled='true'></td>
+			<td class='hidden1'><button class=' SubmitEdit$UserUID Infobutton2'> Submit </button></td>
+			<td class='hidden1'><button class='CancelDelete'> Cancel </button></td>
+		</tr>"; // delete does not do anything yet
     }
-} else
+}
+else
 {
     echo "<h2>No Users On Database yet</h2>";
 }
