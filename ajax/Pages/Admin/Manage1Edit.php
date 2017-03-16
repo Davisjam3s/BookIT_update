@@ -99,37 +99,37 @@ echo "<h2 class='response'></h2>";
 $sql = "SELECT * FROM User where UserTypeUID<'5' order by UserUID";//this will be changed when we need admin level changed
 $result = mysqli_query($conn, $sql);
 echo "<table>
-    <tr class='toptitles'>
-      <th>UserUID</th>
-      <th>UserTypeUID</th>
-      <th>UserYear</th>
-      <th>UserEmail</th>
-      <th>UserFname</th>
-      <th>UserCampus</th>
-      <th class='AdminButtons'>Delete User</th>
-      <th class='AdminButtons'>Edit User</th>
-      <th class='AdminButtons'>Ban User</th>
+		<tr class='toptitles'>
+			<th>UserUID</th>
+			<th>UserTypeUID</th>
+			<th>UserYear</th>
+			<th>UserEmail</th>
+			<th>UserFname</th>
+			<th>UserCampus</th>
+			<th>Delete User</th>
+			<th>Edit User</th>
+			<th>Ban User</th>
       <th class='hidden1'>Hidden value</th>
       <th class='hidden1'>Update</th>
       <th class='hidden1'>Cancel</th>
 
-    </tr>";
+		</tr>";
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) 
     {
-      $UserUID =$row["UserUID"];
-      $UserTypeUID =$row["UserTypeUID"];
-      $UserBanned =$row["UserBanned"];
-      $UserEmail =$row["UserEmail"];
-      $UserFname =$row["UserFname"];
-      $UserCampus =$row["UserCampus"];
-    $UserYear =$row["UserYear"];
-      
+    	$UserUID =$row["UserUID"];
+    	$UserTypeUID =$row["UserTypeUID"];
+    	$UserBanned =$row["UserBanned"];
+    	$UserEmail =$row["UserEmail"];
+    	$UserFname =$row["UserFname"];
+    	$UserCampus =$row["UserCampus"];
+		$UserYear =$row["UserYear"];
+    	
 
-      //lazy way of checking user types
-      if ($UserTypeUID == '1') {
-        $UserTypeUID = 'Student';
+    	//lazy way of checking user types
+    	if ($UserTypeUID == '1') {
+    		$UserTypeUID = 'Student';
         $TypeEchoSelect ="
                         <select class='UserTypeUID$UserUID' disabled='true'>
                         <option value='1' selected>Student</option>
@@ -137,9 +137,9 @@ if (mysqli_num_rows($result) > 0) {
                         <option value='3'>Staff</option>
                         <option value='4'>Post Grad</option>
                         </select>";
-      }
-      elseif ($UserTypeUID == '2') {
-        $UserTypeUID = 'Admin';
+    	}
+    	elseif ($UserTypeUID == '2') {
+    		$UserTypeUID = 'Admin';
         $TypeEchoSelect ="
                         <select class='UserTypeUID$UserUID' disabled='true'>
                         <option value='1'>Student</option>
@@ -147,9 +147,9 @@ if (mysqli_num_rows($result) > 0) {
                         <option value='3'>Staff</option>
                         <option value='4'>Post Grad</option>
                         </select>";
-      }
-      elseif ($UserTypeUID == '3') {
-        $UserTypeUID = 'Staff';
+    	}
+    	elseif ($UserTypeUID == '3') {
+    		$UserTypeUID = 'Staff';
          $TypeEchoSelect ="
                         <select class='UserTypeUID$UserUID' disabled='true'>
                         <option value='1'>Student</option>
@@ -157,9 +157,9 @@ if (mysqli_num_rows($result) > 0) {
                         <option value='3' selected >Staff</option>
                         <option value='4'>Post Grad</option>
                         </select>";
-      }
-    elseif ($UserTypeUID == '4'){
-      $UserTypeUID = 'Post Grad';
+    	}
+		elseif ($UserTypeUID == '4'){
+			$UserTypeUID = 'Post Grad';
       $TypeEchoSelect ="
                         <select class='UserTypeUID$UserUID' disabled='true'>
                         <option value='1' selected>Student</option>
@@ -167,113 +167,103 @@ if (mysqli_num_rows($result) > 0) {
                         <option value='3'>Staff</option>
                         <option value='4' selected >Post Grad</option>
                         </select>";
-    }
+		}
 
-    if ($UserYear == '1') {
-        $UserYear = 'Year 1';
+		if ($UserYear == '1') {
+    		$UserYear = 'Year 1';
         $SelectYear ="  <select class='UserYear$UserUID' disabled='true'>
                         <option value='1' selected>Year 1</option>
                         <option value='2'>Year 2</option>
                         <option value='3'>Year 3</option>
                         <option value='4'>Not Applicable</option>
                     </select>";
-      }
-      elseif ($UserYear == '2') {
-        $UserYear= 'Year 2';
+    	}
+    	elseif ($UserYear == '2') {
+    		$UserYear= 'Year 2';
         $SelectYear ="  <select class='UserYear$UserUID' disabled='true'>
                         <option value='1'>Year 1</option>
                         <option value='2' selected >Year 2</option>
                         <option value='3'>Year 3</option>
                         <option value='4'>Not Applicable</option>
                     </select>";
-      }
-      elseif ($UserYear == '3') {
-        $UserYear = 'Year 3';
+    	}
+    	elseif ($UserYear == '3') {
+    		$UserYear = 'Year 3';
         $SelectYear ="  <select class='UserYear$UserUID' disabled='true'>
                         <option value='1' selected>Year 1</option>
                         <option value='2'>Year 2</option>
                         <option value='3' selected >Year 3</option>
                         <option value='4'>Not Applicable</option>
                     </select>";
-      }
-    elseif ($UserYear == '4'){
-      $UserYear = 'Not Applicable';
+    	}
+		elseif ($UserYear == '4'){
+			$UserYear = 'Not Applicable';
       $SelectYear ="  <select class='UserYear$UserUID' disabled='true'>
                         <option value='1' selected>Year 1</option>
                         <option value='2'>Year 2</option>
                         <option value='3'>Year 3</option>
                         <option value='4' selected>Not Applicable</option>
                     </select>";
-    }
+		}
 
-    
-    if ($UserCampus == 1) {
+		
+		if ($UserCampus == 'Canterbury') {
             $UserCampus = 'Canterbury';
             $SelectYear2 =" <select class='UserCampus$UserUID' disabled='true'>
-                        <option value='1' selected >Canterbury</option>
-                        <option value='2'>Medway</option>
+                        <option value='Canterbury' selected >Canterbury</option>
+                        <option value='Medway'>Medway</option>
                     </select>";
         }
-        elseif ($UserCampus == 2) {
+        elseif ($UserCampus == 'Medway') {
             $UserCampus = 'Medway';
             $SelectYear2 =" <select class='UserCampus$UserUID' disabled='true'>
-                        <option value='1'>Canterbury</option>
-                        <option value='2' selected >Medway</option>
+                        <option value='Canterbury'>Canterbury</option>
+                        <option value='Medway' selected >Medway</option>
                     </select>";
         }
        
-    if ($UserBanned == 0) {
-      $btnClass = "Ban BUser"; // the class needed two values, each class needs a space between
-      $btnText = "Ban User";
-      $btnID="Infobutton3";
+		if ($UserBanned == 0) {
+			$btnClass = "Ban BUser"; // the class needed two values, each class needs a space between
+			$btnText = "Ban User";
+			$btnID="Infobutton3";
 
 
-      
-    }else{
-      $btnClass = "Unban UBUser";
-      $btnText = "Unban User";
-      $btnID = "Infobutton4";
-    }
+			
+		}else{
+			$btnClass = "Unban UBUser";
+			$btnText = "Unban User";
+			$btnID = "Infobutton4";
+		}
 
 
-       echo "
+    	 echo "
           <tr class='$UserUID'>
-          <td>$UserUID
+		    	<td>$UserUID
           </td>
-          <td>
+		    	<td>
               $TypeEchoSelect
           </td>
-          <td>
+				  <td>
            $SelectYear
           </td>
-          <td style='text-transform: lowercase;'>$UserEmail</td>
+          <td>$UserEmail</td>
           <td>
           <input class='UserFname$UserUID' disabled='true'  value='$UserFname'>
           </td>
-          <td>
+		      <td>
           $SelectYear2
           </td>
-          <td <th class='AdminButtons'>
+		      <td>
           <button value='$UserUID' class='DUser $UserUID' id='Infobutton1'>Remove User</button>
           </td>
-          <td <th class='AdminButtons'>
-          <button value='$UserUID' class='EUser $UserUID'>Edit User</button>
+				  <td>
+          <button value='$UserUID' class='EUser $UserUID' id='Infobutton2'>Edit User</button>
           </td>
-          <td <th class='AdminButtons'>
+		      <td>
           <button value='$UserUID' class='$btnClass' id='$btnID'>$btnText</button>
           </td>
-          <td class='hidden1'>
-          <input type='text' id='UserName' required class='FormItems testname' disabled='true'>
-          </td>
-          <td class='hidden1'>
-          <button class=' SubmitEdit$UserUID Infobutton2'> Submit </button> 
-          </td>
-          <td class='hidden1'>
-          <button class='CancelDelete'> Cancel </button>
-          </td>
 
-
-          </tr>"; // delete does not do anything yet
+    	 		</tr>"; // delete does not do anything yet
     }
 } else
 {
@@ -283,27 +273,36 @@ if (mysqli_num_rows($result) > 0) {
 mysqli_close($conn);
 ?>
 <div class='phpechofront1'>
-  <h1 class='agreeTitle'>Removing User</h1>
-  <h2 class='help'>By deleting this user all the Bookings & Owner Assets will be lost</h2>
-    <input type='text' id='UserName' required class ='FormItems testname' disabled='true'>
-  <span id='error'></span>
-    <button id='Infobutton1' class='FormItems'> Submit </button>
+	<h1 class='agreeTitle'>Removing User</h1>
+	<h2 class='help'>By deleting this user all the Bookings & Owner Assets will be lost</h2>
+		<input type='text' id='UserName' required class ='FormItems testname' disabled='true'>
+	<span id='error'></span>
+		<button id='Infobutton1' class='FormItems'> Submit </button>
         <button class='FormItems CancelDelete'> Cancel </button>
 </div>
+<div class='phpechofront2'>
+	<h1 class='agreeTitle'>Edit User</h1>
+	<h2 class="help">Edit this fine fellow</h2>
+        <input type='text' id='UserName' required class='FormItems testname' disabled="true">
+		<span id='error'></span>
+        <button id='Infobutton2' class='FormItems'> Submit </button>
+		<button class='FormItems CancelDelete'> Cancel </button>
+                
+</div>
 <div class='phpechofront3'>
-  <h1 class='agreeTitle'>Ban User</h1>
-  <h2 class='help'>Ban this user from creating Loans</h2>
-    <input type='text' id='UserName' required class ='FormItems testname' disabled='true'>
-  <span id='error'></span>
-    <button id='Infobutton3' class='FormItems'> Submit </button>
+	<h1 class='agreeTitle'>Ban User</h1>
+	<h2 class='help'>Ban this user from creating Loans</h2>
+		<input type='text' id='UserName' required class ='FormItems testname' disabled='true'>
+	<span id='error'></span>
+		<button id='Infobutton3' class='FormItems'> Submit </button>
         <button class='FormItems CancelDelete'> Cancel </button>
 </div>
 <div class='phpechofront4'>
-  <h1 class='agreeTitle'>UnBan User</h1>
-  <h2 class='help'>Allow the User to make Loans again</h2>
-    <input type='text' id='UserName' required class ='FormItems testname' disabled='true'>
-  <span id='error'></span>
-    <button id='Infobutton4' class='FormItems'> Submit </button>
+	<h1 class='agreeTitle'>UnBan User</h1>
+	<h2 class='help'>Allow the User to make Loans again</h2>
+		<input type='text' id='UserName' required class ='FormItems testname' disabled='true'>
+	<span id='error'></span>
+		<button id='Infobutton4' class='FormItems'> Submit </button>
         <button class='FormItems CancelDelete'> Cancel </button>
 </div>
 <script>
@@ -319,7 +318,6 @@ $(document).ready(function() {
         $('.EUser').click(function() {
             $(".testname").val($(this).val());
             $(".hidden1").show()
-            $(".AdminButtons").hide();
         });
     });  
 </script>
@@ -331,15 +329,16 @@ $(document).ready(function() // wait till the page is ready
 {
     $(".EUser").click(function() // wait till this button has been pressed
       { 
-          var  jam =  $(this).val(); // value of the button 
+            var  jam =  $(this).val(); // value of the button 
+           
           $( "input[class*="+jam+"]" ).prop('disabled',false).height(40); // enable any class with varible
           $( "select[class*="+jam+"]" ).prop('disabled',false).height(40); // enable any input type select with varible 
           $( "select[class|='UserTypeUID"+jam+"']" ).attr("id","UserTypeUID");
-          $( "select[class|='UserYear"+jam+"']" ).attr("id","UserYear");
+		  $( "select[class|='UserYear"+jam+"']" ).attr("id","UserYear");
           $( "input[class|='UserFname"+jam+"']" ).attr("id","UserFname");
           $( "select[class|='UserCampus"+jam+"']" ).attr("id","UserCampus");
 
-          $( ".Infobutton2").addClass(jam);
+          $( "#Infobutton2").addClass(jam);
           $( ".CancelDelete").addClass(jam);
 
 
@@ -389,30 +388,30 @@ $(document).ready(function() // wait till the page is ready
 </script>
 
 <script>
-  $('#Infobutton1').click(function() { //wait for the button to be pressed, this will need a name change 
-     var val1 = $('#UserName').val(); 
-    
-    $.ajax({ // now the ajax
-    type: 'POST', // we are posting it 
+	$('#Infobutton1').click(function() { //wait for the button to be pressed, this will need a name change 
+	   var val1 = $('#UserName').val();	
+		
+		$.ajax({ // now the ajax
+		type: 'POST', // we are posting it 
         url: 'ajax/Pages/Admin/DeleteUser.php', // this is where we're posting 
         data: { UserName: val1}, // set the php values
         success: function(response) { // this wont work lol, it does not need to, 
             $('#result').html(response);
             $('.response').html("Successfully removed from the database");
             $('.phpechofront1').hide();
-      $(".holder").load("ajax/Pages/Admin/Manage1.php");
+			$(".holder").load("ajax/Pages/Admin/Manage1.php");
         }
         });
 });
 </script>
 <script>
-  $('.Infobutton2').click(function() { //wait for the button to be pressed, this will need a name change 
+	$('#Infobutton2').click(function() { //wait for the button to be pressed, this will need a name change 
        var val1 = $('#UserFname').val(); // set val1 to the value in fullname
-     var val2 = $('#UserTypeUID').val(); // set val 2 to the value in User Type
-     var val3 = $('#UserName').val();
-     var val4 = $('#UserCampus').val();//set val 4 to the User Campus
-     var val5 = $('#UserYear').val();//set val 4 to the User Year
-    
+	   var val2 = $('#UserTypeUID').val(); // set val 2 to the value in User Type
+	   var val3 = $('#UserName').val();
+	   var val4 = $('#UserCampus').val();//set val 4 to the User Campus
+	   var val5 = $('#UserYear').val();//set val 4 to the User Year
+	  
     if (val2 == '1' || val2 =='2' || val2=='3' || val2=='4' && val1 !== '' && val4=='1'|| val4=='2'&& val5 == '1' || val5 =='2' || val5=='3' || val5=='4') //check the values
     {
         $.ajax({ // now the ajax
@@ -422,7 +421,7 @@ $(document).ready(function() // wait till the page is ready
         success: function(response) { // this wont work lol, it does not need to, 
             $('#result').html(response);
             $('.phpechofront2').hide();
-      $(".holder").load("ajax/Pages/Admin/Manage1.php");
+			$(".holder").load("ajax/Pages/Admin/Manage1.php");
         }
         });
     }
@@ -435,11 +434,11 @@ $(document).ready(function() // wait till the page is ready
 });
 </script>
 <script>
-  $('#Infobutton3').click(function() { //wait for the button to be pressed, this will need a name change 
-     var val1 = $('#UserName').val(); 
-    
-    $.ajax({ // now the ajax
-    type: 'POST', // we are posting it 
+	$('#Infobutton3').click(function() { //wait for the button to be pressed, this will need a name change 
+	   var val1 = $('#UserName').val();	
+		
+		$.ajax({ // now the ajax
+		type: 'POST', // we are posting it 
         url: 'ajax/Pages/Admin/BanUser.php', // this is where we're posting 
         data: { UserName: val1}, // set the php values
         success: function(response) { // this wont work lol, it does not need to, 
@@ -452,11 +451,11 @@ $(document).ready(function() // wait till the page is ready
 });
 </script>
 <script>
-  $('#Infobutton4').click(function() { //wait for the button to be pressed, this will need a name change 
-     var val1 = $('#UserName').val(); 
-    
-    $.ajax({ // now the ajax
-    type: 'POST', // we are posting it 
+	$('#Infobutton4').click(function() { //wait for the button to be pressed, this will need a name change 
+	   var val1 = $('#UserName').val();	
+		
+		$.ajax({ // now the ajax
+		type: 'POST', // we are posting it 
         url: 'ajax/Pages/Admin/UnBanUser.php', // this is where we're posting 
         data: { UserName: val1}, // set the php values
         success: function(response) { // this wont work lol, it does not need to, 
