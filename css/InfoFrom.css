@@ -50,3 +50,15 @@
             margin-top: 3em;
 
 }
+@media only screen and (max-width: 768px) 
+{
+    .phpechofront,
+    .phpechofront1,
+    .phpechofront2,
+    .phpechofront3,
+    .phpechofront4 
+    {
+        width: 100%;
+        height: 100%;
+    }
+}
