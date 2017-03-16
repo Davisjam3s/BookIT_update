@@ -8,8 +8,8 @@ echo "<div class='phpechoback'></div>
      
         <select class='FormItems' id='Campus' required>
             <option value='' selected disabled >Campus</option>
-            <option value='Canterbury'>Canterbury</option>
-            <option value='Medway'>Medway</option>
+            <option value='1'>Canterbury</option>
+            <option value='2'>Medway</option>
         </select>
         <select class='FormItems' id='YearGroup' required>
             <option value='' selected disabled >Year Group</option>
@@ -30,7 +30,7 @@ echo "<div class='phpechoback'></div>
     var val1 = $('#Fullname').val(); // set val1 to the value in fullname
       var val2 = $('#Campus').val(); // set val 2 to the value in campus
       var val3 = $('#YearGroup').val(); // set val3 to the value in yeargroup
-    if (val2 == 'Medway' || val2 =='Canterbury' && val1 !== '') //check the values
+    if (val2 == '1' || val2 =='2' && val1 !== '') //check the values
     {
         $.ajax({ // now the ajax
         type: 'POST', // we are posting it 
