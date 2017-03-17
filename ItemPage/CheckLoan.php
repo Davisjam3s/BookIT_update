@@ -81,7 +81,7 @@ while ($Banned == 0 && $UserAgreed == 1):
 			break;}
 		//otherwise  echo a problem
 		else
-			{echo "<div class='warning'>Sorry, Booking has a problem</div>";
+			{echo "<div class='warning'>Sorry, You are not eligible to book this item , please check the restrictions</div>";
 	
 			break;		}	
 	endwhile;	

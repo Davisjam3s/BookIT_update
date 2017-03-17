@@ -34,6 +34,8 @@ require '../../../php/Conection.php';
 	JOIN Asset on LoanContent.AssetUID = Asset.AssetUID 
 	JOIN Owner on Asset.OwnerUID = Owner.OwnerUID  
 	WHERE Owner.OwnerUID = '$user'
+	AND Loan.LoanConfirm <2
+	AND LoanContent.SetReturn=1
 	ORDER BY Loan.LoanUID DESC ";
 	 
 	//just a variable to store the query result

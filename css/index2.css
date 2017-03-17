@@ -114,6 +114,9 @@ p{
   float: right;
   display: block;
 }
+.Footer{
+  display: none;
+}
 }
 @media only screen and (min-width: 768px) {
 

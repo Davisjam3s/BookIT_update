@@ -3,10 +3,10 @@
     .SortItems{
         background:none;
         border: none;
-        background-color: #05345C;
+        background-color: white;
         width: 10em;
         font-size: 2em;
-        color: white;
+        color: Grey;
         margin-bottom: 1px;
         min-width: 25%;
         cursor: pointer;

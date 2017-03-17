@@ -1,4 +1,28 @@
+ <!--We better get on this lads and ladies thats right, im not sexist, take that feminists-->
+<!--don't break anything
+              _
+             | |
+             | |===( )   //////
+             |_|   |||  | o o|
+                    ||| ( c  )                  ____
+                     ||| \= /                  ||   \_
+                      ||||||                   ||     |
+                      ||||||                ...||__/|-"
+                      ||||||             __|________|__
+                        |||             |______________|
+                        |||             || ||      || ||
+                        |||             || ||      || ||
+------------------------|||-------------||-||------||-||-------
+                        |__>            || ||      || ||
 
+
+I dont know why you're reading the code, there is nothing intresting here, unless you're a code stealer, if so, go away-->
+<!--dont undertand our code? well then ask, or dont, dont worry after a while we wont understand it anyway-->
+<!--
+	** This is the index page, here the user will be able to accesss the website
+
+	** This page does not contain much as things are loaded to it rather 
+-->
 <?php require 'php/Conection.php';?> <!--This is the connection file-->
 <?php require 'php/user_info.php';?>
 <?php require 'php/CountMyBookings.php';?>

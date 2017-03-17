@@ -227,7 +227,7 @@ echo "<button class='BookButton BookBook' value='$AssetUID'>Book</button><br>";
 
 	
 	<button class="BookButton Catalogue">Catalogue</button><br>
-	<span style="font-size: 0.7em;">You Can press this button all you want but it dont work yet</span>
+	<span style="font-size: 0.7em;"></span>
 </div>
 <?php
 include 'GetAgreement.php';

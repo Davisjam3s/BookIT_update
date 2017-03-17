@@ -89,7 +89,13 @@ if (mysqli_query($conn, $sql_confirm))
 				}
 			}
 		}
-}
+		//used to update the menu bar of how many bookings the owner has
+		require '../../../php/CountMyLoans.php';
+		//used to update the menu bar for how many bookings the user has
+		require '../../../php/CountMyBookings.php';
+		
+	}
+
 ?>
 
 

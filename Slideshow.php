@@ -33,16 +33,13 @@ display:none;
 height:400px;
 width:100%;
 }
-
 .w3-content {
 margin-left:0;
 }
-
 .w3-section {
 margin-top:16px!important;
 margin-bottom:16px!important;
 }
-
 .newhold {
 width:100%;
 height:inherit;
@@ -51,7 +48,6 @@ color:#FFF;
 text-align:center;
 text-transform:capitalize;
 }
-
 .innerbox {
 width:33.333333333333%;
 background-color:red;
@@ -60,25 +56,21 @@ float:left;
 color:#000;
 overflow:hidden;
 }
-
 h1 {
 color:#000;
 background-color:#FFF;
 font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
 text-transform:uppercase;
 }
-
 @media only screen and max-width 768px{
 .mySlides {
 display:none;
 height:150px;
 width:100%;
 }
-
 .innerbox {
 width:100%;
 }
-
 h1 {
 font-size:1em;
 }
@@ -88,11 +80,11 @@ font-size:1em;
 
 
 <div class="w3-content w3-section" style="width: 100%;">
-  <img class="mySlides" alt="slideshow image" src="images/slideshow/pic1.jpg">
-  <img class="mySlides" alt="slideshow image" src="images/slideshow/pic2.jpg">
-  <img class="mySlides" alt="slideshow image" src="images/slideshow/pic3.jpg">
+  <img class="mySlides" alt="slideshow image" src="images/slideshow/wide1.jpg">
+  <img class="mySlides" alt="slideshow image" src="images/slideshow/wide2.jpeg">
+  <img class="mySlides" alt="slideshow image" src="images/slideshow/wide3.jpeg">
   <img class="mySlides" alt="slideshow image" src="images/slideshow/pic4.jpg">
-  <img class="mySlides" alt="slideshow image" src="images/slideshow/matt.jpeg">
+  
   <img class="mySlides" alt="slideshow image" src="images/slideshow/pic5.jpg">
   <img class="mySlides" alt="slideshow image" src="images/slideshow/pic6.jpg">
   <img class="mySlides" alt="slideshow image" src="images/slideshow/pic7.jpg">
