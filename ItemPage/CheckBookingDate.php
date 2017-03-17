@@ -12,7 +12,8 @@ $sql_GetDays = "SELECT Asset.AssetDescription, Loan.LoanUID, Loan.LoanDate, Loan
 	JOIN Asset on LoanContent.AssetUID = Asset.AssetUID 
 	JOIN Owner on Asset.OwnerUID = Owner.OwnerUID 
 	JOIN User on Owner.OwnerUID = User.UserUID  
-	WHERE LoanContent.AssetUID = '$AssetUID' ORDER BY Loan.LoanUID DESC";
+	WHERE LoanContent.AssetUID = '$AssetUID' 
+	AND (Loan.LoanConfirm = 0 OR Loan.LoanConfirm = 1) ORDER BY Loan.LoanUID DESC";
 
 $result = mysqli_query($conn, $sql_GetDays);
 
