@@ -3,9 +3,8 @@
 
     ** This Page uses jquery aswell as normal javascript, the javascript was from W3cShools as it was quick and easy to place it in the code rather than wasting time trying to fiquire how do it when there is more important things to be doing 
 
-    **
+    ** This page also allows for some of the items in the database ot be loaded onto this page, at the moment we are just loading a few books onto the page, this is just a quick way to so the users what they can book on the website
 
-    
 
     **This page was Created by  James Davis, Marie H
     **Commented by James Davis
