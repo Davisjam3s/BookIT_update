@@ -91,3 +91,27 @@ h3
     font-family: 'Amaranth', sans-serif;
     /*what a nice font*/
 }
+@media only screen and (max-width: 768px) 
+{
+    .menu_container
+    {
+        height: 100%;
+        width: 100%;
+    }
+    .agreement
+    {
+        margin:0em;
+        width: 100%;
+    }
+    .agreementText{
+        width: 100%;
+    }
+    #AgreeButton{
+        width: 100%;
+        z-index: 999999;
+        -webkit-box-shadow:inset 0px 0px 0px 1px #A9A9A9;
+        -moz-box-shadow:inset 0px 0px 0px 1px #A9A9A9;
+        box-shadow:inset 0px 0px 0px 1px #A9A9A9;
+    }
+
+}
