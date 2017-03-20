@@ -234,7 +234,7 @@ include 'GetAgreement.php';
 ?>
 
 <script>
-//this makes sure the user selects a date before the days booked 
+//this makes sure the user selects a date before the amount of days they want to book for 
 $('#advanced').on('change', function() {
   
   $('#DaysBooked').removeAttr('disabled');
@@ -244,9 +244,9 @@ $('#advanced').on('change', function() {
 
 
 <script>
-//this runs each time the days requested is changed and calls checkreturndate.php (just in case you wondered where it came from! ;) Marie)  
+//this runs each time the days requested is changed and calls CheckBookingDate.php (just in case you wondered where it came from! ;) Marie)  
   $('#DaysBooked').change(function() {   
-    //sends the values from the date selector and the book button (the AssetUID) as variables to checkdate.php
+    //sends the values from the date selectors and the book button (the AssetUID) as variables to check the date is available
 	var date = $('#advanced').val(); 
     var vald = date;
 	var vala = $('.BookBook').val();
@@ -268,7 +268,7 @@ $('#advanced').on('change', function() {
 		}
 		else
 		{
-			$(".BookBook").attr("disabled", false).css("background-color", "#05345C").text("Available BOOK");
+			$(".BookBook").attr("disabled", false).css("background-color", "#05345C").text("BOOK");
 			
 		}
 
@@ -284,7 +284,7 @@ $('#advanced').on('change', function() {
 <script>
 	$(document).ready(function() // when the document is ready
     {
-    	$(".Catalogue").click(function() // when has this div been pressed?
+    	$(".Catalogue").click(function() // when has this div been pressed
             {
             	
                 $("Title").text("BookIT|Catalogue"); // change the title

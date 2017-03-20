@@ -26,7 +26,7 @@
 //read in variables
 $AssetUID = $_POST['AssetUID']; // for that ItemName 
 
-require '../../../php/Conection.php'; //connect to server
+require '../../../php/Conection.php'; //connect to db
 
 $AssetUID = mysqli_real_escape_string($conn, $AssetUID);
 $AssetUID = strip_tags($AssetUID);
@@ -45,7 +45,8 @@ while ($row = mysqli_fetch_array($result))
 	}
 
 // gather information from their user account
-$sql2 = "DELETE FROM Asset WHERE AssetUID=$AssetUID";
+$sql2 = "DELETE FROM LoanContent WHERE AssetUID=$AssetUID";
+$sql3 = "DELETE FROM Asset WHERE AssetUID=$AssetUID";
 
 //display success or failure
 if (mysqli_query($conn, $sql1))
@@ -53,16 +54,25 @@ if (mysqli_query($conn, $sql1))
 	echo " Image deleted succesfully ";
 	if (mysqli_query($conn, $sql2))
 		{
-		echo " Asset deleted successfully ";
+		echo " LoanContent deleted successfully ";
+		if (mysqli_query($conn, $sql3))
+			{
+				echo"Asset deleted successfully";
+			}
+			else 
+			{
+				echo "Error ". $sql3 . "<br>" . mysqli_error($conn);
+			}
+			
 		}
 	else
 		{
-		echo "Error: " . $sql3 . "<br>" . mysqli_error($conn);
+		echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
 		}
 	}
 else
 	{
-	echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
+	echo "Error: " . $sql1 . "<br>" . mysqli_error($conn);
 	}
 
 $conn->close();
