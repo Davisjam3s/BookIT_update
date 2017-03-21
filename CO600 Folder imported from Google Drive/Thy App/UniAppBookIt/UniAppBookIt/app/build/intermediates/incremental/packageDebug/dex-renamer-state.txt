@@ -1,0 +1,7 @@
+#Sun Dec 18 03:07:03 GMT 2016
+base.0=C\:\\Users\\Dominic\\AndroidStudioProjects\\UniAppBookIt\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_1609513b493ed5639932e4a8222c23ff9fc36853
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=C\:\\Users\\Dominic\\AndroidStudioProjects\\UniAppBookIt\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_afd7bad35a6e85d49aeccd8ea27e0063ad98b81e\\classes.dex
+base.1=C\:\\Users\\Dominic\\AndroidStudioProjects\\UniAppBookIt\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_afd7bad35a6e85d49aeccd8ea27e0063ad98b81e
+file.0=C\:\\Users\\Dominic\\AndroidStudioProjects\\UniAppBookIt\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_1609513b493ed5639932e4a8222c23ff9fc36853\\classes.dex
