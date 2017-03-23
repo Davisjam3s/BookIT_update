@@ -6,6 +6,8 @@
    // echo "nothing";
     
   //}
+    $Fullname = mysqli_real_escape_string($conn, $Fullname);
+    $Fullname = strip_tags($Fullname);
   // selecting all the assets from the asset table, then ordering them, maybe we dont need order by random, but its looks different each time yo
   $sql = "SELECT * FROM Asset WHERE AssetDescription LIKE '$Fullname%'";
   $result = mysqli_query($conn, $sql);
