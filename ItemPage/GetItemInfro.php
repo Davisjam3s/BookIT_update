@@ -1,3 +1,18 @@
+<!-- 
+**this gets infomation from a number of php files such as CheckBookingDate.php this just gives the user 
+** the infomation they need when they book an item
+    
+**This page was Created by 
+**Commented by Dominic Moseley
+
+**What I have done
+	
+**Added the top comments
+**Spellchecked the comments below
+**Code was untouched	
+
+-->
+
 <?php
 require '../php/Conection.php';
 ?>
