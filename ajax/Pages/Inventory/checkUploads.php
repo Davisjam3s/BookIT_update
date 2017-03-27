@@ -1,4 +1,5 @@
 <?php
+//code for both fuctions on this page adapted from "https://www.w3schools.com/php/php_file_upload.asp"
 function checkImage()
 {
 	//set filepath to the folder to store images in

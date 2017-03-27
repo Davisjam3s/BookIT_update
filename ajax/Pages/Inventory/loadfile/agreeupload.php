@@ -8,7 +8,7 @@ if($_POST['Upload'] == 'Upload')
 
   {
 
-  //make the allowed extensions
+  //make an array of the allowed extensions
 
   $fileTypes = array(
 
@@ -46,15 +46,15 @@ echo "<span> </span>"; //verify if the file size of the file being uploaded is g
 
    if(filesize($_FILES['filename']['tmp_name']) < $min_filesize)
 
-     $error.='File size too small<br>'."\n";
+		$error.='File size too small<br>'."\n";
 
-  $uploadfile = $uploaddir . $stem.$extension;
+		$uploadfile = $uploaddir . $stem.$extension;
 
-$filename=$stem.$extension;
+		$filename=$stem.$extension;
 
-if ($error=='')
+		if ($error=='')
 
-{
+	{
 	require '../../../../php/Conection.php';
 	
 	$sql = "INSERT INTO Agreement (AgreementDescription) VALUES ('$uploadfile')";
@@ -63,17 +63,17 @@ if ($error=='')
 
 //upload the file to
 
-if (move_uploaded_file($_FILES['filename']['tmp_name'], $uploadfile)) {
-	
-	echo $uploadfile;
+		if (move_uploaded_file($_FILES['filename']['tmp_name'], $uploadfile)) {
+		
+		echo $uploadfile;
 
-echo 'File Uploaded. Thank You.';
+		echo 'File Uploaded. Thank You.';
 
-}
+		}
 
-}
+	}
 
-else echo $error;
+	else echo $error;
 
 }
 
