@@ -1,4 +1,5 @@
 <?php
+sleep(0.5);
 echo "<div class='menu_container_background'></div> 
       <div class='menu_container'> 
         <div class='agreement'> 

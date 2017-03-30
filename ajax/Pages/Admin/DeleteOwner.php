@@ -136,8 +136,9 @@ if (mysqli_num_rows($result1) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($result1)) {
         //delete the Owner
+		$sql5 = "UPDATE User set IsOwner=0 Where OwnerUID='$UserName'";
         $sql4 = "DELETE FROM Owner Where OwnerUID='$UserName'";
-		$sql5 = "UPDATE User set IsOwner=0 Where UserUID='$UserName'";
+		
 
 		//display success or failure
 		if (mysqli_query($conn, $sql4)) {

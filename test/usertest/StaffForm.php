@@ -1,4 +1,5 @@
 <?php
+sleep(0.5);
 echo "<div class='phpechoback'></div>
 <div class='phpechofront'>
     <h1 class='agreeTitle'>Welcome New staff</h1>
@@ -30,6 +31,8 @@ echo "<div class='phpechoback'></div>
         data: { Fullname: val1,Campus: val2, YearGroup: val3 }, // set the php values
         success: function(response) { // this wont work lol, it does not need to, 
             $('#result').html(response);
+            $(".submit").attr("disabled", true);
+            $(".submit").html('Please Wait');
         }
         });
     }

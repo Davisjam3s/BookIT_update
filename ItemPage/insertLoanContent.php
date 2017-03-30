@@ -1,3 +1,12 @@
+<!--
+    ** This is the last part of adding the loan, here we use the information that we gatherd from Select Current loan, as we needed the loan id to finish this off 
+
+    this adds the same infromation with the return date as well as carrying on the scripts to send emails and other information about the loan that might be usefull
+
+    **This page was Created by James Davis
+    **Commented by James Davis
+
+-->
 <?php
 $sql_content = "INSERT into LoanContent (LoanUID, AssetUID,setReturn,ReturnDate)values ($LoanUID,$Item_ID,1,'$dayDrop')";
 if (mysqli_query($conn, $sql_content))

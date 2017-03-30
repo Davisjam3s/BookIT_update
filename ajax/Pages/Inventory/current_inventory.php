@@ -243,7 +243,7 @@ $(document).ready(function() // wait till the page is ready
           $( "select[class|='Agreement"+jam+"']" ).attr("id","Agreement");
           $( "select[class|='Condition"+jam+"']" ).attr("id","Condition");
           $( "select[class|='Restriction"+jam+"']" ).attr("id","Restriction");
-		  $( "select[class|='Supervision"+jam+"']" ).attr("id","Supervision");
+		      $( "select[class|='Supervision"+jam+"']" ).attr("id","Supervision");
           $( "#Infobutton2").addClass(jam);
           $( ".CancelDelete").addClass(jam);
 

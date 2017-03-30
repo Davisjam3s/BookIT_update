@@ -1,3 +1,13 @@
+<!--
+    ** This page counts how many loans the current logged in user has, this will then display to the user how many loans they currently have on the website 
+
+    ** To do
+    * add script to remove a loan when an item as been returned 
+
+    **This page was Created by James Davis
+    **Commented by James Davis
+
+-->
 <?php
 $sql_CheckCurrentLoans = "SELECT * FROM User WHERE UserUID = '$user' ";
 $result                = mysqli_query($conn, $sql_CheckCurrentLoans);

@@ -1,15 +1,29 @@
 <!-- 
-**this gets infomation from a number of php files such as CheckBookingDate.php this just gives the user 
-** the infomation they need when they book an item
+**This page gathers the information about the item that the user has choosen, it does this by using a php commaned $_Request this tells the php file that we want to get a value for ID. (James Davis)
+
+** once we have got this Value we can use it, here we use it to finish the SQL statement, as this is the page that displays the information about said item, as this information maybe usefull to the information will be usefull later.(James Davis)
+
+**once we have got this information, i (James) set a height and width for the items based on which type of item it is. this means that should not strech certain types of images as we dont want an image of a book to look streched, this information is then displayed onto the page (James Davis)
+
+**it also creates strings for certain values, as a restiction type 1 will mean nothing to the user, so here we give them some meaning so that the user can cleary understand what they mean (James Davis)
+
+**when the user wants to select a date, they will use a select box, this select box allows the user to select a date, the dates in here are create by a while loop and use PHP date to string, this allows me to add 1 to the date each iteration within the while loop, this means that the dates will allways being changing every day as it always adds to the current date, meaning that this is automatic and we dont need ot hard code it.(James Davis)
+
+**once the user has selected a date, they will then be able to select a booking period, this select box only becomes accsessable to the user only once they select a date from the first select box, this is because once the user chooses a booking period it then uses ajax to send a request to check if the days choosen are availabe to book, if it is then it will enable the button allowing the user to book the item if not it will not enable the button (James Davis)
+
+**when the user presses the book button it collects the information about the user, such as user type and user id because it needs to check against the database of the itme to see if they're allowed to book that item, it also sends the item ID aswell as we need to know the item that the user would like to book, this is dont again using ajax, as this means the user does not need to leave the page they are currently on 
+
+**on this page you may notice that you may notice you cannot just press the book now button, this is because it has been disabled by defualt, this means that the user will have to complete both of the select fields before they are able to book the item(James Davis)
+
     
-**This page was Created by 
-**Commented by Dominic Moseley
+**This page was Created by James Davis, Matt H and Marie H
+**Commented by Dominic Moseley changed by James davis
 
 **What I have done
 	
-**Added the top comments
-**Spellchecked the comments below
-**Code was untouched	
+**Added the top comments (dom)
+**Spellchecked the comments below (dom)
+**Code was untouched	(dom)
 
 -->
 

@@ -267,7 +267,7 @@ if (mysqli_num_rows($result) > 0) {
 			<td <th class='AdminButtons'><button value='$UserUID' class='DUser $UserUID' id='Infobutton1'>Remove User</button></td>
 			<td <th class='AdminButtons'><button value='$UserUID' class='EUser $UserUID'>Edit User</button></td>
 			<td <th class='AdminButtons'><button value='$UserUID' class='$btnClass' id='$btnID'>$btnText</button></td>
-			<td class='hidden2'><input type='text' id='UserName' required class='FormItems testname' disabled='true'></td>
+			<td class='hidden2'><input type='text' id='ItemName' required class ='FormItems testname' disabled='true'></td>
 			<td class='hidden1'><button class=' SubmitEdit$UserUID Infobutton2'> Submit </button></td>
 			<td class='hidden1'><button class='CancelDelete'> Cancel </button></td>
 		</tr>"; // delete does not do anything yet

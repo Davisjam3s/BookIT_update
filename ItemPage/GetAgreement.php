@@ -1,3 +1,13 @@
+<!-- 
+** this page gathers the information about the items agreement, this means that the items agreement can be loaded onto the page with the item, this means that the user can read and accept the terms to the agreement before booking the item
+
+** To do
+    * Bring up the form when the user presses the book button, then this will allow them to agree to the items Agreement before it adds the booking to the databse  (this has not been done)
+
+**commented by james davis
+**Created By James Davis, Marie H
+
+-->
 <?php
 require '../php/Conection.php';
 

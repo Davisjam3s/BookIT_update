@@ -1,4 +1,5 @@
 <?php
+sleep(0.5);
 include 'php/Conection.php';
 
 $user=$_SERVER['REMOTE_USER'];

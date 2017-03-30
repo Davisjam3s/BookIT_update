@@ -1,15 +1,8 @@
 <!-- 
-**this page is to get information from the database such as loan date to give the user
+** this page gathers the information about the loan, once the loan has been added to the databse we get all the information about the loan, this information is then used to display to the user aswell as sending them an email with the information about the item and its booking 
 
-    
-**This page was Created by 
-**Commented by Dominic Moseley
-
-**What I have done
-	
-**Added the top comments
-**
-**Code was untouched	
+**commented by james davis
+**Created By James Davis, Marie H
 
 -->
 
