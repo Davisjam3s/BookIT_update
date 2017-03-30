@@ -3,13 +3,15 @@
 **This connects to the database, it then gets the current bookings and then it deletes them
 
     
-**This page was Created by 
-**Commented by Dominic Moseley
+**This page was Created by James davis, Marie H and Matt H
+**Commented by Dominic Moseley, James Davis
 
-**What I have done
+**What I have done 
 **Added the top comments
 **Spellchecked the comments below
-**Code was untouched	
+**Code was untouched
+
+
 
 -->
 <script>
@@ -18,8 +20,9 @@ if ($(window).width() < 748) {
    $(".holder").load("ajax/Pages/bookings/CurrentBookingsPhone.php"); 
 }
 else {
-   //do nothing 
+   
 }
+
 </script>
 <script>
 
@@ -31,6 +34,7 @@ else {
     
  }
 });
+
 
 </script> 
 

@@ -21,9 +21,9 @@ $(document).ready(function()
 {
   $('.catalog_item').click(function()
   {
-    var jamjam = $(this).attr("value");
+    var ItemID = $(this).attr("value");
     $(".mainp").hide();
-    $(".holder").load("ItemPage/GetItemInfro.php?id=" + jamjam + "");
+    $(".holder").load("ItemPage/GetItemInfro.php?id=" + ItemID + "");
   });
 });
 </script>
